@@ -58,11 +58,11 @@ the differences are listed after the table.
 | 5 | Guest favorite badge | badge · 4.99 · 159 reviews in one row | same | same |
 | 6 | Host row | avatar, "Hosted by …", Superhost · 2 years | same | same |
 | 7 | Booking card | sticky right column: "Add dates for prices", check-in, checkout, guests, Check availability | sticky right, narrower | sticky bottom bar |
-| 8 | Highlights | three icon rows | same | same |
+| 8 | Highlights | four icon rows, each a bold title and a one-line explainer | same | same |
 | 9 | Description | prose + Show more | same | same |
 | 10 | Where you'll sleep | two bedroom cards | same | two cards, side by side |
 | 11 | Amenities | ten in two columns + "Show all 69" | one column | one column |
-| 12 | Date picker | two months | two months | one month, below the map |
+| 12 | Select check-in date | its own headed section: two months side by side, "Clear dates" | two months | one month, below the map |
 | 13 | Reviews | laurelled 4.99, six category ratings, review chips, six reviews in two columns, "Show all 159" | one column | horizontal carousel |
 | 14 | Map | full width ≈ 16:9, town line, "Exact location provided after booking" | same | same, above the date picker |
 | 15 | Meet your host | host card left, bio + Message host right, host details | same | stacked |
@@ -89,8 +89,19 @@ the gallery.
 - **Mobile drops the mosaic for a carousel.** The study keeps a three-box
   descent at 390 instead. That is a structural claim in itself: the hierarchy
   survives at phone width without a carousel.
-- **Omitted:** the site header, the "Explore other options" link block, and
-  the footer link columns. They are chrome, not the listing.
+- **Omitted, deliberately:** the site header, breadcrumb, "Explore other
+  options" link block and footer link columns (chrome, not the listing); the
+  "Report this listing" link and the payment-protection notice (boilerplate);
+  the "Guest reviews mention" chip row and six of the seven review category
+  columns (the reviews band keeps the score, two reviews, one category and
+  the "Show all 159" call to action — trims stated in the band); the
+  highlight explainers (titles only, four of them); the Superhost explainer
+  and the host's two personal facts' icons.
+- **Weight changes, deliberately:** the reference gallery is two-level — the
+  hero equals the sum of its four equal supports — and the spiral turns the
+  four equals into a descent. The two bedroom cards stay equals (adjacent
+  1-squares). The host card, the reference's visual lead in its section, is
+  demoted to a 1-square beside the bio hero.
 
 ## Bands
 
@@ -99,20 +110,22 @@ A study is a short vertical stack of bands. Each band is one small-range
 
 | Band | Range at 390 / 820 / 1440 | `placement` · `clockwise` | Editorial job | Responsive lever |
 | --- | --- | --- | --- | --- |
-| 1 Gallery | 1–3 / 1–4 / 1–5 | bottom / right / top · cw (hero left) | hero photograph and supporting shots | shrink range, rotate placement in lockstep |
-| 2 Facts | 1–3 / 1–4 / 1–4 | top cw / right ccw / right ccw | summary, capacity, rating, review count, host | rotate placement; merge host into hero at 390 |
-| 3 Book | 1–1 / 1–2 / 1–2 | right · cw | the booking card | collapse to single, CTA merged into the form |
-| 4 About | 1–4 at all | bottom / left / left · cw | description, two bedrooms, three highlights | rotate placement; word count per width |
-| 5 Amenities | 1–3 / 3–4 / 3–4 | top · cw | ten amenities in one slot, one month of the picker, "Show all" in the placeholder strip | open `from` at 390; calendar becomes a button by container query |
-| 6 Reviews | 1–3 / 1–4 / 1–5 | top / right / bottom · ccw (hero left) | featured review, score, second review, two category ratings | shrink range, rotate placement in lockstep; second review omitted at 390 |
-| 7 Location | 1–3 at all | top · cw | map, town line, location note | none; width capped |
-| 8 Host | 1–1 / 1–3 / 1–3 | bottom · ccw | host bio, host card, Message host | collapse to single at 390 |
-| 9 Things to know | 1–3 at all | top · cw | house rules, cancellation, safety | none; width capped |
+| 1 Gallery | 1–3 / 1–5 / 1–5 | bottom / top / top · cw (hero left) | hero photograph and four supporting shots, the reference's full mosaic at 820 and 1440; a three-box descent replaces the carousel at 390 | shrink range with placement rotated; cap 64rem so gallery and facts share the first screen |
+| 2 Facts | 1–3 / 1–4 / 1–4 | top cw / right ccw / right ccw | summary and capacity, score with its blurb, review count, host row — the named honest risk | rotate placement; merge host into hero at 390; cap 48rem |
+| 3 Book | 1–1 / 1–2 / 1–2 | left · cw | the booking card: form left, call to action right (the mobile bar's order) | collapse to single with the CTA merged; cap 40rem |
+| 4 About | 1–4 at all | bottom / left / left · cw | description in the hero, four highlight titles in the 2-square, the two bedrooms as adjacent equal 1-squares | rotate placement; word count per width; cap 60rem |
+| 5 Amenities | 1–3 / 3–4 / 3–4 | top · cw | 10 / 5 / 5 amenities in one slot, the hot tub as an image tile, "Show all 69" in the placeholder strip | open `from` at 390; cap 60rem |
+| 6 Dates | 1–1 / 1–2 / 1–2 | left · cw | the date picker: two months as a peer pair, one at 390 | collapse to single; cap 48rem |
+| 7 Reviews | 1–3 / 1–4 / 1–5 | right ccw (2:3) / right ccw / bottom ccw | score in the hero at every width; featured review, second review (1440 only), one category, "Show all 159" — makes Airbnb's implicit ranking explicit | shrink range; portrait at 390; children trimmed per width; cap 60rem |
+| 8 Location | 1–3 at all | right ccw (2:3) / top ccw / top ccw | map hero (left at 820/1440, full-width on top at 390), town line and note, the location highlight | portrait at 390; cap 56rem |
+| 9 Host | 1–1 / 1–3 / 1–3 | bottom · ccw | bio hero right, host card and host details in the 1-squares | collapse to single at 390; cap 56rem |
+| 10 Things to know | none / 1–3 / 1–3 | top · ccw | house rules hero left, cancellation and safety in the 1-squares — flat content, kept as a band so the failure is visible | plain three-row list at 390 (no grid); cap 48rem |
 
 Breakpoints live in one place, [`src/lib/viewport.ts`](src/lib/viewport.ts).
 Each band picks its own range, placement, and children from the viewport; no
-band carries a media query. Bands 2, 4–9 are width-capped (56–60rem) because
-height follows width; the gallery is not.
+band carries a media query. Every band is width-capped (40–64rem) because
+height follows width. Hero sides down the page at 1440: left, left, pair,
+right, right, pair, left, left, right, left.
 
 ## Asset spec
 
@@ -129,16 +142,16 @@ is listed so sources are never upscaled.
 
 | Slot | Band | Role | Largest render (px) | Min. source | Subject placement | Safe area |
 | --- | --- | --- | --- | --- | --- | --- |
-| Hero exterior | 1 | the shot that sells the place: the cabin from outside, dusk or golden hour | 850×850 (1440), 462×462 (820), 244×244 (390) | 1600×1067, any shape | subject centred-upper; `object-position: 50% 42%` | the building and its immediate ground; the slot is square at every width, so the outer thirds of a 3:2 source are lost at every width |
-| Supporting 1 | 1 | main living space | 510×510 | 1200×800 | centre | centre 60% |
-| Supporting 2 | 1 | hot tub or sauna | 340×340 | 1000×1000 | centre | centre 60% |
-| Supporting 3 | 1 | bedroom | 170×170 (1440); 154×154 (820) | 1200×900 | centre | centre 50% |
-| Supporting 4 | 1 | kitchen | 170×170 (1440 only) | 1200×800 | centre | centre 50% |
-| Host avatar | 2, 8 | the host, square crop | 128×128 | 400×400 | face centred | face |
-| Bedroom 1 | 4 | first bedroom | 384×384 (1440), 308×308 (820), 244×244 (390) | 1000×1000 | bed centred | the bed |
-| Bedroom 2 | 4 | second bedroom | 192×192 (1440), 154×154 (820), 122×122 (390) | 1000×1000 | bed centred | the bed |
-| Reviewer avatars ×2 | 6 | reviewers | 64×64 | 200×200 | face centred | face |
-| Map | 7 | a drawn map of the area, not a tile service (licensing, and a drawn map reads at 244px) | 597×597 (1440), 514×514 (820), 244×244 (390) | 1400×1400 | the property marker centred | marker and the two nearest labels |
+| Hero exterior | 1 | the shot that sells the place: the cabin from outside, dusk or golden hour | 640×640 (1440), 482×482 (820), 244×244 (390) | 1600×1067, any shape | subject centred-upper; `object-position: 50% 42%` | the building and its immediate ground; the slot is square at every width, so the outer thirds of a 3:2 source are lost at every width |
+| Supporting 1 | 1 | main living space | 384×384 (1440), 289×289 (820), 122×122 (390) | 1200×800 | centre | centre 60% |
+| Supporting 2 | 1 | the sauna | 256×256 (1440), 193×193 (820), 122×122 (390) | 1000×1000 | centre | centre 60% |
+| Supporting 3 | 1 | bedroom | 170×170 (1440), 96×96 (820) | 1200×900 | centre | centre 50% |
+| Supporting 4 | 1 | kitchen | 170×170 (1440), 96×96 (820) | 1200×800 | centre | centre 50% |
+| Hot tub tile | 5 | the amenity the reference singles out | 384×384 (1440), 308×308 (820), 122×122 (390) | 1000×1000 | tub centred-low; `object-position: 50% 55%` | the tub |
+| Host avatar | 2, 9 | the host, square crop | 128×128 | 400×400 | face centred | face |
+| Bedroom 1, Bedroom 2 | 4 | the two bedrooms, equal | 192×192 (1440), 154×154 (820), 122×122 (390) | 1000×1000 each | bed centred | the bed |
+| Reviewer avatars ×2 | 7 | reviewers | 64×64 | 200×200 | face centred | face |
+| Map | 8 | a drawn map of the area, not a tile service (licensing, and a drawn map reads at 244px) | 597×597 (1440), 514×514 (820), 366×366 (390) | 1400×1400 | the property marker centred | marker and the two nearest labels |
 
 ### Copy
 
@@ -150,25 +163,28 @@ different counts per width, three versions are needed.
 | Title | masthead | listing title | 8 / 8 / 8 |
 | Summary line | 2 | "Entire cabin in Town, State" | 6 |
 | Capacity line | 2 | guests · bedrooms · beds · baths | 4 items |
-| Rating + badge | 2, 6 | score to two decimals, "Guest favorite" | 1 number + 2 words |
-| Review count | 2, 6 | integer | 1 |
-| Host line | 2, 8 | name · Superhost · years hosting | 8 |
+| Score + badge + blurb | 2, 7 | score to two decimals, "Guest favorite", "One of the most loved homes on Airbnb, according to guests" | 1 number + 2 words + 10–12 words |
+| Review count | 2, 7 | integer | 1 |
+| Host line | 2, 9 | name · Superhost · years hosting | 8 |
 | Booking note | 3 | "Add dates for prices", "You won't be charged yet" | 4 + 6 |
-| Highlights | 4 | three lines with an icon each | 3 × 6 |
+| Highlights | 4 | four titles, no explainers | 4 × 4–5 |
 | Description | 4 | prose, with Show more | 40 / 60 / 90 |
 | Bedroom captions | 4 | "Bedroom 1 · 1 queen bed" | 2 × 5 |
-| Amenities | 5 | ten of the total, plus the total | 10 × 2 + "Show all 69" |
-| Featured review | 6 | the review that decides a booking | 30 / 45 / 60 |
-| Second review | 6 | a different guest, a different reason | – / 25 / 25 |
-| Reviewer lines | 6 | name, city, month, stay length | 2 × 8 |
-| Category ratings | 6 | two of six: label + score | 2 × 2 |
-| Town line | 7 | "Town, State, Country" | 3 |
-| Location note | 7 | "Exact location provided after booking" | 6 |
-| Host bio | 8 | the host in their own voice | 30 / 45 / 60 |
-| Host stats | 8 | reviews · rating · years; response rate and time | 6 + 8 |
-| House rules | 9 | heading + four lines | 4 × 5 |
-| Cancellation | 9 | heading + one line | 8 |
-| Safety | 9 | heading + two lines | 2 × 5 |
+| Amenities | 5 | the reference's own counts, plus the total | 5 / 5 / 10 items + "Show all 69" |
+| Hot tub caption | 5 | "Private hot tub · all year" | 5 |
+| Month names | 6 | two months at 820/1440, one at 390 | 2 |
+| Featured review | 7 | the review that decides a booking | 20 / 40 / 60 |
+| Second review | 7 | a different guest, a different reason | – / – / 25 |
+| Reviewer lines | 7 | name, city, month | 2 × 6 |
+| Category rating | 7 | one of six: label + score | 2 |
+| Town line + note | 8 | "Town, State, Country"; "Exact location provided after booking" | 3 + 6 |
+| Location highlight | 8 | the reference's own line: where it is, what it is near | 6 + 12 |
+| Host bio | 9 | the host in their own voice | 30 / 50 / 80 |
+| Host card | 9 | Superhost; reviews · rating · years; two personal facts | 1 + 3 + (4 + 5) |
+| Host details | 9 | response rate and time | 8 |
+| House rules | 10 | heading + four lines | 4 × 5 |
+| Cancellation | 10 | heading + one line | 8 |
+| Safety | 10 | heading + two lines | 2 × 5 |
 
 ## What worked
 
@@ -191,14 +207,25 @@ Pass-one observations; revised after real assets land.
 ## What did not
 
 - **The facts band is forced.** Rating, review count, capacity and host are
-  peers. Putting the summary and capacity in the hero and the score in the
-  2-square asserts a hierarchy the content does not have. It reads as a
-  decision, not a discovery. The alternative — a 1–2 pair for score and
-  count with the summary outside the grid — is the honest fallback and may
-  replace it in pass two.
+  peers; the reference draws score and count as typographic equals inside
+  one bordered card. Putting the summary and capacity in the hero and the
+  score in the 2-square asserts a hierarchy the content does not have, and
+  the 2:1 split of that card is the exact place the risk bites. It reads as
+  a decision, not a discovery. Type sizes are left as designed so the
+  failure, if it is one, is visible. The alternative — a 1–2 pair for score
+  and count with the summary outside the grid — is the honest fallback and
+  may replace it in pass two.
+- **The booking card no longer sticks.** Airbnb keeps it dominant at every
+  scroll position; here it scrolls away. That is a cost of stacking, not of
+  the spiral, and at 390 a 366px square stands in for a ~110px bar because
+  there is no smaller single box.
 - **Things to know is flat.** Three equal columns forced into a 3:2 band with
-  the house rules dominant. A plain three-column block outside any grid would
-  be more honest; it is kept as a band here so the failure is visible.
+  the house rules dominant. At 390 the study gives up and renders the plain
+  three-row list the reference uses; at 820 and 1440 the band is kept so the
+  failure is visible.
+- **Reviews are trimmed hard.** Six reviews to two, seven category columns
+  to one, the chip row dropped. The band makes the reference's implicit
+  ranking explicit, and pays for it in coverage.
 - **Tall bands.** Uncapped, seven of nine bands would be 800–900px tall at
   1440. Width caps keep them at 560–600px, but the page is still longer than
   the reference's two-column body, which packs the left column beside the

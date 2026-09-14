@@ -20,7 +20,9 @@ const avatar = placeholderImage("HOST", 400, 400, 20);
  * for the writeup to say, not for smaller type to hide.
  *
  * At 390 the host row merges into the hero and the range drops to 1–3 so the
- * band stays landscape (3:2) rather than 3:5 portrait.
+ * band stays landscape (3:2) rather than 3:5 portrait. Width is capped at
+ * 48rem so the hero is a 461px square, not 816px: the band should fail, if
+ * it fails, for forced hierarchy — not for emptiness.
  */
 export function FactsBand() {
   const mobile = useViewport() === "mobile";
@@ -29,7 +31,7 @@ export function FactsBand() {
       id="facts"
       title="Facts"
       note={mobile ? 'from=1 to=3 · placement="top" · clockwise=true · hero right · host merged into hero' : 'from=1 to=4 · placement="right" · clockwise=false · hero left'}
-      cap="60rem"
+      cap="48rem"
     >
       <GoldenGrid from={1} to={mobile ? 3 : 4} placement={mobile ? "top" : "right"} clockwise={mobile} color="#efe6d6">
         <GoldenBox>
@@ -47,6 +49,7 @@ export function FactsBand() {
           <div className="copy score">
             <span className="score__n">4.99</span>
             <span className="score__label">[Guest favorite]</span>
+            <span className="score__sub">[One of the most loved homes on Airbnb — 10 words]</span>
           </div>
         </GoldenBox>
         <GoldenBox>

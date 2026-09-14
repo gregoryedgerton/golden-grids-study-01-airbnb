@@ -13,25 +13,40 @@ const PROSE = {
 } as const;
 
 /**
- * Band 4 — About. In the reference, below the facts: three highlights with
- * icons, the description prose with "Show more", then "Where you'll sleep"
- * with two bedroom cards. Three stacked rows of equal weight.
+ * Band 4 — About. In the reference, below the facts: FOUR highlights, each
+ * an icon, a bold title and a one-line explainer ("Top 5% of homes", "In the
+ * woods near …", "Private hot tub, sauna, and fire pit", "Beautifully
+ * designed and spotless"); the description with "Show more"; then "Where
+ * you'll sleep" with two equal bedroom cards. Three stacked rows of equal
+ * weight, the highlights block the tallest of them at 820.
  *
- * Here: prose in the hero, bedroom 1 in the 2-square, bedroom 2 and the
- * highlights in the 1-squares. Hero RIGHT (left · cw) to zig-zag against the
- * gallery's hero-left; at 390 placement rotates to bottom and the hero is a
- * full-width 366px square on top. Word count per width.
+ * Here: prose in the 3-square hero, the four highlight TITLES in the
+ * 2-square (the explainers are dropped — see the asset spec), and the two
+ * bedrooms in the two 1-squares, which in a 1–4 are adjacent equals: the
+ * reference's own pair. Hero RIGHT (left · cw) to zig-zag against the
+ * gallery; at 390 placement rotates to bottom and the hero is a full-width
+ * 366px square on top. Word count per width.
  */
 export function AboutBand() {
   const viewport = useViewport();
   const mobile = viewport === "mobile";
   return (
-    <Band id="about" title="About" note={`from=1 to=4 · placement="${mobile ? "bottom" : "left"}" · clockwise=true · hero ${mobile ? "top" : "right"}`} cap="60rem">
+    <Band id="about" title="About" note={`from=1 to=4 · placement="${mobile ? "bottom" : "left"}" · clockwise=true · hero ${mobile ? "top" : "right"} · four highlights, titles only`} cap="60rem">
       <GoldenGrid from={1} to={4} placement={mobile ? "bottom" : "left"}>
         <GoldenBox>
           <div className="copy copy--prose">
             <p>{PROSE[viewport]}</p>
             <p><button type="button" className="btn">[Show more]</button></p>
+          </div>
+        </GoldenBox>
+        <GoldenBox>
+          <div className="copy copy--center">
+            <ul className="highlights">
+              <li>[Top 5% of homes — 4 words]</li>
+              <li>[Highlight two, 5 words]</li>
+              <li>[Highlight three, 5 words]</li>
+              <li>[Highlight four, 4 words]</li>
+            </ul>
           </div>
         </GoldenBox>
         <GoldenBox>
@@ -45,15 +60,6 @@ export function AboutBand() {
             <img src={bedroom2.src} alt="[Bedroom 2 — alt arrives with the asset]" />
             <figcaption className="media__tag">[Bedroom 2 · 1 queen bed]</figcaption>
           </figure>
-        </GoldenBox>
-        <GoldenBox>
-          <div className="copy">
-            <ul className="highlights">
-              <li>[Highlight one, 6 words]</li>
-              <li>[Highlight two, 6 words]</li>
-              <li>[Highlight three, 6 words]</li>
-            </ul>
-          </div>
         </GoldenBox>
       </GoldenGrid>
     </Band>

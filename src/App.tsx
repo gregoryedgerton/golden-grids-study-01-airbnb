@@ -4,6 +4,7 @@ import { FactsBand } from "./bands/FactsBand";
 import { BookBand } from "./bands/BookBand";
 import { AboutBand } from "./bands/AboutBand";
 import { AmenitiesBand } from "./bands/AmenitiesBand";
+import { DatesBand } from "./bands/DatesBand";
 import { ReviewsBand } from "./bands/ReviewsBand";
 import { LocationBand } from "./bands/LocationBand";
 import { HostBand } from "./bands/HostBand";
@@ -44,6 +45,7 @@ export function App() {
         <BookBand />
         <AboutBand />
         <AmenitiesBand />
+        <DatesBand />
         <ReviewsBand />
         <LocationBand />
         <HostBand />
