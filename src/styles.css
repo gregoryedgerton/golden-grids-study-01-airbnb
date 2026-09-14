@@ -60,8 +60,6 @@ button { font-family: inherit; }
 .masthead h1 { font: 500 26px/30px var(--font); margin: 0 0 8px; letter-spacing: normal; }
 .masthead__kicker { font: 500 12px/16px var(--font); color: var(--muted); margin: 0 0 8px; }
 .masthead__claim { font: 400 16px/20px var(--font); color: var(--muted); margin: 0 0 8px; max-width: var(--measure); }
-.masthead__viewport { font: 400 12px/16px var(--font); color: var(--muted); margin: 8px 0 0; }
-.masthead__viewport code { font: inherit; }
 
 .band { padding-block: 48px; border-top: 1px solid var(--line); }
 .band:first-of-type, .band--flush { border-top: 0; }
@@ -241,7 +239,9 @@ button { font-family: inherit; }
 .colophon { width: 100%; padding: 48px var(--gutter); background: var(--surface); border-top: 1px solid var(--line); color: var(--fg); font: 400 14px/18px var(--font); }
 .colophon p { max-width: var(--content); margin: 0 auto; }
 @media (max-width: 639px) { .colophon { padding-block: 32px; } }
-.band__header--hidden { margin-bottom: 16px; }
+/* With notes off (the default) a hidden-title header takes no space. */
+.band__header--hidden { margin-bottom: 0; }
+html[data-notes="on"] .band__header--hidden { margin-bottom: 16px; }
 
 /* Secondary buttons: full-width blocks at 390, as the reference; hug the label above. */
 @media (max-width: 639px) { #about .btn, #host .btn:not(.btn--chip) { display: block; width: 100%; } }

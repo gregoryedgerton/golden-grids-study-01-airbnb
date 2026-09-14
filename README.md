@@ -267,6 +267,21 @@ Pass-one observations; revised after real assets land.
 - **The map is square.** A map has no composition to lose, but 16:9 shows
   more of the neighbourhood than 1:1 does. Cost of the slot owning the crop.
 
+## Study tools
+
+A floating panel (top right, its own stacking layer, styled independently of
+the study) carries controls that every study shares:
+
+- **Show grids** (`g`) — marching-ants outline on every grid, a dotted edge
+  and a DOM-order label on every slot, the placeholder in magenta with a P.
+- **Band notes** (`n`) — the per-band `from` / `to` / `placement` readouts.
+
+Both are off by default so the page reads as the reference does.
+[`captures/inspect-1440.png`](captures/inspect-1440.png) is the page with both on. Toggles
+persist per browser; `?inspect=1&notes=1` turns them on for one load, which
+is how overlay captures are taken. The panel lives in `src/lib/tools.tsx` and
+`tools.css`; new controls go in there, not in the study's own stylesheet.
+
 ## Running it
 
 ```bash

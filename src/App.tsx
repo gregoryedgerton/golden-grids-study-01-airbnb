@@ -1,4 +1,4 @@
-import { useViewport } from "./lib/viewport";
+import { Tools } from "./lib/tools";
 import { listing } from "./content";
 import { GalleryBand } from "./bands/GalleryBand";
 import { FactsBand } from "./bands/FactsBand";
@@ -25,19 +25,15 @@ import { ThingsBand } from "./bands/ThingsBand";
  * resolutions the spec asks for.
  */
 export function App() {
-  const viewport = useViewport();
-
   return (
     <>
+      <Tools />
       <a className="skip" href="#content">Skip to content</a>
       <header className="masthead">
         <p className="masthead__kicker">Layout study 01 · unaffiliated · original assets</p>
         <h1>{listing.title}</h1>
         <p className="masthead__claim">
           Listing pages already have a golden hierarchy. The twelve-column grid flattens it below the fold.
-        </p>
-        <p className="masthead__viewport" aria-live="polite">
-          viewport: <code>{viewport}</code>
         </p>
       </header>
 
