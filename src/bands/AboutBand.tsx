@@ -1,7 +1,8 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
 import { assets } from "../assets";
-import { listing, description } from "../content";
+import { listing, description, descriptionFull } from "../content";
+import { useExpand, ExpandedCell } from "../lib/expand";
 import { Band } from "./Band";
 
 const bedroomArt = [assets.bed1, assets.bed2];
@@ -22,14 +23,23 @@ const bedroomArt = [assets.bed1, assets.bed2];
 export function AboutBand() {
   const viewport = useViewport();
   const mobile = viewport === "mobile";
+  const x = useExpand();
   return (
     <Band id="about" title={listing.labels.sleep} note={`from=1 to=4 · placement="${mobile ? "bottom" : "left"}" · clockwise=true · hero ${mobile ? "top" : "right"} · four highlights, titles only`} cap="60rem">
       <GoldenGrid from={1} to={4} placement={mobile ? "bottom" : "left"}>
-        <GoldenBox>
+        <GoldenBox {...x.boxProps}>
           <div className="copy copy--prose">
             <p>{description[viewport]}</p>
-            <p><button type="button" className="btn">{listing.cta.showMore}</button></p>
+            <p><button className="btn" {...x.triggerProps}>{listing.cta.showMore}</button></p>
           </div>
+          {x.expanded && (
+            <ExpandedCell id={x.panelId} title="About this place" onClose={x.close} closeRef={x.closeRef}>
+              <div className="cell__prose">
+                {descriptionFull.map((p, i) => <p key={i}>{p}</p>)}
+                <ul>{listing.highlights.map((h) => <li key={h}>{h}</li>)}</ul>
+              </div>
+            </ExpandedCell>
+          )}
         </GoldenBox>
         <GoldenBox>
           <div className="copy copy--center">

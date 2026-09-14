@@ -2,6 +2,8 @@ import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import type { PlacementValue } from "@gifcommit/golden-grids";
 import { useViewport, pick } from "../lib/viewport";
 import { assets } from "../assets";
+import { useExpand, ExpandedCell } from "../lib/expand";
+import { photoSet } from "../content";
 import { listing } from "../content";
 import { Band } from "./Band";
 
@@ -30,9 +32,13 @@ const photos = [
  * The reference mosaic is two-level: the hero equals the sum of its four
  * equal supports. The spiral turns those four equals into a descent — a
  * change of weight the writeup defends rather than hides.
+ *
+ * "Show all photos" expands the hero cell to cover the band with the full
+ * set (src/lib/expand.tsx): the slot that showed the summary shows the rest.
  */
 export function GalleryBand() {
   const viewport = useViewport();
+  const x = useExpand();
   const [to, placement] = pick<readonly [number, PlacementValue]>(viewport, {
     mobile: [3, "bottom"],
     tablet: [5, "top"],
@@ -42,11 +48,23 @@ export function GalleryBand() {
     <Band id="gallery" title={listing.labels.photos} hideTitle flush rounded note={`from=1 to=${to} · placement="${placement}" · clockwise=true · hero left`} cap="64rem">
       <GoldenGrid from={1} to={to} placement={placement}>
         {photos.map((p, i) => (
-          <GoldenBox key={i}>
+          <GoldenBox key={i} {...(i === 0 ? x.boxProps : {})}>
             <figure className="media media--inset">
               <img src={p.src} alt={p.alt} style={i === 0 ? { objectPosition: p.subject } : undefined} />
-              {i === 0 && <button type="button" className="btn btn--corner">{listing.cta.showPhotos}</button>}
+              {i === 0 && <button className="btn btn--corner" {...x.triggerProps}>{listing.cta.showPhotos}</button>}
             </figure>
+            {i === 0 && x.expanded && (
+              <ExpandedCell id={x.panelId} title={`${photoSet.length} photos`} onClose={x.close} closeRef={x.closeRef}>
+                <div className="cell__photos">
+                  {photoSet.map((ph) => (
+                    <figure key={ph.key}>
+                      <img src={assets[ph.key].src} alt="" style={{ objectPosition: assets[ph.key].subject }} />
+                      <figcaption>{ph.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </ExpandedCell>
+            )}
           </GoldenBox>
         ))}
       </GoldenGrid>

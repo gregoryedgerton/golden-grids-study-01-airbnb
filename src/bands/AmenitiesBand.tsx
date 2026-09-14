@@ -1,7 +1,8 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
 import { assets } from "../assets";
-import { listing } from "../content";
+import { listing, amenityGroups } from "../content";
+import { useExpand, ExpandedCell } from "../lib/expand";
 import { Band } from "./Band";
 
 const tub = assets.saladBar;
@@ -24,13 +25,24 @@ export function AmenitiesBand() {
   const from = viewport === "mobile" ? 1 : 3;
   const to = from === 1 ? 3 : 4;
   const items = viewport === "desktop" ? listing.amenities : listing.amenities.slice(0, 5);
+  const x = useExpand();
   return (
     <Band id="amenities" title={listing.labels.amenities} note={`from=${from} to=${to} · placement="top" · clockwise=true · ${from > 1 ? "placeholder strip = last child (CTA)" : "no placeholder"} · ${items.length} of ${listing.amenityTotal} listed`} cap="60rem" card>
       <GoldenGrid from={from} to={to} placement="top" outline="1px solid var(--line)">
-        <GoldenBox>
+        <GoldenBox {...x.boxProps}>
           <div className="copy list">
             <ul>{items.map((it) => <li key={it}>{it}</li>)}</ul>
           </div>
+          {x.expanded && (
+            <ExpandedCell id={x.panelId} title={`What this place offers · ${listing.amenityTotal}`} onClose={x.close} closeRef={x.closeRef}>
+              {amenityGroups.map((g) => (
+                <div className="cell__group" key={g.title}>
+                  <h4>{g.title}</h4>
+                  <ul>{g.items.map((it) => <li key={it}>{it}</li>)}</ul>
+                </div>
+              ))}
+            </ExpandedCell>
+          )}
         </GoldenBox>
         <GoldenBox>
           <figure className="media media--inset">
@@ -40,7 +52,7 @@ export function AmenitiesBand() {
         </GoldenBox>
         <GoldenBox className="placeholder-slot">
           <div className="copy copy--center">
-            <button type="button" className="btn btn--chip">{listing.cta.showAmenities} {listing.amenityTotal}{viewport === "mobile" ? "" : " amenities"}</button>
+            <button className="btn btn--chip" {...x.triggerProps}>{listing.cta.showAmenities} {listing.amenityTotal}{viewport === "mobile" ? "" : " amenities"}</button>
           </div>
         </GoldenBox>
       </GoldenGrid>

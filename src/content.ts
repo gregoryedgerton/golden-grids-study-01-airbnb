@@ -19,7 +19,7 @@ export const listing = {
   badge: "Top-rated stay",
   badgeBlurb: "Among the highest-rated stays in the Hudson Valley",
   reviewCount: 188,
-  photoCount: 41,
+  photoCount: 8,
   amenityTotal: 47,
   host: { name: "Dee & Marcus", tag: "Experienced host", years: 2, responseRate: "100%", responseTime: "within an hour" },
   town: { line: "Catskill, New York, United States", note: "The exact address is shared once a booking is confirmed." },
@@ -85,3 +85,40 @@ export const hostBio: Record<Viewport, string> = {
   desktop:
     "We bought the hut at auction in 2023 after driving past it for years, spent twelve months putting it back the way we remembered it from birthday parties, and now share it most of the year. We live ten minutes away, answer messages quickly, and leave the salad bar cold, the oven wood stacked, and the jukebox loaded. Dee runs the kitchen; Marcus keeps the arcade cabinet alive. Ask us about the creek path, the good diner on Main Street, the drive-in in summer, and the best booth to watch the rain from.",
 };
+
+/* --- Expanded-cell content ------------------------------------------------ */
+
+export const descriptionFull: string[] = [
+  "A 1991 Pizza Hut on the old commercial strip in Catskill, closed in 2009, empty for fourteen years, and bought at auction in 2023 by two people who had driven past it for most of their lives. The plan was never to hide what it was. The roof, the trapezoid windows, the red pendant lamps, the vinyl booths and the salad bar all stayed; what changed is that you can sleep here now, and sleep well.",
+  "The party room is the main bedroom, with a king bed under its original lamp and the trapezoid window behind the headboard. Two back booths became the second bedroom, a queen bed fitted between the banquettes. The kitchen line is a real kitchen: stainless counters, a wood-fired oven that takes a pie in ninety seconds, and a full set of the red tumblers, because a stay here without them would be a lie.",
+  "The dining room is the living room. Six booths, checkered cloths, lamps on dimmers, a jukebox that works and an arcade cabinet that mostly does. The salad bar is cold every morning and laid out for breakfast. Out back, where the dumpster pad was, there is a hot tub and a fence and a view of the creek trees.",
+  "Catskill's Main Street is five minutes on foot, the creek path a little less. The lot fits four cars and a boat. Dogs are welcome; the carpet has seen worse.",
+];
+
+export const amenityGroups: { title: string; items: string[] }[] = [
+  { title: "Kitchen and dining", items: ["Wood-fired pizza oven", "Salad bar with a cold well", "A full set of red tumblers", "Booth seating for eight", "Checkered tablecloths", "Full refrigerator and freezer", "Dishwasher", "Coffee maker and grinder", "Pots, pans, plates and a peel", "Dining room smart TV"] },
+  { title: "Bedrooms and bath", items: ["King bed, hotel linen", "Queen bed between banquettes", "Blackout blinds on the trapezoids", "Hangers and a wardrobe", "Hair dryer", "Towels and bath sheets", "Shampoo, conditioner, body wash", "Iron and board"] },
+  { title: "Entertainment", items: ["Arcade cabinet", "Cocktail-table game", "Jukebox, loaded", "Board games in the host stand", "Books", "Record player and a crate"] },
+  { title: "Outdoors", items: ["Hot tub on the back patio", "Free parking in the old lot, four cars and a boat", "Patio furniture", "Fire pit", "Bike rack", "Fenced yard for dogs"] },
+  { title: "Home basics", items: ["Fast wifi", "Washer and dryer", "Heating and air conditioning", "Ceiling fans", "First aid kit", "Fire extinguisher", "Smoke and carbon monoxide alarms", "Long-term stays allowed", "Self check-in with a keypad", "Luggage drop-off", "Workspace in a booth", "Dogs welcome", "Crib on request", "High chair", "Pack and play", "Baby bath", "Step-free entrance"] },
+];
+
+export const allReviews: { name: string; city: string; when: string; text: string }[] = [
+  { name: "Priya", city: "Brooklyn, New York", when: "September 2026", text: "We booked it for the joke and stayed for the beds. Red lamps on low, checkered cloths, a pie from the wood oven, the jukebox on the good side of loud, and the salad bar at breakfast is the detail nobody warns you about. The hosts thought about everything a real weekend needs." },
+  { name: "Tomas", city: "Montclair, New Jersey", when: "August 2026", text: "Took the kids for fall break and they have not stopped talking about the arcade corner. The booths, the tumblers, the lamps: exactly as pictured." },
+  { name: "Renata", city: "Philadelphia, Pennsylvania", when: "August 2026", text: "Quietest place we have stayed in years, which is not what you expect from a former restaurant on a strip. The windows are better insulated than ours at home. Dee left a note about the oven that made us laugh." },
+  { name: "Owen", city: "Albany, New York", when: "July 2026", text: "Came for a birthday, which felt right. Made pies for eight in the booths, ran the jukebox until midnight, hot tub after. The second bedroom between the banquettes is more comfortable than it has any right to be." },
+  { name: "Mei", city: "Hoboken, New Jersey", when: "June 2026", text: "The salad bar at breakfast is a genuinely good idea and someone should steal it. Walkable to Main Street, the creek path is lovely, parking is easy. We would come back in winter for the lamps." },
+  { name: "Daniel", city: "Kingston, New York", when: "May 2026", text: "Everything works. That is the review. The arcade cabinet, the jukebox, the oven, the wifi, the hot tub, the blinds on the odd windows. Marcus answered a question at 9pm in about a minute." },
+];
+
+export const photoSet: { key: "hero" | "dining" | "arcade" | "bedroom" | "kitchen" | "bed1" | "bed2" | "saladBar"; caption: string }[] = [
+  { key: "hero", caption: "The hut at dusk" },
+  { key: "dining", caption: "The dining room, kept" },
+  { key: "arcade", caption: "The arcade corner" },
+  { key: "bedroom", caption: "Bedroom 1, the former party room" },
+  { key: "bed1", caption: "Bedroom 1 from the foot of the bed" },
+  { key: "bed2", caption: "Bedroom 2, between the banquettes" },
+  { key: "kitchen", caption: "The kitchen on the old line" },
+  { key: "saladBar", caption: "The salad bar at breakfast" },
+];

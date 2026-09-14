@@ -2,7 +2,8 @@ import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import type { PlacementValue } from "@gifcommit/golden-grids";
 import { useViewport, pick } from "../lib/viewport";
 import { assets } from "../assets";
-import { listing, featuredReview, secondReview } from "../content";
+import { listing, featuredReview, secondReview, allReviews } from "../content";
+import { useExpand, ExpandedCell } from "../lib/expand";
 import { Band } from "./Band";
 
 const avatars = [assets.priya, assets.tomas];
@@ -36,6 +37,7 @@ export function ReviewsBand() {
   const desktop = viewport === "desktop";
   const mobile = viewport === "mobile";
   const [r1, r2] = listing.reviews;
+  const x = useExpand();
   return (
     <Band
       id="reviews"
@@ -45,12 +47,23 @@ export function ReviewsBand() {
       cap="60rem"
     >
       <GoldenGrid from={1} to={to} placement={placement} clockwise={false}>
-        <GoldenBox>
+        <GoldenBox {...x.boxProps}>
           <div className="copy score">
             <span className="score__n">{listing.score}</span>
             <span className="score__label">{listing.badge}</span>
             <span className="score__sub">{listing.badgeBlurb}, according to {listing.reviewCount} guests</span>
           </div>
+          {x.expanded && (
+            <ExpandedCell id={x.panelId} title={`${listing.reviewCount} reviews · ${listing.score}`} onClose={x.close} closeRef={x.closeRef}>
+              <p className="cell__count">Showing {allReviews.length} of {listing.reviewCount}. The study loads six.</p>
+              {allReviews.map((r) => (
+                <div className="cell__review" key={r.name + r.when}>
+                  <p>“{r.text}”</p>
+                  <div className="review__who"><span><strong>{r.name}</strong>, {r.city} · {r.when}</span></div>
+                </div>
+              ))}
+            </ExpandedCell>
+          )}
         </GoldenBox>
         <GoldenBox>
           <div className="copy review">
@@ -75,7 +88,7 @@ export function ReviewsBand() {
           </GoldenBox>
         )}
         <GoldenBox>
-          <div className="copy copy--center"><p><button type="button" className="btn btn--chip">{listing.cta.showReviews} {listing.reviewCount} reviews</button></p></div>
+          <div className="copy copy--center"><p><button className="btn btn--chip" {...x.triggerProps}>{listing.cta.showReviews} {listing.reviewCount} reviews</button></p></div>
         </GoldenBox>
       </GoldenGrid>
     </Band>

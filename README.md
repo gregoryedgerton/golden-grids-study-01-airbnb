@@ -238,6 +238,10 @@ Pass-one observations; revised after real assets land.
 - **Collapse to single.** The booking card and the host card become one box
   at 390 with their contents merged, which is closer to Airbnb's own mobile
   treatment than a shrunken grid would be.
+- **Expand a cell.** Content a slot cannot hold is the obvious objection to
+  fixed-proportion boxes. Letting the slot grow over its band answers it
+  without a modal, and the four places it is needed are exactly the four the
+  reference puts behind a "Show all".
 
 ## What did not
 
@@ -268,6 +272,28 @@ Pass-one observations; revised after real assets land.
   on equal rows instead.
 - **The map is square.** A map has no composition to lose, but 16:9 shows
   more of the neighbourhood than 1:1 does. Cost of the slot owning the crop.
+
+## Interactions: expand a cell
+
+Four calls to action work, and all four do the same thing: the slot that
+showed the summary grows to cover its whole band and shows the rest. Same
+box, same band, more content. The reference reaches for a modal; here the
+spiral's slot becomes the stage.
+
+| Trigger | Cell that expands | Shows |
+| --- | --- | --- |
+| Photos · "Show all photos" | the hero photograph | all eight photographs with captions |
+| Sleeping arrangements · "Show more" | the description | the full description and the four highlights |
+| Amenities · "Show all 47 amenities" (in the placeholder strip) | the list | all 47, in five groups |
+| Reviews · "Show all 188 reviews" (in a 1-square) | the score | six reviews, and says it is six of 188 |
+
+Mechanics, in [`src/lib/expand.tsx`](src/lib/expand.tsx) and `expand.css`:
+the `GoldenBox` owning the summary gets `cell--expanded`, and a `:has()`
+rule lifts its positioned parent — the library's own slot element — to
+`inset: 0` above its siblings for as long as it is open. The library is not
+touched. Focus moves to the close control on open and back to the trigger on
+close; Escape closes; the trigger carries `aria-expanded`. Reduced motion
+drops the transition. Content for the expanded views is in `src/content.ts`.
 
 ## Study tools
 
