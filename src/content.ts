@@ -1,51 +1,56 @@
 /**
  * Study 01 copy. Original, written for a fictional listing so that nothing
- * from the reference page or its host is reproduced. Word counts follow the
- * asset spec in README.md; where a slot holds a different count per width,
- * three versions are given in viewport order (mobile / tablet / desktop).
+ * from the reference page or its host is reproduced. The listing: a 1991
+ * Pizza Hut on the old commercial strip in Catskill, New York, closed in
+ * 2009 and converted into a two-bedroom stay that kept the hut roof, the
+ * trapezoid windows, the red pendant lamps, the booths, the salad bar and
+ * the red tumblers. Word counts follow the asset spec in README.md; where a
+ * slot holds a different count per width, three versions are given in
+ * viewport order (mobile / tablet / desktop). The shot list for the images
+ * is ASSETS.md.
  */
 import type { Viewport } from "./lib/viewport";
 
 export const listing = {
-  title: "Modern A-Frame in the Pines with a Wood-Fired Sauna",
-  summary: "Entire cabin in Windham, New York",
+  title: "The Hut: a 1991 Pizza Hut, Now a Two-Bedroom Stay",
+  summary: "Entire converted restaurant in Catskill, New York",
   capacity: ["4 guests", "2 bedrooms", "2 beds", "1.5 baths"],
-  score: "4.97",
+  score: "4.96",
   badge: "Top-rated stay",
-  badgeBlurb: "Among the highest-rated homes in the northern Catskills",
-  reviewCount: 212,
-  photoCount: 38,
-  amenityTotal: 52,
-  host: { name: "Mara & Jonah", tag: "Experienced host", years: 3, responseRate: "100%", responseTime: "within an hour" },
-  town: { line: "Windham, New York, United States", note: "The exact address is shared once a booking is confirmed." },
-  locationHighlight: { title: "In the woods above Windham", body: "Six minutes by car to the village, a short walk to the creek trail, and dark enough at night for the stars." },
-  highlights: ["Rated in the top 5% of stays", "Wood-fired sauna and cedar soaking tub", "Floor-to-ridge glass on the north gable", "Quiet, wooded, and dog-friendly"],
+  badgeBlurb: "Among the highest-rated stays in the Hudson Valley",
+  reviewCount: 188,
+  photoCount: 41,
+  amenityTotal: 47,
+  host: { name: "Dee & Marcus", tag: "Experienced host", years: 2, responseRate: "100%", responseTime: "within an hour" },
+  town: { line: "Catskill, New York, United States", note: "The exact address is shared once a booking is confirmed." },
+  locationHighlight: { title: "On the old strip, by the creek", body: "Five minutes on foot to Main Street, a short walk to the creek path, and the lot still fits four cars and a boat." },
+  highlights: ["The original hut roof and trapezoid windows", "Salad bar, stocked for breakfast", "Red pendant lamps, all on dimmers", "Arcade corner with a working jukebox"],
   bedrooms: [
-    { name: "Bedroom 1", bed: "1 king bed", alt: "The main bedroom under the ridge, a king bed facing the glass gable" },
-    { name: "Bedroom 2", bed: "1 queen bed", alt: "The loft bedroom with a queen bed and a skylight" },
+    { name: "Bedroom 1", bed: "1 king bed", alt: "The main bedroom in the former party room: a king bed under a red pendant lamp, a trapezoid window behind it" },
+    { name: "Bedroom 2", bed: "1 queen bed", alt: "The second bedroom built from two back booths, a queen bed between red vinyl banquettes" },
   ],
-  amenities: ["Full kitchen", "Fast wifi", "Free parking on site", "Cedar soaking tub", "Wood-fired sauna", "Dogs welcome", "Smart TV", "Washer", "Dryer", "Desk with a view"],
+  amenities: ["Wood-fired pizza oven", "Salad bar with a cold well", "A full set of red tumblers", "Booth seating for eight", "Arcade cabinet and jukebox", "Fast wifi", "Free parking in the old lot", "Hot tub on the back patio", "Washer and dryer", "Smart TV in the dining room"],
   booking: { prompt: "Add dates to see the price", cta: "Check dates", note: "You will not be charged at this step" },
   fields: { checkin: "Check-in", checkout: "Checkout", guests: "Guests", datePlaceholder: "Add date", guestsPlaceholder: "1 guest" },
   months: ["October 2026", "November 2026"],
   photos: {
-    hero: "The A-frame at dusk, its north gable lit from inside, the soaking tub steaming on the deck",
-    living: "The living room, a wood stove and two low chairs under the ridge",
-    sauna: "The cedar sauna in the trees behind the cabin",
-    bedroom: "The main bedroom with the gable glass at the foot of the bed",
-    kitchen: "The kitchen, open to the living room, with a long oak counter",
-    tub: "The cedar soaking tub on the deck",
-    map: "A drawn map of the area around Windham, with the cabin marked",
+    hero: "The hut at dusk: the red mansard roof, trapezoid windows glowing from the red lamps inside, the old sign pole now holding a house number",
+    living: "The dining room kept as the living room: red vinyl booths, checkered cloths, red pendant lamps, a jukebox against the far wall",
+    sauna: "The arcade corner: an upright cabinet and a cocktail-table game under a low lamp",
+    bedroom: "The main bedroom with the king bed and the trapezoid window",
+    kitchen: "The kitchen on the old line: stainless counters, a wood-fired oven, a rack of red tumblers",
+    tub: "The salad bar, restored, with its sneeze guard and cold well, laid out for breakfast",
+    map: "A drawn map of Catskill's old commercial strip with the hut marked, the creek and Main Street nearby",
   },
   reviews: [
     { name: "Priya", city: "Brooklyn, New York", when: "September 2026", stay: "Stayed a few nights" },
     { name: "Tomas", city: "Montclair, New Jersey", when: "August 2026", stay: "Stayed with kids" },
   ],
-  categories: [{ label: "Cleanliness", score: "5.0" }, { label: "Location", score: "4.9" }],
+  categories: [{ label: "Cleanliness", score: "5.0" }, { label: "Location", score: "4.8" }],
   things: {
     rules: { title: "House rules", lines: ["Check-in after 4:00 PM", "Checkout before 11:00 AM", "4 guests maximum", "Dogs welcome, no other pets"] },
     cancellation: { title: "Cancellation policy", lines: ["Free cancellation for 48 hours after booking"] },
-    safety: { title: "Safety and property", lines: ["Smoke and carbon monoxide alarms", "Outdoor camera at the driveway"] },
+    safety: { title: "Safety and property", lines: ["Smoke and carbon monoxide alarms", "Outdoor camera over the parking lot"] },
   },
   cta: { showPhotos: "Show all photos", showMore: "Show more", showAmenities: "Show all", showReviews: "Show all", message: "Message host", learnMore: "Learn more" },
   labels: { sleep: "Sleeping arrangements", amenities: "Amenities", dates: "Choose your dates", reviews: "Reviews", location: "Location", host: "Your host", things: "Before you book", photos: "Photos", facts: "About this place", book: "Book" },
@@ -53,30 +58,30 @@ export const listing = {
 
 export const description: Record<Viewport, string> = {
   mobile:
-    "A steep-roofed cabin on a wooded slope above Windham, built for slow weekends: a wood stove, a cedar tub on the deck, a sauna in the trees, and glass from floor to ridge. Sleeps four.",
+    "A 1991 Pizza Hut on the old strip in Catskill, closed in 2009 and made into a stay. The roof, the windows, the red lamps, the booths and the salad bar stayed. Two real bedrooms. Sleeps four.",
   tablet:
-    "A steep-roofed cabin on a wooded slope above Windham, built for slow weekends. The north gable is glass from floor to ridge, so the trees are the wallpaper. Outside there is a cedar soaking tub on the deck and a wood-fired sauna in the trees. Two bedrooms sleep four; dogs are welcome.",
+    "A 1991 Pizza Hut on the old strip in Catskill, closed in 2009 and turned into a stay that kept everything worth keeping: the hut roof, the trapezoid windows, the red pendant lamps, the booths, the salad bar. The party room is a bedroom now. The kitchen line still bakes. Two bedrooms sleep four; dogs are welcome.",
   desktop:
-    "A steep-roofed cabin on a wooded slope above Windham, built for slow weekends rather than quick stops. The north gable is glass from floor to ridge, so the trees are the wallpaper and the weather is the entertainment. Downstairs there is a wood stove, a long oak counter, and a king bed facing the glass. Upstairs, a loft with a queen bed and a skylight. Outside, a cedar soaking tub on the deck and a wood-fired sauna in the trees. Six minutes to the village, farther from everything else. Dogs are welcome.",
+    "A 1991 Pizza Hut on the old commercial strip in Catskill, closed in 2009 and turned into a stay that kept everything worth keeping: the hut roof, the trapezoid windows, the red pendant lamps on dimmers, the vinyl booths, the checkered cloths, the salad bar and a full set of red tumblers. The party room is the main bedroom now, with a king bed under the lamp. Two back booths became a queen bed. The kitchen line still bakes; the oven is wood-fired. The lot is yours, the creek is a short walk, and the jukebox works.",
 };
 
 export const featuredReview: Record<Viewport, string> = {
   mobile:
-    "We came for the sauna and stayed for the glass wall. Quiet, warm, exactly as pictured. Already planning a winter return.",
+    "We booked it for the joke and stayed for the beds. Red lamps on low, a pie from the oven, the jukebox. Perfect.",
   tablet:
-    "We came for the sauna and stayed for the glass wall. The cabin is quiet, warm, and exactly as pictured, and the hosts left clear notes for the stove and the tub. We hiked in the morning and did nothing at all in the afternoon. Already planning a winter return.",
+    "We booked it for the joke and stayed for the beds. Red lamps on low, checkered cloths, a pie from the wood oven, the jukebox on the good side of loud. The salad bar at breakfast is the detail nobody warns you about. Perfect.",
   desktop:
-    "We came for the sauna and stayed for the glass wall. The cabin is quiet, warm, and exactly as pictured, and the hosts left clear, friendly notes for the stove, the tub, and the sauna. We hiked the creek trail in the morning and did nothing at all in the afternoon, which is the point. Already planning a winter return.",
+    "We booked it for the joke and stayed for the beds. Red lamps on low, checkered cloths, a pie from the wood oven, the jukebox on the good side of loud, and the salad bar at breakfast is the detail nobody warns you about. The hosts thought about everything a real weekend needs. We are already planning a winter return.",
 };
 
 export const secondReview =
-  "Booked it for the kids' fall break and it worked for all of us: room to spread out, a fire every night, and the dog had the run of the woods.";
+  "Took the kids for fall break and they have not stopped talking about the arcade corner. The booths, the tumblers, the lamps: exactly as pictured.";
 
 export const hostBio: Record<Viewport, string> = {
   mobile:
-    "We built the cabin as a place to slow down and now share it most of the year. We live nearby, answer quickly, and leave the stove ready.",
+    "We bought the hut at auction, spent a year putting it back, and now share it. We live nearby, answer fast, and keep the salad bar cold.",
   tablet:
-    "We built the cabin as a place to slow down and now share it most of the year. We live twenty minutes away, answer messages quickly, and leave the wood stove laid and the sauna stocked. Ask us about trails, the good bakery, and where to see the stars.",
+    "We bought the hut at auction in 2023, spent a year putting it back the way we remembered it, and now share it most of the year. We live ten minutes away, answer messages quickly, and keep the salad bar cold and the oven wood stacked. Ask us about the creek path and the good diner.",
   desktop:
-    "We built the cabin four years ago as a place to slow down and found we wanted to share it, so it is available most of the year. We live twenty minutes away, answer messages quickly, and leave the wood stove laid, the sauna stocked, and a note on the counter with our favourite walks. Mara cooks; Jonah cuts the firewood. Ask us about the creek trail, the good bakery in the village, the swimming hole in summer, and the best spot on the deck to see the stars.",
+    "We bought the hut at auction in 2023 after driving past it for years, spent twelve months putting it back the way we remembered it from birthday parties, and now share it most of the year. We live ten minutes away, answer messages quickly, and leave the salad bar cold, the oven wood stacked, and the jukebox loaded. Dee runs the kitchen; Marcus keeps the arcade cabinet alive. Ask us about the creek path, the good diner on Main Street, the drive-in in summer, and the best booth to watch the rain from.",
 };

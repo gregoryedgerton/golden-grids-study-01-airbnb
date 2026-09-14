@@ -14,10 +14,13 @@ Built with [Golden Grids](https://github.com/gregoryedgerton/golden-grids)
 
 > **Status: pass one and a half.** The structure is built, every slot is
 > inventoried in the asset spec below, the visual register is matched to the
-> reference, and the copy is original — written for a fictional listing in
-> `src/content.ts` at the word counts the spec asks for. Every image slot
+> reference, and the copy is original — written in `src/content.ts` for a
+> fictional listing: a 1991 Pizza Hut in Catskill, New York, converted into a
+> two-bedroom stay that kept the hut roof, the trapezoid windows, the red
+> lamps, the booths, the salad bar and the red tumblers. Every image slot
 > still holds an obviously placeholder stand-in at the resolution the spec
-> asks for. Pass two replaces the images.
+> asks for. The shot list for pass two — one prompt per image, dimensions,
+> and the file-naming rubric — is [`ASSETS.md`](ASSETS.md).
 
 ---
 
@@ -175,16 +178,16 @@ is listed so sources are never upscaled.
 
 | Slot | Band | Role | Largest render (px) | Min. source | Subject placement | Safe area |
 | --- | --- | --- | --- | --- | --- | --- |
-| Hero exterior | 1 | the shot that sells the place: the cabin from outside, dusk or golden hour | 640×640 (1440), 482×482 (820), 244×244 (390) | 1600×1067, any shape | subject centred-upper; `object-position: 50% 42%` | the building and its immediate ground; the slot is square at every width, so the outer thirds of a 3:2 source are lost at every width |
-| Supporting 1 | 1 | main living space | 384×384 (1440), 289×289 (820), 122×122 (390) | 1200×800 | centre | centre 60% |
-| Supporting 2 | 1 | the sauna | 256×256 (1440), 193×193 (820), 122×122 (390) | 1000×1000 | centre | centre 60% |
-| Supporting 3 | 1 | bedroom | 170×170 (1440), 96×96 (820) | 1200×900 | centre | centre 50% |
-| Supporting 4 | 1 | kitchen | 170×170 (1440), 96×96 (820) | 1200×800 | centre | centre 50% |
-| Hot tub tile | 5 | the amenity the reference singles out | 384×384 (1440), 308×308 (820), 122×122 (390) | 1000×1000 | tub centred-low; `object-position: 50% 55%` | the tub |
+| Hero exterior | 1 | the shot that sells the place: the hut from outside at dusk, roof and windows | 640×640 (1440), 482×482 (820), 244×244 (390) | 1600×1067, any shape | subject centred-upper; `object-position: 50% 42%` | the building and its immediate ground; the slot is square at every width, so the outer thirds of a 3:2 source are lost at every width |
+| Supporting 1 | 1 | the dining room as living room: booths, lamps, jukebox | 384×384 (1440), 289×289 (820), 122×122 (390) | 1200×800 | centre | centre 60% |
+| Supporting 2 | 1 | the arcade corner | 256×256 (1440), 193×193 (820), 122×122 (390) | 1000×1000 | centre | centre 60% |
+| Supporting 3 | 1 | the main bedroom | 170×170 (1440), 96×96 (820) | 1200×900 | centre | centre 50% |
+| Supporting 4 | 1 | the kitchen on the old line, wood oven | 170×170 (1440), 96×96 (820) | 1200×800 | centre | centre 50% |
+| Salad bar tile | 5 | the amenity the listing singles out | 384×384 (1440), 308×308 (820), 122×122 (390) | 1000×1000 | tub centred-low; `object-position: 50% 55%` | the tub |
 | Host avatar | 2, 9 | the host, square crop | 128×128 | 400×400 | face centred | face |
 | Bedroom 1, Bedroom 2 | 4 | the two bedrooms, equal | 192×192 (1440), 154×154 (820), 122×122 (390) | 1000×1000 each | bed centred | the bed |
 | Reviewer avatars ×2 | 7 | reviewers | 64×64 | 200×200 | face centred | face |
-| Map | 8 | a drawn map of the area, not a tile service (licensing, and a drawn map reads at 244px) | 597×597 (1440), 514×514 (820), 366×366 (390) | 1400×1400 | the property marker centred | marker and the two nearest labels |
+| Map | 8 | a drawn map of Catskill's old strip, not a tile service (licensing, and a drawn map reads at 244px) | 597×597 (1440), 514×514 (820), 366×366 (390) | 1400×1400 | the property marker centred | marker and the two nearest labels |
 
 ### Copy
 
@@ -204,7 +207,7 @@ different counts per width, three versions are needed.
 | Description | 4 | prose, with Show more | 40 / 60 / 90 |
 | Bedroom captions | 4 | "Bedroom 1 · 1 queen bed" | 2 × 5 |
 | Amenities | 5 | the reference's own counts, plus the total | 5 / 5 / 10 items + "Show all 69" |
-| Hot tub caption | 5 | "Private hot tub · all year" | 5 |
+| Salad bar caption | 5 | "Salad bar · stocked for breakfast" | 5 |
 | Month names | 6 | two months at 820/1440, one at 390 | 2 |
 | Featured review | 7 | the review that decides a booking | 20 / 40 / 50 |
 | Second review | 7 | a different guest, a different reason | – / – / 25 |

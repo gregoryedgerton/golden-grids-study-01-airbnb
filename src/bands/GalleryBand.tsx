@@ -7,9 +7,9 @@ import { Band } from "./Band";
 
 // ASSET SPEC — see README.md "Images". Sources at or above these sizes.
 const photos = [
-  { ...placeholderImage("HERO · EXTERIOR", 1600, 1067, 150, { x: 0.5, y: 0.42 }), alt: listing.photos.hero },
-  { ...placeholderImage("LIVING", 1200, 800, 30), alt: listing.photos.living },
-  { ...placeholderImage("SAUNA", 1000, 1000, 200), alt: listing.photos.sauna },
+  { ...placeholderImage("HERO · THE HUT", 1600, 1067, 355, { x: 0.5, y: 0.42 }), alt: listing.photos.hero },
+  { ...placeholderImage("DINING ROOM", 1200, 800, 0), alt: listing.photos.living },
+  { ...placeholderImage("ARCADE", 1000, 1000, 260), alt: listing.photos.sauna },
   { ...placeholderImage("BEDROOM", 1200, 900, 40), alt: listing.photos.bedroom },
   { ...placeholderImage("KITCHEN", 1200, 800, 100), alt: listing.photos.kitchen },
 ];

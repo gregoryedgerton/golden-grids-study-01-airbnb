@@ -4,7 +4,7 @@ import { placeholderImage } from "../lib/placeholder";
 import { listing } from "../content";
 import { Band } from "./Band";
 
-const tub = placeholderImage("SOAKING TUB", 1000, 1000, 200, { x: 0.5, y: 0.55 });
+const tub = placeholderImage("SALAD BAR", 1000, 1000, 120, { x: 0.5, y: 0.55 });
 
 /**
  * Band 5 — Amenities. The reference: ten amenities in two columns at 1440,
@@ -15,7 +15,7 @@ const tub = placeholderImage("SOAKING TUB", 1000, 1000, 200, { x: 0.5, y: 0.55 }
  * and 1440 `from={3}` collapses positions 1–2 into a 2×1 placeholder strip
  * that holds the call to action — it is the LAST child. The 2-square holds
  * the one amenity the listing itself singles out in its highlights (the
- * soaking tub) as an image tile. At 390 the range opens to 1–3 and the same
+ * salad bar) as an image tile. At 390 the range opens to 1–3 and the same
  * three children fall into place: list in the 244px hero, tile and CTA in
  * the 122px squares.
  */
@@ -35,7 +35,7 @@ export function AmenitiesBand() {
         <GoldenBox>
           <figure className="media media--inset">
             <img src={tub.src} alt={listing.photos.tub} style={{ objectPosition: tub.subject }} />
-            <figcaption className="media__tag">Cedar soaking tub · open all year</figcaption>
+            <figcaption className="media__tag">Salad bar · stocked for breakfast</figcaption>
           </figure>
         </GoldenBox>
         <GoldenBox className="placeholder-slot">
