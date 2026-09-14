@@ -23,8 +23,8 @@ const map = assets.map;
 export function LocationBand() {
   const mobile = useViewport() === "mobile";
   return (
-    <Band id="location" title={listing.labels.location} note={mobile ? 'from=1 to=3 · placement="right" · clockwise=false · hero top (2:3 portrait)' : 'from=1 to=3 · placement="top" · clockwise=false · hero left'} cap="56rem" card>
-      <GoldenGrid from={1} to={3} placement={mobile ? "right" : "top"} clockwise={false} outline="1px solid var(--line)">
+    <Band id="location" title={listing.labels.location} note={mobile ? 'from=1 to=3 · placement="right" · clockwise=false · hero top (2:3 portrait)' : 'from=1 to=3 · placement="top" · clockwise=false · hero left'} cap="56rem" cards>
+      <GoldenGrid from={1} to={3} placement={mobile ? "right" : "top"} clockwise={false}>
         <GoldenBox>
           <figure className="media">
             <img src={map.src} alt={listing.photos.map} />

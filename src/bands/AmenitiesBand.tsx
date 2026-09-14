@@ -27,8 +27,8 @@ export function AmenitiesBand() {
   const items = viewport === "desktop" ? listing.amenities : listing.amenities.slice(0, 5);
   const x = useExpand();
   return (
-    <Band id="amenities" title={listing.labels.amenities} note={`from=${from} to=${to} · placement="top" · clockwise=true · ${from > 1 ? "placeholder strip = last child (CTA)" : "no placeholder"} · ${items.length} of ${listing.amenityTotal} listed`} cap="60rem" card>
-      <GoldenGrid from={from} to={to} placement="top" outline="1px solid var(--line)">
+    <Band id="amenities" title={listing.labels.amenities} note={`from=${from} to=${to} · placement="top" · clockwise=true · ${from > 1 ? "placeholder strip = last child (CTA)" : "no placeholder"} · ${items.length} of ${listing.amenityTotal} listed`} cap="60rem" cards>
+      <GoldenGrid from={from} to={to} placement="top">
         <GoldenBox {...x.boxProps}>
           <div className="copy list">
             <ul>{items.map((it) => <li key={it}>{it}</li>)}</ul>

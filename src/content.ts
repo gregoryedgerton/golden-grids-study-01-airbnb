@@ -74,14 +74,14 @@ export const description: Record<Viewport, string> = {
 
 export const featuredReview: Record<Viewport, string> = {
   mobile:
-    "We booked it for the joke and stayed for the beds. Red lamps on low, a pie from the oven, the jukebox. Perfect.",
+    "Booked it for the joke, stayed for the beds.",
   tablet:
     "We booked it for the joke and stayed for the beds. Red lamps on low, checkered cloths, a pie from the wood oven, the jukebox on the good side of loud. The salad bar at breakfast is the detail nobody warns you about. Perfect.",
   desktop:
     "We booked it for the joke and stayed for the beds. Red lamps on low, checkered cloths, a pie from the wood oven, the jukebox on the good side of loud, and the salad bar at breakfast is the detail nobody warns you about. The hosts thought about everything a real weekend needs. We are already planning a winter return.",
 };
 
-export const secondReview = () => allReviews[1].text;
+export const secondReview = () => allReviews[1].short ?? allReviews[1].text;
 
 export const hostBio: Record<Viewport, string> = {
   mobile:
@@ -117,9 +117,9 @@ export const amenityGroups: { title: string; items: string[] }[] = [
   { title: "Home basics", items: ["Fast wifi", "Heating and air conditioning", "Ceiling fans", "First aid kit", "Fire extinguisher", "Smoke and carbon monoxide alarms", "Long-term stays allowed", "Self check-in with a keypad", "Luggage drop-off", "Workspace in a booth", "Dogs welcome", "Crib on request", "High chair", "Pack and play", "Baby bath", "Step-free entrance"] },
 ];
 
-export const allReviews: { name: string; city: string; when: string; text: string }[] = [
+export const allReviews: { name: string; city: string; when: string; text: string; short?: string }[] = [
   { name: "Priya", city: "Brooklyn, New York", when: "September 2026", text: "We booked it for the joke and stayed for the beds. Red lamps on low, checkered cloths, a pie from the wood oven, the jukebox on the good side of loud, and the salad bar at breakfast is the detail nobody warns you about. The hosts thought about everything a real weekend needs." },
-  { name: "Tomas", city: "Montclair, New Jersey", when: "August 2026", text: "Took the kids for fall break and they have not stopped talking about the arcade corner. The booths, the tumblers, the lamps: exactly as pictured." },
+  { name: "Tomas", city: "Montclair, New Jersey", when: "August 2026", short: "Took the kids for fall break and they have not stopped talking about the arcade corner.", text: "Took the kids for fall break and they have not stopped talking about the arcade corner. The booths, the tumblers, the lamps: exactly as pictured." },
   { name: "Renata", city: "Philadelphia, Pennsylvania", when: "August 2026", text: "Quietest place we have stayed in years, which is not what you expect from a former restaurant on a strip. The windows are better insulated than ours at home. Dee left a note about the oven that made us laugh." },
   { name: "Owen", city: "Albany, New York", when: "July 2026", text: "Came for a birthday, which felt right. Made pies for eight in the booths, ran the jukebox until midnight, hot tub after. The second bedroom between the banquettes is more comfortable than it has any right to be." },
   { name: "Mei", city: "Hoboken, New Jersey", when: "June 2026", text: "The salad bar at breakfast is a genuinely good idea and someone should steal it. Walkable to Main Street, the creek path is lovely, parking is easy. We would come back in winter for the lamps." },

@@ -28,13 +28,13 @@ export function ThingsBand() {
     </>
   );
   return (
-    <Band id="things" title={listing.labels.things} note={mobile ? "no grid at 390 · three plain rows, as the reference" : 'from=1 to=3 · placement="top" · clockwise=false · hero left · flat content, forced'} cap="48rem" card>
+    <Band id="things" title={listing.labels.things} note={mobile ? "no grid at 390 · three plain rows, as the reference" : 'from=1 to=3 · placement="top" · clockwise=false · hero left · flat content, forced'} cap="48rem" cards>
       {mobile ? (
         <div className="rules rules--rows">
           {items.map((it) => <div key={it.title} className="rules__row"><Item it={it} /></div>)}
         </div>
       ) : (
-        <GoldenGrid from={1} to={3} placement="top" clockwise={false} outline="1px solid var(--line)">
+        <GoldenGrid from={1} to={3} placement="top" clockwise={false}>
           {items.map((it) => (
             <GoldenBox key={it.title}><div className="copy rules"><Item it={it} /></div></GoldenBox>
           ))}

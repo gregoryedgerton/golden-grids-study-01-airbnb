@@ -34,9 +34,9 @@ export function FactsBand() {
       hideTitle
       note={mobile ? 'from=1 to=3 · placement="top" · clockwise=true · hero right · host merged into hero' : 'from=1 to=4 · placement="right" · clockwise=false · hero left'}
       cap="48rem"
-      card
+      cards
     >
-      <GoldenGrid from={1} to={mobile ? 3 : 4} placement={mobile ? "top" : "right"} clockwise={mobile} outline="1px solid var(--line)">
+      <GoldenGrid from={1} to={mobile ? 3 : 4} placement={mobile ? "top" : "right"} clockwise={mobile}>
         <GoldenBox>
           <div className="copy copy--center facts">
             <strong>{listing.summary}</strong>

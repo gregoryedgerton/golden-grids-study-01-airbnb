@@ -118,21 +118,37 @@ side-by-side then differs only in the grid.
 | Token | Reference (measured) | Rebuild |
 | --- | --- | --- |
 | Face | Airbnb Cereal VF, falling back to Circular, -apple-system, system-ui, Roboto, Helvetica Neue | the same fallback stack; Cereal is proprietary and is not shipped |
-| Body text | 14px/18px 400, `#222222` (199 of 307 text nodes) | same |
-| Secondary text | `#6c6c6c`; tertiary `#b0b0b0` | same |
-| Prose | 16px/24px 400 | same |
-| Section heading | 22px/26px 500, −0.02em (600 at 390) | same |
+| Body text | 14px/18px 400, `#222222` | same |
+| Secondary text | `#6c6c6c`; tertiary `#b0b0b0`; field borders `#8c8c8c` | same |
+| Prose, reviews | 16px/24px 400; 14px/20px at 390 | same |
+| Section heading | 22px/26px 500, −0.44em tracking; 600 at 390 | same |
 | Page title | 26px/30px 500 | same |
-| Score numeral | 100px/500 at 1440, 32px/700 at 390 | 500, 32–100px by container |
-| Dividers | 1px solid `#dddddd`, sections 48px apart | same, one per band |
-| Grid lines | — | the same 1px `#dddddd`, as `outline` |
+| Badge card | score, label and count all 22px/26px 500 −0.44px; the count's word 12px/16px 500; the blurb 16px/20px 500 | same; 18px/24px 500 below 1100 |
+| Laurelled score | 100px 500; 72px and its label 26px/30px 600 at 390 | same |
+| Category cell | score and label both 12px/16px 500 `#222` | same |
+| Bed captions | 16px/20px 500 over 14px/18px 400 muted | same |
+| Rules, host details | headings 14px/18px 500 (18px/24px for "Host details"); lines 14px/18px 400 muted | same |
+| Calendar | month 16px/20px 500; weekday letters 12px/16px 500 muted; days 14px | same |
+| Price prompt | 22px 500 at desktop, 16px 700 at 390 | same |
+| **Radius scale** | 8px images and 32px chips · 12px cards and buttons · 16px topic chips · 24px host card · 50% avatars | same tokens |
+| Card edge | 1px solid `#dddddd`, 12px radius, 22–26px padding (the rating card) | every slot in a `cards` band |
+| Booking card | 12px radius, 1px `#dddddd`, `0 6px 16px rgba(0,0,0,.12)`, 24px padding | same |
+| Form fields | one group, 12px on the outer corners only, 1px `#8c8c8c` throughout, internal dividers | same |
+| Host card | 24px radius, no border, `0 0 0 1px rgba(0,0,0,.02), 0 6px 16px rgba(0,0,0,.12)`, 24px 16px padding (32px 24px at 390), 88px avatar | same |
+| Topic chip | 16px radius, 1px `#f2f2f2`, `0 4px 20px rgba(0,0,0,.07)`, 12px 18px 12px 14px, 14px/500 (12px at 390) | same |
 | Primary button | rausch gradient `#e61e4d → #d70466`, white, 999px pill, 14px 24px, 16px/500 | same |
-| Secondary button | `#f2f2f2`, `#222222`, 12px corners (8px small), 14px 24px, 16px/500 | same |
-| Photo mosaic | 8px gutters, 12px corners on the whole mosaic | same: 4px insets, flush outer edges, 12px on the wrap |
-| Content column | 1120px at 1440 (160px margins); 342px at 390 (24px) | `min(100% − 2·gutter, 1120px)` with gutter 24 / 40 / 80 |
-| Form fields | 1px `#b0b0b0`, 8px corners, 10px/800 uppercase labels | same |
-| Host card | white, 24px corners, `0 6px 16px rgba(0,0,0,.12)` | same |
-| Colour scheme | light only | light only; the template's dark scheme is dropped |
+| Secondary button | `#f2f2f2`, `#222222`, 12px radius, 14px 24px, 16px/500; a 32px 12px/500 chip variant at 8px radius | same |
+| Photo mosaic | 8px gutters, 12px corners on the whole mosaic, square corners on each photo | same; 8px corners on photographs outside the mosaic |
+| Dividers | 1px solid `#dddddd`, sections 48px apart (32px at 390) | same, one per band |
+| Content column | 1120px at 1440 (160px margins); 342px at 390 (24px) | `min(100% − 2·gutter, 1120px)` |
+| Colour scheme | light only | light only |
+
+**The grid is not a grid.** The reference never draws a continuous set of
+shared square edges; it draws rounded cards separated by white. The study
+therefore does not use the library's `outline` prop anywhere. Instead a band
+marked `cards` gives every slot the reference's card: inset 4px inside its
+slot, 1px `#dddddd`, 12px radius. The spiral still decides the geometry; the
+cards just stop pretending to be a table.
 
 Things the reference has that the rebuild deliberately does not: the site
 header, the rausch wordmark, icons in the amenity and highlight lists (the

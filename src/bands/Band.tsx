@@ -12,7 +12,7 @@ import type { ReactNode } from "react";
  * how a study keeps tall bands in check. Never re-range the grid for height.
  */
 export function Band({
-  id, title, lesson, note, cap, hideTitle, flush, rounded, card, children,
+  id, title, lesson, note, cap, hideTitle, flush, rounded, cards, children,
 }: {
   id: string;
   title: string;
@@ -25,18 +25,19 @@ export function Band({
   flush?: boolean;
   /** Round the grid's corners, as the reference's photo mosaic does. */
   rounded?: boolean;
-  /** An outlined grid reads as one of the reference's cards: 12px corners. */
-  card?: boolean;
+  /** Every slot reads as one of the reference's cards: a 1px #dddddd edge,
+   *  12px corners, inset so the cards are separated by white. */
+  cards?: boolean;
   children: ReactNode;
 }) {
   return (
-    <section className={`band${flush ? " band--flush" : ""}${rounded ? " rounded" : ""}`} id={id} aria-labelledby={`${id}-title`}>
+    <section className={`band${flush ? " band--flush" : ""}${rounded ? " rounded" : ""}${cards ? " cards" : ""}`} id={id} aria-labelledby={`${id}-title`}>
       <header className={hideTitle ? "band__header band__header--hidden" : "band__header"}>
         <h2 id={`${id}-title`} className={hideTitle ? "visually-hidden" : "band__title"}>{title}</h2>
         {lesson && <p className="band__lesson">{lesson}</p>}
         {note && <p className="band__note">{note}{cap ? ` · width capped at ${cap}` : ""}</p>}
       </header>
-      <div className={card ? "band__wrap band__wrap--card" : "band__wrap"} style={cap ? { maxWidth: cap } : undefined}>
+      <div className="band__wrap" style={cap ? { maxWidth: cap } : undefined}>
         {children}
       </div>
     </section>

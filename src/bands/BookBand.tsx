@@ -25,13 +25,15 @@ export function BookBand() {
   const single = useViewport() === "mobile";
   const f = listing.fields;
   return (
-    <Band id="book" title={listing.labels.book} hideTitle note={single ? 'from=1 to=1 · single · CTA merged into the form · a 366px square standing in for a ~110px bar' : 'from=1 to=2 · placement="left" · form left (first child on the placement side), CTA right'} cap="40rem" card>
-      <GoldenGrid from={1} to={single ? 1 : 2} placement="left" outline="1px solid var(--line)">
+    <Band id="book" title={listing.labels.book} hideTitle note={single ? 'from=1 to=1 · single · CTA merged into the form · a 366px square standing in for a ~110px bar' : 'from=1 to=2 · placement="left" · form left (first child on the placement side), CTA right'} cap="40rem" cards>
+      <GoldenGrid from={1} to={single ? 1 : 2} placement="left">
         <GoldenBox>
           <form className="copy form" onSubmit={(e) => e.preventDefault()}>
-            <label className="field"><span>{f.checkin}</span><input type="text" placeholder={f.datePlaceholder} readOnly /></label>
-            <label className="field"><span>{f.checkout}</span><input type="text" placeholder={f.datePlaceholder} readOnly /></label>
-            <label className="field"><span>{f.guests}</span><input type="text" placeholder={f.guestsPlaceholder} readOnly /></label>
+            <div className="form__fields">
+              <label className="field"><span>{f.checkin}</span><input type="text" placeholder={f.datePlaceholder} readOnly /></label>
+              <label className="field"><span>{f.checkout}</span><input type="text" placeholder={f.datePlaceholder} readOnly /></label>
+              <label className="field"><span>{f.guests}</span><input type="text" placeholder={f.guestsPlaceholder} readOnly /></label>
+            </div>
             {single && <button type="submit" className="btn btn--primary">{listing.booking.cta}</button>}
           </form>
         </GoldenBox>

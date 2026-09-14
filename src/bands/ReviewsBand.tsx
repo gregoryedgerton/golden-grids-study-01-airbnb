@@ -68,7 +68,7 @@ export function ReviewsBand() {
         <GoldenBox>
           <div className="copy review">
             <p>“{featuredReview[viewport]}”</p>
-            <div className="review__who"><img className="avatar" src={avatars[0].src} alt="" /><span><strong>{r1.name}</strong>, {r1.city} · {r1.when} · {r1.stay}</span></div>
+            <div className="review__who"><img className="avatar" src={avatars[0].src} alt="" /><span><strong>{r1.name}</strong>, {r1.city} · {r1.when}{mobile ? "" : ` · ${r1.stay}`}</span></div>
           </div>
         </GoldenBox>
         {desktop && (

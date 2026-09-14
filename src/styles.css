@@ -21,7 +21,13 @@
   --tag-bg: #222222;
   --tag-fg: #ffffff;
   --accent: #222222;
-  --radius: 12px;
+  --radius-sm: 8px;                     /* images, small chips */
+  --radius: 12px;                       /* cards and buttons */
+  --radius-chip: 16px;                  /* the topic chips */
+  --radius-card: 24px;                  /* the host card */
+  --shadow-card: 0 6px 16px rgba(0, 0, 0, 0.12);
+  --shadow-ring: 0 0 0 1px rgba(0, 0, 0, 0.02), 0 6px 16px rgba(0, 0, 0, 0.12);
+  --shadow-chip: 0 4px 20px rgba(0, 0, 0, 0.07);
   --font: "Circular", -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
   --measure: 60ch;
   --gutter: 24px;                       /* 390: 342px content in 390 */
@@ -73,13 +79,32 @@ button { font-family: inherit; }
 .band__lesson { max-width: var(--measure); margin: 0 0 4px; font: 400 16px/20px var(--font); }
 .band__note { font: 400 12px/16px var(--font); color: var(--muted); margin: 0; }
 .band__wrap { width: 100%; }
-/* Outlined grids read as the reference's cards: 12px corners, 1px #ddd edge. */
-.band__wrap--card { border-radius: var(--radius); overflow: hidden; }
+
+/* --- Slots as cards ------------------------------------------------------
+   The reference never draws a continuous grid: it draws rounded cards with a
+   1px #dddddd edge, separated by white. A band marked `cards` gives every
+   slot that treatment — the content wrapper is inset inside its slot so the
+   cards have gaps, and carries the border and the 12px radius. The library's
+   `outline` prop is not used anywhere for this reason: it draws shared square
+   edges, which is a grid, not a card. */
+.cards .golden-grid > .golden-grid__box > *:not(.cell):not(.cell--expanded) {
+  position: absolute !important;
+  inset: 4px;
+  width: auto !important; height: auto !important;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+/* The placeholder strip is a card like any other; the study marks it only
+   for the inspect overlay. */
+.cards .golden-grid > .golden-grid__box--placeholder > *:not(.cell):not(.cell--expanded) { border-style: dashed; }
 
 /* --- How media fills a slot -------------------------------------------- */
 .media { margin: 0; width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--line-light); }
 .media img, .media video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.media.media--inset { position: absolute; inset: 4px; width: auto; height: auto; border-radius: 0; }
+.media.media--inset { position: absolute; inset: 4px; width: auto; height: auto; border-radius: var(--radius-sm); overflow: hidden; }
+/* Inside the mosaic the corners belong to the whole mosaic, not each photo. */
+.rounded .media.media--inset { border-radius: 0; }
 /* The mosaic: 8px gutters from 4px insets, outer edges flush (the grid grows
    4px past its wrap on every side and the wrap clips), 12px corners on the
    whole mosaic rather than on each photograph — as the reference draws it.
@@ -107,7 +132,7 @@ button { font-family: inherit; }
 
 /* --- Copy slots ---------------------------------------------------------- */
 .copy { width: 100%; height: 100%; position: relative; padding: 24px; overflow: hidden; container-type: size; }
-@media (max-width: 639px) { .copy { padding: 16px; } }
+@media (max-width: 639px) { .copy { padding: 12px; } }
 .copy p { margin: 0; }
 .copy--center { display: flex; flex-direction: column; justify-content: center; }
 .copy--prose p { max-width: var(--measure); font: 400 16px/24px var(--font); margin-bottom: 16px; }
@@ -133,19 +158,23 @@ button { font-family: inherit; }
    label wrap inside a small box. */
 .btn--small { white-space: normal; padding: 14px 16px; }
 /* "Show all photos": the reference's 32px secondary chip (12px/500, #f2f2f2, 8px). */
-.media .btn--corner { position: absolute; left: 24px; bottom: 24px; font: 500 12px/16px var(--font); padding: 8px 16px; background: var(--btn); color: var(--fg); border: 0; border-radius: 8px; }
+.media .btn--corner { position: absolute; left: 24px; bottom: 24px; font: 500 12px/16px var(--font); padding: 8px 16px; background: var(--btn); color: var(--fg); border: 0; border-radius: var(--radius-sm); }
 /* The same chip inside a 1-square, where a 48px button cannot fit. */
-.btn--chip { font: 500 12px/16px var(--font); padding: 8px 16px; border-radius: 8px; white-space: nowrap; }
+.btn--chip { font: 500 12px/16px var(--font); padding: 8px 16px; border-radius: var(--radius-sm); white-space: nowrap; }
 
 /* --- Text chips, lists, stats --------------------------------------------- */
-.chip { display: inline-block; font: 500 12px/16px var(--font); padding: 4px 8px; border-radius: 4px; background: var(--tag-bg); color: var(--tag-fg); }
+/* The reference's topic chip: a hairline card, not a solid tag. */
+.chip { display: inline-block; font: 500 14px/18px var(--font); padding: 12px 18px 12px 14px; border: 1px solid var(--line-light); border-radius: var(--radius-chip); box-shadow: var(--shadow-chip); background: var(--bg); color: var(--fg); }
+@media (max-width: 639px) { .chip { font-size: 12px; line-height: 16px; } }
 .list { font: 400 16px/20px var(--font); }
 .list ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 16px; }
 @container (min-width: 480px) { .list ul { grid-template-columns: 1fr 1fr; } }
 .list li { break-inside: avoid; }
 .highlights { margin: 0; padding: 0; list-style: none; display: grid; gap: 16px; }
+@media (max-width: 639px) { .highlights { gap: 10px; } }
 .highlights li { font: 500 14px/20px var(--font); }
 .facts { display: grid; gap: 8px; align-content: start; }
+@media (max-width: 639px) { .facts { gap: 4px; } }
 @media (max-width: 639px) { #facts .facts { align-content: center; text-align: center; } }
 .facts strong { font: 500 22px/26px var(--font); letter-spacing: -0.02em; max-width: 18ch; }
 .facts span, .facts p { font: 400 16px/20px var(--font); }
@@ -155,27 +184,42 @@ button { font-family: inherit; }
   #facts .facts strong, #facts .facts span { font: 400 14px/18px var(--font); letter-spacing: normal; color: var(--muted); }
 }
 /* The badge numerals and the host card share the reference's 22px/700 figures. */
-#facts .score__n { font: 500 18px/24px var(--font); letter-spacing: normal; }
-@media (min-width: 1100px) { #facts .score__n { font: 700 22px/26px var(--font); } }
-#facts .score .score__sub { font: 400 12px/16px var(--font); color: var(--fg); }
-#facts .score__sub--count { font-weight: 500; }
-#facts .score__label { font: 500 16px/20px var(--font); letter-spacing: normal; }
-@media (min-width: 1100px) { #facts .score__label { font-size: 18px; line-height: 22px; } #facts .score__sub--blurb { font: 400 16px/20px var(--font); } }
+/* The badge card: score, label and count are typographic equals at 22/500
+   with the reference's -0.44px tracking; the count's word and the blurb sit
+   under them at 12 and 16. */
+#facts .score__n,
+#facts .score__label { font: 500 22px/26px var(--font); letter-spacing: -0.02em; }
+@media (max-width: 1099px) { #facts .score__n, #facts .score__label { font: 500 18px/24px var(--font); letter-spacing: normal; } }
+#facts .score .score__sub { font: 500 12px/16px var(--font); color: var(--fg); }
+#facts .score__sub--blurb { font: 500 16px/20px var(--font); }
 @media (min-width: 640px) and (max-width: 1099px) { #facts .score__sub--blurb { display: none; } }
-#facts .score .avatar { width: 40px; }
-#facts .score { gap: 4px; }
+/* The host slot is the smallest card in the band; its type steps down so the
+   avatar and both lines sit inside it. */
+#facts .score { gap: 4px; padding: 12px; }
+#facts .score .avatar { width: 32px; }
+#facts .host-line { font: 500 14px/18px var(--font); }
+#facts .host-line small { font: 400 12px/16px var(--font); }
 #facts .host-line { font: 500 16px/20px var(--font); color: var(--fg); }
 #facts .host-line small { display: block; font: 400 14px/18px var(--font); color: var(--muted); }
 @media (max-width: 639px) {
   #facts .score__label { font: 500 14px/20px var(--font); }
   #facts .score__sub--blurb { display: none; }
 }
+/* "Add dates to see the price": 22/500 at desktop, 16/700 at 390. */
+#book .score__label { font: 500 22px/26px var(--font); letter-spacing: -0.02em; }
+@media (max-width: 639px) { #book .score__label { font: 700 16px/18px var(--font); letter-spacing: normal; } }
 .rules { font: 400 14px/18px var(--font); }
 .rules h4 { margin: 0 0 8px; font: 500 14px/18px var(--font); }
 #host .rules h4 { font: 500 18px/24px var(--font); }
 #host .rules p { font: 400 16px/20px var(--font); }
 #location .rules h4 { font: 500 14px/20px var(--font); }
 #location .rules p { line-height: 20px; }
+@media (max-width: 639px) {
+  /* The 183px squares of the portrait band take the reference's smallest
+     body size rather than a shorter sentence. */
+  #location .rules h4 { margin-bottom: 4px; }
+  #location .rules p { font-size: 12px; line-height: 16px; }
+}
 #things .rules li, #things .rules a { color: var(--muted); }
 .rules ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 0; }
 .rules p { margin-top: 12px; }
@@ -197,14 +241,19 @@ button { font-family: inherit; }
 @media (max-width: 639px) { #reviews .score__label { font-size: 26px; line-height: 30px; } }
 .score__sub { font: 400 14px/20px var(--font); color: var(--muted); max-width: 30ch; }
 @media (min-width: 1100px) { #reviews .score:not(.score--category) .score__sub { font-size: 18px; line-height: 24px; } }
+@media (max-width: 639px) { #reviews .score__label { font: 600 26px/30px var(--font); letter-spacing: -0.02em; } }
 /* Category cell: 12px/500 score over a 12px/500 label, both #222, as the reference's row. */
 #reviews .score--category .score__n { font: 500 12px/16px var(--font); letter-spacing: normal; }
 #reviews .score--category .score__sub { font: 500 12px/16px var(--font); color: var(--fg); }
 .score .btn { margin-top: 12px; }
 
 /* Booking form: grouped fields with 1px #b0b0b0 borders and 8px corners. */
-.form { display: grid; gap: 12px; align-content: center; height: 100%; }
-.field { display: grid; gap: 2px; border: 1px solid var(--field-line); border-radius: 8px; padding: 10px 12px; }
+.form { display: grid; gap: 16px; align-content: center; height: 100%; }
+/* The fields are one box with internal dividers, as the reference draws them:
+   12px on the group's outer corners only, 1px #8c8c8c throughout. */
+.form__fields { display: grid; border: 1px solid var(--field-line); border-radius: var(--radius); }
+.field { display: grid; gap: 2px; padding: 10px 12px; border-top: 1px solid var(--field-line); }
+.field:first-child { border-top: 0; }
 .field span { font: 800 10px/12px var(--font); text-transform: uppercase; letter-spacing: 0.04em; }
 .field input { font: 400 14px/18px var(--font); border: 0; background: transparent; color: var(--fg); width: 100%; padding: 0; }
 .field input::placeholder { color: var(--muted); }
@@ -212,12 +261,17 @@ button { font-family: inherit; }
 /* Review cards, avatars, the host card (white, 24px corners, soft shadow). */
 .review { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
 .review p { font: 400 16px/22px var(--font); max-width: 44ch; margin-bottom: 12px; }
-@media (max-width: 639px) { .review p { font-size: 14px; line-height: 20px; } .review__who { font-size: 12px; line-height: 16px; } }
 .review__who { display: flex; align-items: center; gap: 12px; font: 400 14px/18px var(--font); color: var(--muted); }
 .review__who strong { font-weight: 500; color: var(--fg); }
+@media (max-width: 639px) {
+  .review p { font-size: 14px; line-height: 20px; }
+  .review__who { font-size: 12px; line-height: 16px; gap: 8px; }
+  .review__who .avatar { width: 32px; }
+}
 .avatar { width: 48px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; flex: none; }
-.card { position: absolute; inset: 8px; display: grid; gap: 8px; justify-items: center; align-content: center; text-align: center; padding: 24px; background: #fff; border-radius: 24px; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); }
-.card .avatar { width: clamp(64px, 30cqw, 104px); }
+.card { position: absolute; inset: 8px; display: grid; gap: 8px; justify-items: center; align-content: center; text-align: center; padding: 24px 16px; background: #fff; border-radius: var(--radius-card); box-shadow: var(--shadow-ring); }
+@media (max-width: 639px) { .card { padding: 32px 24px; } }
+.card .avatar { width: clamp(64px, 30cqw, 88px); }
 .card__name { font: 700 32px/36px var(--font); letter-spacing: normal; }
 .card__stats { display: flex; gap: 16px; text-align: center; }
 .card__stats span { display: grid; font: 700 22px/26px var(--font); }
