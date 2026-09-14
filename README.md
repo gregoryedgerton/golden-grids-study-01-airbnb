@@ -276,9 +276,9 @@ Pass-one observations; revised after real assets land.
 ## Interactions: expand a cell
 
 Four calls to action work, and all four do the same thing: the slot that
-showed the summary grows to cover its whole band and shows the rest. Same
-box, same band, more content. The reference reaches for a modal; here the
-spiral's slot becomes the stage.
+showed the summary becomes the whole band and shows the rest. The band grows
+to fit it and everything below moves down — nothing scrolls inside a box.
+The reference reaches for a modal; here the spiral's slot becomes the page.
 
 | Trigger | Cell that expands | Shows |
 | --- | --- | --- |
@@ -288,10 +288,11 @@ spiral's slot becomes the stage.
 | Reviews · "Show all 188 reviews" (in a 1-square) | the score | six reviews, and says it is six of 188 |
 
 Mechanics, in [`src/lib/expand.tsx`](src/lib/expand.tsx) and `expand.css`:
-the `GoldenBox` owning the summary gets `cell--expanded`, and a `:has()`
-rule lifts its positioned parent — the library's own slot element — to
-`inset: 0` above its siblings for as long as it is open. The library is not
-touched.
+the `GoldenBox` owning the summary gets `cell--expanded`, and `:has()` rules
+release the grid's fixed proportion, take the sibling slots and the replaced
+summary out of the flow, and return the expanded slot to normal flow, where
+its content sets the height. The library is not touched; its inline geometry
+is overridden only for the duration.
 
 What the overlay implies, and therefore does:
 
@@ -304,10 +305,10 @@ What the overlay implies, and therefore does:
 - Focus moves to the close control on every mount, so a breakpoint change
   that remounts the panel in a different slot does not drop focus; on close
   it returns to the trigger.
-- The panel stays mounted until the box has finished collapsing, so the
-  animation runs on the panel rather than on stretched summary content.
-- Reduced motion drops the transition; the geometry transition is scoped to
-  the box doing the lifting, so a breakpoint change never animates a band.
+- The panel has no scroll container: the band's height is the panel's
+  height, so the page scrolls as one. The panel's header is sticky, so the
+  close control stays reachable in a tall panel.
+- Nothing animates. The content moving is the feedback.
 
 Content for the expanded views is in `src/content.ts`, which is also the
 single source for the counts: the ten amenities in the band are a strict

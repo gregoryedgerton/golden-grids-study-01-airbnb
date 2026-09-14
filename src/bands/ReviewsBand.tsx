@@ -53,8 +53,8 @@ export function ReviewsBand() {
             <span className="score__label">{listing.badge}</span>
             <span className="score__sub">{listing.badgeBlurb}, according to {listing.reviewCount} guests</span>
           </div>
-          {x.mounted && (
-            <ExpandedCell id={x.panelId} title={listing.expanded.reviews(String(listing.reviewCount), listing.score)} hidden={!x.expanded} onClose={x.close} closeRef={x.closeRef}>
+          {x.expanded && (
+            <ExpandedCell id={x.panelId} title={listing.expanded.reviews(String(listing.reviewCount), listing.score)} onClose={x.close} closeRef={x.closeRef}>
               <p className="cell__count">{listing.expanded.reviewsNote(allReviews.length, listing.reviewCount)}</p>
               {allReviews.map((r) => (
                 <div className="cell__review" key={r.name + r.when}>

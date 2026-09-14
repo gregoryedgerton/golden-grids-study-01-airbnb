@@ -2,16 +2,17 @@ import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 
 import "./expand.css";
 
 /**
- * Expand a cell. A slot that shows a summary grows to cover its whole band
- * and shows the rest; the same box, the same band, more content. This is
- * the study's answer to content a slot cannot hold — the reference reaches
- * for a modal; here the spiral's slot becomes the stage.
+ * Expand a cell. A slot that shows a summary becomes the whole band and
+ * shows the rest; the same box, the same band, more content. This is the
+ * study's answer to content a slot cannot hold — the reference reaches for
+ * a modal; here the spiral's slot becomes the page.
  *
  * Mechanics: the GoldenBox that owns the summary gets `cell--expanded`, and
- * expand.css uses `:has()` to lift its positioned parent (the library's
- * `.golden-grid__box`) to inset 0 above its siblings. The library is not
- * touched; its inline geometry is overridden with !important for the
- * duration.
+ * expand.css uses `:has()` to release the grid's fixed proportion, take the
+ * sibling slots out of the flow, and return the expanded slot to normal
+ * flow, where its content sets the height. The band grows and everything
+ * below it moves down — nothing scrolls inside a box. The library is not
+ * touched; its inline geometry is overridden only for the duration.
  *
  * What the overlay implies, and therefore does:
  *   - Everything the panel covers goes `inert` while it is open, so nothing
@@ -20,8 +21,8 @@ import "./expand.css";
  *   - Escape closes only the panel that contains focus, and focus returns to
  *     that panel's trigger. A field elsewhere on the page keeps its Escape.
  *   - One cell at a time: opening one closes any other.
- *   - The panel stays mounted until the box has finished collapsing, so the
- *     animation runs on the panel rather than on stretched summary content.
+ *   - The band grows to fit the panel and everything below moves down; the
+ *     panel has no scroll container of its own.
  */
 
 /** Every open cell's close function, so opening one can close the others. */
@@ -29,17 +30,12 @@ const openCells = new Set<() => void>();
 
 export function useExpand() {
   const [expanded, setExpanded] = useState(false);
-  const [closing, setClosing] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const id = useId();
 
   const close = useCallback(() => {
     setExpanded(false);
-    setClosing(true);
-    if (timer.current) clearTimeout(timer.current);
-    timer.current = setTimeout(() => setClosing(false), 320);
     requestAnimationFrame(() => triggerRef.current?.focus());
   }, []);
 
@@ -68,17 +64,13 @@ export function useExpand() {
     };
   }, [expanded, close, id]);
 
-  useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
-
   return {
     expanded,
-    /** True while the box is still collapsing: keep the panel mounted. */
-    mounted: expanded || closing,
     open,
     close,
     panelId: id,
     /** Spread on the GoldenBox that owns the summary. */
-    boxProps: { className: expanded ? "cell--expanded" : closing ? "cell--closing" : undefined },
+    boxProps: { className: expanded ? "cell--expanded" : undefined },
     /** Spread on the call-to-action button. */
     triggerProps: {
       ref: triggerRef,
@@ -99,12 +91,10 @@ export function useExpand() {
  * made inert for as long as it is open.
  */
 export function ExpandedCell({
-  id, title, hidden, onClose, closeRef, children,
+  id, title, onClose, closeRef, children,
 }: {
   id: string;
   title: string;
-  /** True while the box collapses: the panel is on screen but on its way out. */
-  hidden?: boolean;
   onClose: () => void;
   closeRef: React.RefObject<HTMLButtonElement | null>;
   children: ReactNode;
@@ -112,15 +102,14 @@ export function ExpandedCell({
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (hidden) return;
     closeRef.current?.focus({ preventScroll: true });
-  }, [hidden, closeRef]);
+  }, [closeRef]);
 
   // Inert everything this panel covers: the summary beside it in the same
   // slot, and every sibling slot in the same grid.
   useEffect(() => {
     const panel = ref.current;
-    if (!panel || hidden) return;
+    if (!panel) return;
     const grid = panel.closest(".golden-grid");
     if (!grid) return;
     const covered: HTMLElement[] = [];
@@ -139,17 +128,15 @@ export function ExpandedCell({
     };
     mark(grid);
     return () => { for (const el of covered) el.inert = false; };
-  }, [hidden]);
+  }, []);
 
   return (
-    <section className="cell" id={id} ref={ref} aria-label={title} aria-hidden={hidden || undefined}>
+    <section className="cell" id={id} ref={ref} aria-label={title}>
       <header className="cell__head">
         <h3 className="cell__title">{title}</h3>
         <button ref={closeRef} type="button" className="cell__close" onClick={onClose} aria-label="Close">×</button>
       </header>
-      {/* Focusable so a keyboard-only reader can scroll it; it is named by
-          the section it sits in. */}
-      <div className="cell__body" tabIndex={0}>{children}</div>
+      <div className="cell__body">{children}</div>
     </section>
   );
 }

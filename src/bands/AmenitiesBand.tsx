@@ -33,8 +33,8 @@ export function AmenitiesBand() {
           <div className="copy list">
             <ul>{items.map((it) => <li key={it}>{it}</li>)}</ul>
           </div>
-          {x.mounted && (
-            <ExpandedCell id={x.panelId} title={listing.expanded.amenities(listing.amenityTotal)} hidden={!x.expanded} onClose={x.close} closeRef={x.closeRef}>
+          {x.expanded && (
+            <ExpandedCell id={x.panelId} title={listing.expanded.amenities(listing.amenityTotal)} onClose={x.close} closeRef={x.closeRef}>
               {amenityGroups.map((g) => (
                 <div className="cell__group" key={g.title}>
                   <h4>{g.title}</h4>
