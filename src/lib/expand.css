@@ -1,12 +1,26 @@
 /* Expand a cell: the GoldenBox with .cell--expanded lifts its positioned
    parent to cover the whole grid. The library's inline geometry is
-   overridden only while expanded. */
+   overridden only while expanded, and the transition is scoped to the box
+   doing the lifting so a breakpoint change never animates a whole band. */
 .golden-grid > .golden-grid__box:has(> .cell--expanded) {
   left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important;
   z-index: 30;
 }
-.golden-grid > .golden-grid__box { transition: left 0.3s ease, top 0.3s ease, width 0.3s ease, height 0.3s ease; }
-@media (prefers-reduced-motion: reduce) { .golden-grid > .golden-grid__box { transition: none; } }
+.golden-grid > .golden-grid__box:has(> .cell--expanded),
+.golden-grid > .golden-grid__box:has(> .cell--closing) {
+  transition: left 0.3s ease, top 0.3s ease, width 0.3s ease, height 0.3s ease;
+  z-index: 30;
+}
+@media (prefers-reduced-motion: reduce) {
+  .golden-grid > .golden-grid__box:has(> .cell--expanded),
+  .golden-grid > .golden-grid__box:has(> .cell--closing) { transition: none; }
+}
+/* The mosaic's grid overhangs its clipping wrap by 4px on every side; inset
+   the lifted box by the same amount so the panel's edge is not clipped. */
+.rounded .golden-grid > .golden-grid__box:has(> .cell--expanded) {
+  left: 4px !important; top: 4px !important;
+  width: calc(100% - 8px) !important; height: calc(100% - 8px) !important;
+}
 
 .cell {
   position: absolute; inset: 0; z-index: 1;
@@ -19,6 +33,9 @@
 .cell__close { font: 400 22px/1 var(--font, inherit); width: 36px; height: 36px; border: 0; border-radius: 50%; background: var(--btn, #f2f2f2); color: inherit; cursor: pointer; }
 .cell__close:focus-visible { outline: 2px solid var(--fg, #222); outline-offset: 2px; }
 .cell__body { flex: 1; overflow: auto; padding: 24px; font: 400 16px/24px var(--font, inherit); }
+/* Drawn inside the clip: the panel's own edge and the mosaic's wrap both cut
+   an outer ring. */
+.cell__body:focus-visible { outline: 2px solid var(--fg, #222); outline-offset: -4px; }
 @media (max-width: 639px) { .cell__head { padding: 12px 16px; } .cell__body { padding: 16px; } }
 
 /* Contents the study puts in expanded cells. */

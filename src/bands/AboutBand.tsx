@@ -32,8 +32,8 @@ export function AboutBand() {
             <p>{description[viewport]}</p>
             <p><button className="btn" {...x.triggerProps}>{listing.cta.showMore}</button></p>
           </div>
-          {x.expanded && (
-            <ExpandedCell id={x.panelId} title="About this place" onClose={x.close} closeRef={x.closeRef}>
+          {x.mounted && (
+            <ExpandedCell id={x.panelId} title={listing.expanded.about} hidden={!x.expanded} onClose={x.close} closeRef={x.closeRef}>
               <div className="cell__prose">
                 {descriptionFull.map((p, i) => <p key={i}>{p}</p>)}
                 <ul>{listing.highlights.map((h) => <li key={h}>{h}</li>)}</ul>

@@ -53,12 +53,12 @@ export function GalleryBand() {
               <img src={p.src} alt={p.alt} style={i === 0 ? { objectPosition: p.subject } : undefined} />
               {i === 0 && <button className="btn btn--corner" {...x.triggerProps}>{listing.cta.showPhotos}</button>}
             </figure>
-            {i === 0 && x.expanded && (
-              <ExpandedCell id={x.panelId} title={`${photoSet.length} photos`} onClose={x.close} closeRef={x.closeRef}>
+            {i === 0 && x.mounted && (
+              <ExpandedCell id={x.panelId} title={listing.expanded.photos(photoSet.length)} hidden={!x.expanded} onClose={x.close} closeRef={x.closeRef}>
                 <div className="cell__photos">
                   {photoSet.map((ph) => (
                     <figure key={ph.key}>
-                      <img src={assets[ph.key].src} alt="" style={{ objectPosition: assets[ph.key].subject }} />
+                      <img src={assets[ph.key].src} alt={ph.alt} style={{ objectPosition: assets[ph.key].subject }} />
                       <figcaption>{ph.caption}</figcaption>
                     </figure>
                   ))}

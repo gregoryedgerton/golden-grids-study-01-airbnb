@@ -53,9 +53,9 @@ export function ReviewsBand() {
             <span className="score__label">{listing.badge}</span>
             <span className="score__sub">{listing.badgeBlurb}, according to {listing.reviewCount} guests</span>
           </div>
-          {x.expanded && (
-            <ExpandedCell id={x.panelId} title={`${listing.reviewCount} reviews · ${listing.score}`} onClose={x.close} closeRef={x.closeRef}>
-              <p className="cell__count">Showing {allReviews.length} of {listing.reviewCount}. The study loads six.</p>
+          {x.mounted && (
+            <ExpandedCell id={x.panelId} title={listing.expanded.reviews(String(listing.reviewCount), listing.score)} hidden={!x.expanded} onClose={x.close} closeRef={x.closeRef}>
+              <p className="cell__count">{listing.expanded.reviewsNote(allReviews.length, listing.reviewCount)}</p>
               {allReviews.map((r) => (
                 <div className="cell__review" key={r.name + r.when}>
                   <p>“{r.text}”</p>
@@ -74,7 +74,7 @@ export function ReviewsBand() {
         {desktop && (
           <GoldenBox>
             <div className="copy review">
-              <p>“{secondReview}”</p>
+              <p>“{secondReview()}”</p>
               <div className="review__who"><img className="avatar" src={avatars[1].src} alt="" /><span><strong>{r2.name}</strong>, {r2.city} · {r2.when}</span></div>
             </div>
           </GoldenBox>

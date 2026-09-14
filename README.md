@@ -291,9 +291,28 @@ Mechanics, in [`src/lib/expand.tsx`](src/lib/expand.tsx) and `expand.css`:
 the `GoldenBox` owning the summary gets `cell--expanded`, and a `:has()`
 rule lifts its positioned parent — the library's own slot element — to
 `inset: 0` above its siblings for as long as it is open. The library is not
-touched. Focus moves to the close control on open and back to the trigger on
-close; Escape closes; the trigger carries `aria-expanded`. Reduced motion
-drops the transition. Content for the expanded views is in `src/content.ts`.
+touched.
+
+What the overlay implies, and therefore does:
+
+- Everything the panel covers is `inert` while it is open — the summary
+  beside it, the trigger under it, every sibling slot — so nothing
+  underneath can be tabbed to or read.
+- Escape closes only the panel that contains focus. A form field elsewhere
+  on the page keeps its own Escape.
+- One cell at a time: opening one closes any other.
+- Focus moves to the close control on every mount, so a breakpoint change
+  that remounts the panel in a different slot does not drop focus; on close
+  it returns to the trigger.
+- The panel stays mounted until the box has finished collapsing, so the
+  animation runs on the panel rather than on stretched summary content.
+- Reduced motion drops the transition; the geometry transition is scoped to
+  the box doing the lifting, so a breakpoint change never animates a band.
+
+Content for the expanded views is in `src/content.ts`, which is also the
+single source for the counts: the ten amenities in the band are a strict
+subset of the 47 in the panel, the two reviews in the band are the first two
+of the six, and the photo count is the length of the photo set.
 
 ## Study tools
 

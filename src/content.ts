@@ -19,8 +19,8 @@ export const listing = {
   badge: "Top-rated stay",
   badgeBlurb: "Among the highest-rated stays in the Hudson Valley",
   reviewCount: 188,
-  photoCount: 8,
-  amenityTotal: 47,
+  get photoCount(): number { return photoSet.length; },
+  get amenityTotal(): number { return amenityGroups.reduce((n, g) => n + g.items.length, 0); },
   host: { name: "Dee & Marcus", tag: "Experienced host", years: 2, responseRate: "100%", responseTime: "within an hour" },
   town: { line: "Catskill, New York, United States", note: "The exact address is shared once a booking is confirmed." },
   locationHighlight: { title: "On the old strip, by the creek", body: "Five minutes on foot to Main Street, a short walk to the creek path, and the lot still fits four cars and a boat." },
@@ -29,7 +29,8 @@ export const listing = {
     { name: "Bedroom 1", bed: "1 king bed", alt: "The main bedroom in the former party room: a king bed under a red pendant lamp, a trapezoid window behind it" },
     { name: "Bedroom 2", bed: "1 queen bed", alt: "The second bedroom built from two back booths, a queen bed between red vinyl banquettes" },
   ],
-  amenities: ["Wood-fired pizza oven", "Salad bar with a cold well", "A full set of red tumblers", "Booth seating for eight", "Arcade cabinet and jukebox", "Fast wifi", "Free parking in the old lot", "Hot tub on the back patio", "Washer and dryer", "Smart TV in the dining room"],
+  /** The ten shown in the band, a strict subset of amenityGroups. */
+  get amenities(): string[] { return amenityGroups.flatMap((g) => g.items).filter((i) => featured.has(i)); },
   booking: { prompt: "Add dates to see the price", cta: "Check dates", note: "You will not be charged at this step" },
   fields: { checkin: "Check-in", checkout: "Checkout", guests: "Guests", datePlaceholder: "Add date", guestsPlaceholder: "1 guest" },
   months: ["October 2026", "November 2026"],
@@ -42,10 +43,8 @@ export const listing = {
     tub: "The salad bar, restored, with its sneeze guard and cold well, laid out for breakfast",
     map: "A drawn map of Catskill's old commercial strip with the hut marked, the creek and Main Street nearby",
   },
-  reviews: [
-    { name: "Priya", city: "Brooklyn, New York", when: "September 2026", stay: "Stayed a few nights" },
-    { name: "Tomas", city: "Montclair, New Jersey", when: "August 2026", stay: "Stayed with kids" },
-  ],
+  /** The two shown in the band, taken from the full set. */
+  get reviews() { return [{ ...allReviews[0], stay: "Stayed a few nights" }, { ...allReviews[1], stay: "Stayed with kids" }]; },
   categories: [{ label: "Cleanliness", score: "5.0" }, { label: "Location", score: "4.8" }],
   things: {
     rules: { title: "House rules", lines: ["Check-in after 4:00 PM", "Checkout before 11:00 AM", "4 guests maximum", "Dogs welcome, no other pets"] },
@@ -54,6 +53,14 @@ export const listing = {
   },
   cta: { showPhotos: "Show all photos", showMore: "Show more", showAmenities: "Show all", showReviews: "Show all", message: "Message host", learnMore: "Learn more" },
   labels: { sleep: "Sleeping arrangements", amenities: "Amenities", dates: "Choose your dates", reviews: "Reviews", location: "Location", host: "Your host", things: "Before you book", photos: "Photos", facts: "About this place", book: "Book" },
+  /** Titles and notes for the expanded cells. */
+  expanded: {
+    photos: (n: number) => `${n} photos`,
+    about: "About this place",
+    amenities: (n: number) => `What this place offers · ${n}`,
+    reviews: (n: string, score: string) => `${n} reviews · ${score}`,
+    reviewsNote: (shown: number, total: number) => `Showing ${shown} of ${total}. The study loads ${shown}.`,
+  },
 };
 
 export const description: Record<Viewport, string> = {
@@ -74,8 +81,7 @@ export const featuredReview: Record<Viewport, string> = {
     "We booked it for the joke and stayed for the beds. Red lamps on low, checkered cloths, a pie from the wood oven, the jukebox on the good side of loud, and the salad bar at breakfast is the detail nobody warns you about. The hosts thought about everything a real weekend needs. We are already planning a winter return.",
 };
 
-export const secondReview =
-  "Took the kids for fall break and they have not stopped talking about the arcade corner. The booths, the tumblers, the lamps: exactly as pictured.";
+export const secondReview = () => allReviews[1].text;
 
 export const hostBio: Record<Viewport, string> = {
   mobile:
@@ -95,12 +101,20 @@ export const descriptionFull: string[] = [
   "Catskill's Main Street is five minutes on foot, the creek path a little less. The lot fits four cars and a boat. Dogs are welcome; the carpet has seen worse.",
 ];
 
+/** The ten the band shows, by exact label, so the summary is a strict subset. */
+const featured = new Set([
+  "Wood-fired pizza oven", "Salad bar with a cold well", "A full set of red tumblers",
+  "Booth seating for eight", "Arcade cabinet", "Fast wifi",
+  "Free parking in the old lot, four cars and a boat", "Hot tub on the back patio",
+  "Washer and dryer", "Dining room smart TV",
+]);
+
 export const amenityGroups: { title: string; items: string[] }[] = [
-  { title: "Kitchen and dining", items: ["Wood-fired pizza oven", "Salad bar with a cold well", "A full set of red tumblers", "Booth seating for eight", "Checkered tablecloths", "Full refrigerator and freezer", "Dishwasher", "Coffee maker and grinder", "Pots, pans, plates and a peel", "Dining room smart TV"] },
+  { title: "Kitchen and dining", items: ["Wood-fired pizza oven", "Salad bar with a cold well", "A full set of red tumblers", "Booth seating for eight", "Checkered tablecloths", "Full refrigerator and freezer", "Dishwasher", "Coffee maker and grinder", "Pots, pans, plates and a peel", "Dining room smart TV", "Washer and dryer"] },
   { title: "Bedrooms and bath", items: ["King bed, hotel linen", "Queen bed between banquettes", "Blackout blinds on the trapezoids", "Hangers and a wardrobe", "Hair dryer", "Towels and bath sheets", "Shampoo, conditioner, body wash", "Iron and board"] },
   { title: "Entertainment", items: ["Arcade cabinet", "Cocktail-table game", "Jukebox, loaded", "Board games in the host stand", "Books", "Record player and a crate"] },
   { title: "Outdoors", items: ["Hot tub on the back patio", "Free parking in the old lot, four cars and a boat", "Patio furniture", "Fire pit", "Bike rack", "Fenced yard for dogs"] },
-  { title: "Home basics", items: ["Fast wifi", "Washer and dryer", "Heating and air conditioning", "Ceiling fans", "First aid kit", "Fire extinguisher", "Smoke and carbon monoxide alarms", "Long-term stays allowed", "Self check-in with a keypad", "Luggage drop-off", "Workspace in a booth", "Dogs welcome", "Crib on request", "High chair", "Pack and play", "Baby bath", "Step-free entrance"] },
+  { title: "Home basics", items: ["Fast wifi", "Heating and air conditioning", "Ceiling fans", "First aid kit", "Fire extinguisher", "Smoke and carbon monoxide alarms", "Long-term stays allowed", "Self check-in with a keypad", "Luggage drop-off", "Workspace in a booth", "Dogs welcome", "Crib on request", "High chair", "Pack and play", "Baby bath", "Step-free entrance"] },
 ];
 
 export const allReviews: { name: string; city: string; when: string; text: string }[] = [
@@ -112,13 +126,13 @@ export const allReviews: { name: string; city: string; when: string; text: strin
   { name: "Daniel", city: "Kingston, New York", when: "May 2026", text: "Everything works. That is the review. The arcade cabinet, the jukebox, the oven, the wifi, the hot tub, the blinds on the odd windows. Marcus answered a question at 9pm in about a minute." },
 ];
 
-export const photoSet: { key: "hero" | "dining" | "arcade" | "bedroom" | "kitchen" | "bed1" | "bed2" | "saladBar"; caption: string }[] = [
-  { key: "hero", caption: "The hut at dusk" },
-  { key: "dining", caption: "The dining room, kept" },
-  { key: "arcade", caption: "The arcade corner" },
-  { key: "bedroom", caption: "Bedroom 1, the former party room" },
-  { key: "bed1", caption: "Bedroom 1 from the foot of the bed" },
-  { key: "bed2", caption: "Bedroom 2, between the banquettes" },
-  { key: "kitchen", caption: "The kitchen on the old line" },
-  { key: "saladBar", caption: "The salad bar at breakfast" },
+export const photoSet: { key: "hero" | "dining" | "arcade" | "bedroom" | "kitchen" | "bed1" | "bed2" | "saladBar"; caption: string; alt: string }[] = [
+  { key: "hero", caption: "The hut at dusk", alt: listing.photos.hero },
+  { key: "dining", caption: "The dining room, kept", alt: listing.photos.living },
+  { key: "arcade", caption: "The arcade corner", alt: listing.photos.sauna },
+  { key: "bedroom", caption: "Bedroom 1, the former party room", alt: listing.photos.bedroom },
+  { key: "bed1", caption: "Bedroom 1 from the foot of the bed", alt: listing.bedrooms[0].alt },
+  { key: "bed2", caption: "Bedroom 2, between the banquettes", alt: listing.bedrooms[1].alt },
+  { key: "kitchen", caption: "The kitchen on the old line", alt: listing.photos.kitchen },
+  { key: "saladBar", caption: "The salad bar at breakfast", alt: listing.photos.tub },
 ];
