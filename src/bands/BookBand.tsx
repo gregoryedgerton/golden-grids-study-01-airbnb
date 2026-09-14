@@ -25,7 +25,7 @@ export function BookBand() {
   const single = useViewport() === "mobile";
   const f = listing.fields;
   return (
-    <Band id="book" title={listing.labels.book} hideTitle note={single ? 'from=1 to=1 · single · CTA merged into the form · a 366px square standing in for a ~110px bar' : 'from=1 to=2 · placement="left" · form left (first child on the placement side), CTA right'} cap="40rem">
+    <Band id="book" title={listing.labels.book} hideTitle note={single ? 'from=1 to=1 · single · CTA merged into the form · a 366px square standing in for a ~110px bar' : 'from=1 to=2 · placement="left" · form left (first child on the placement side), CTA right'} cap="40rem" card>
       <GoldenGrid from={1} to={single ? 1 : 2} placement="left" outline="1px solid var(--line)">
         <GoldenBox>
           <form className="copy form" onSubmit={(e) => e.preventDefault()}>

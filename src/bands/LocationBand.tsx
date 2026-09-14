@@ -23,7 +23,7 @@ const map = placeholderImage("MAP", 1400, 1400, 160, { x: 0.5, y: 0.5 });
 export function LocationBand() {
   const mobile = useViewport() === "mobile";
   return (
-    <Band id="location" title={listing.labels.location} note={mobile ? 'from=1 to=3 · placement="right" · clockwise=false · hero top (2:3 portrait)' : 'from=1 to=3 · placement="top" · clockwise=false · hero left'} cap="56rem">
+    <Band id="location" title={listing.labels.location} note={mobile ? 'from=1 to=3 · placement="right" · clockwise=false · hero top (2:3 portrait)' : 'from=1 to=3 · placement="top" · clockwise=false · hero left'} cap="56rem" card>
       <GoldenGrid from={1} to={3} placement={mobile ? "right" : "top"} clockwise={false} outline="1px solid var(--line)">
         <GoldenBox>
           <figure className="media">
@@ -34,7 +34,7 @@ export function LocationBand() {
         <GoldenBox>
           <div className="copy copy--center facts">
             <p>{listing.town.line}</p>
-            <p className="muted">{listing.town.note}</p>
+            <p>{listing.town.note}</p>
           </div>
         </GoldenBox>
         <GoldenBox>

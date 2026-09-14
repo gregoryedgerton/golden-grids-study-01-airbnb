@@ -66,7 +66,7 @@ export const featuredReview: Record<Viewport, string> = {
   tablet:
     "We came for the sauna and stayed for the glass wall. The cabin is quiet, warm, and exactly as pictured, and the hosts left clear notes for the stove and the tub. We hiked in the morning and did nothing at all in the afternoon. Already planning a winter return.",
   desktop:
-    "We came for the sauna and stayed for the glass wall. The cabin is quiet, warm, and exactly as pictured, and the hosts left clear, friendly notes for the stove, the tub, and the sauna. We hiked the creek trail in the morning and did nothing at all in the afternoon, which is the point. The bed is excellent, the kitchen has what a real cook needs, and the village is close enough for a last-minute run. Already planning a winter return.",
+    "We came for the sauna and stayed for the glass wall. The cabin is quiet, warm, and exactly as pictured, and the hosts left clear, friendly notes for the stove, the tub, and the sauna. We hiked the creek trail in the morning and did nothing at all in the afternoon, which is the point. Already planning a winter return.",
 };
 
 export const secondReview =

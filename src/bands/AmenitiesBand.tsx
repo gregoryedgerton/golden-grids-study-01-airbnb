@@ -25,7 +25,7 @@ export function AmenitiesBand() {
   const to = from === 1 ? 3 : 4;
   const items = viewport === "desktop" ? listing.amenities : listing.amenities.slice(0, 5);
   return (
-    <Band id="amenities" title={listing.labels.amenities} note={`from=${from} to=${to} · placement="top" · clockwise=true · ${from > 1 ? "placeholder strip = last child (CTA)" : "no placeholder"} · ${items.length} of ${listing.amenityTotal} listed`} cap="60rem">
+    <Band id="amenities" title={listing.labels.amenities} note={`from=${from} to=${to} · placement="top" · clockwise=true · ${from > 1 ? "placeholder strip = last child (CTA)" : "no placeholder"} · ${items.length} of ${listing.amenityTotal} listed`} cap="60rem" card>
       <GoldenGrid from={from} to={to} placement="top" outline="1px solid var(--line)">
         <GoldenBox>
           <div className="copy list">
@@ -40,7 +40,7 @@ export function AmenitiesBand() {
         </GoldenBox>
         <GoldenBox className="placeholder-slot">
           <div className="copy copy--center">
-            <button type="button" className="btn btn--small">{listing.cta.showAmenities} {listing.amenityTotal}{viewport === "mobile" ? "" : " amenities"}</button>
+            <button type="button" className="btn btn--chip">{listing.cta.showAmenities} {listing.amenityTotal}{viewport === "mobile" ? "" : " amenities"}</button>
           </div>
         </GoldenBox>
       </GoldenGrid>

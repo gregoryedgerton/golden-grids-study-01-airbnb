@@ -75,7 +75,7 @@ export function ReviewsBand() {
           </GoldenBox>
         )}
         <GoldenBox>
-          <div className="copy copy--center"><p><button type="button" className="btn btn--small">{listing.cta.showReviews} {listing.reviewCount} reviews</button></p></div>
+          <div className="copy copy--center"><p><button type="button" className="btn btn--chip">{listing.cta.showReviews} {listing.reviewCount} reviews</button></p></div>
         </GoldenBox>
       </GoldenGrid>
     </Band>

@@ -28,7 +28,7 @@ export function ThingsBand() {
     </>
   );
   return (
-    <Band id="things" title={listing.labels.things} note={mobile ? "no grid at 390 · three plain rows, as the reference" : 'from=1 to=3 · placement="top" · clockwise=false · hero left · flat content, forced'} cap="48rem">
+    <Band id="things" title={listing.labels.things} note={mobile ? "no grid at 390 · three plain rows, as the reference" : 'from=1 to=3 · placement="top" · clockwise=false · hero left · flat content, forced'} cap="48rem" card>
       {mobile ? (
         <div className="rules rules--rows">
           {items.map((it) => <div key={it.title} className="rules__row"><Item it={it} /></div>)}

@@ -30,7 +30,7 @@ function Month({ name }: { name: string }) {
 export function DatesBand() {
   const single = useViewport() === "mobile";
   return (
-    <Band id="dates" title={listing.labels.dates} note={single ? "from=1 to=1 · single · one month" : 'from=1 to=2 · placement="left" · two months, first child left'} cap="48rem">
+    <Band id="dates" title={listing.labels.dates} note={single ? "from=1 to=1 · single · one month" : 'from=1 to=2 · placement="left" · two months, first child left'} cap="48rem" card>
       <GoldenGrid from={1} to={single ? 1 : 2} placement="left" outline="1px solid var(--line)">
         <GoldenBox><Month name={listing.months[0]} /></GoldenBox>
         <GoldenBox><Month name={listing.months[1]} /></GoldenBox>

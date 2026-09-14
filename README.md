@@ -206,7 +206,7 @@ different counts per width, three versions are needed.
 | Amenities | 5 | the reference's own counts, plus the total | 5 / 5 / 10 items + "Show all 69" |
 | Hot tub caption | 5 | "Private hot tub · all year" | 5 |
 | Month names | 6 | two months at 820/1440, one at 390 | 2 |
-| Featured review | 7 | the review that decides a booking | 20 / 40 / 60 |
+| Featured review | 7 | the review that decides a booking | 20 / 40 / 50 |
 | Second review | 7 | a different guest, a different reason | – / – / 25 |
 | Reviewer lines | 7 | name, city, month | 2 × 6 |
 | Category rating | 7 | one of six: label + score | 2 |

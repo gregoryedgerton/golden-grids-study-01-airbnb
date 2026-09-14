@@ -27,7 +27,6 @@ const avatar = placeholderImage("HOST", 400, 400, 20);
  */
 export function FactsBand() {
   const mobile = useViewport() === "mobile";
-  const hostLine = `Hosted by ${listing.host.name} · ${listing.host.tag} · ${listing.host.years} years hosting`;
   return (
     <Band
       id="facts"
@@ -35,13 +34,14 @@ export function FactsBand() {
       hideTitle
       note={mobile ? 'from=1 to=3 · placement="top" · clockwise=true · hero right · host merged into hero' : 'from=1 to=4 · placement="right" · clockwise=false · hero left'}
       cap="48rem"
+      card
     >
       <GoldenGrid from={1} to={mobile ? 3 : 4} placement={mobile ? "top" : "right"} clockwise={mobile} outline="1px solid var(--line)">
         <GoldenBox>
           <div className="copy copy--center facts">
             <strong>{listing.summary}</strong>
             <span>{listing.capacity.join(" · ")}</span>
-            {mobile && <p className="muted">{hostLine}</p>}
+            {mobile && <p className="host-line">Hosted by {listing.host.name}<small>{listing.host.tag} · {listing.host.years} years hosting</small></p>}
           </div>
         </GoldenBox>
         <GoldenBox>
@@ -54,7 +54,7 @@ export function FactsBand() {
         <GoldenBox>
           <div className="copy score">
             <span className="score__n">{listing.reviewCount}</span>
-            <span className="score__sub">reviews</span>
+            <span className="score__sub score__sub--count">reviews</span>
           </div>
         </GoldenBox>
         <GoldenBox>

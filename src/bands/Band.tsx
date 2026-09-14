@@ -12,7 +12,7 @@ import type { ReactNode } from "react";
  * how a study keeps tall bands in check. Never re-range the grid for height.
  */
 export function Band({
-  id, title, lesson, note, cap, hideTitle, flush, rounded, children,
+  id, title, lesson, note, cap, hideTitle, flush, rounded, card, children,
 }: {
   id: string;
   title: string;
@@ -25,6 +25,8 @@ export function Band({
   flush?: boolean;
   /** Round the grid's corners, as the reference's photo mosaic does. */
   rounded?: boolean;
+  /** An outlined grid reads as one of the reference's cards: 12px corners. */
+  card?: boolean;
   children: ReactNode;
 }) {
   return (
@@ -34,7 +36,7 @@ export function Band({
         {lesson && <p className="band__lesson">{lesson}</p>}
         {note && <p className="band__note">{note}{cap ? ` · width capped at ${cap}` : ""}</p>}
       </header>
-      <div className="band__wrap" style={cap ? { maxWidth: cap } : undefined}>
+      <div className={card ? "band__wrap band__wrap--card" : "band__wrap"} style={cap ? { maxWidth: cap } : undefined}>
         {children}
       </div>
     </section>

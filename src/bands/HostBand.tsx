@@ -26,7 +26,7 @@ export function HostBand() {
   return (
     <Band id="host" title={listing.labels.host} note={single ? "from=1 to=1 · single · card, bio, details and CTA in one box" : 'from=1 to=3 · placement="bottom" · clockwise=false · hero right · card demoted to a 1-square'} cap="56rem">
       <GoldenGrid from={1} to={single ? 1 : 3} placement="bottom" clockwise={false}>
-        <GoldenBox style={{ background: "var(--surface)" }}>
+        <GoldenBox>
           <div className="copy copy--prose">
             {single && (
               <>
@@ -38,12 +38,7 @@ export function HostBand() {
               </>
             )}
             <p>{hostBio[viewport]}</p>
-            {single && (
-              <>
-                <p className="score__sub">Response rate {h.responseRate} · Responds {h.responseTime}</p>
-                <p><button type="button" className="btn btn--small">{listing.cta.message}</button></p>
-              </>
-            )}
+            {single && <p><button type="button" className="btn">{listing.cta.message}</button></p>}
           </div>
         </GoldenBox>
         <GoldenBox>
@@ -60,7 +55,7 @@ export function HostBand() {
           <div className="copy copy--center rules">
             <h4>Host details</h4>
             <p style={{ margin: "0 0 12px" }}>Response rate {h.responseRate}<br />Responds {h.responseTime}</p>
-            <p style={{ margin: 0 }}><button type="button" className="btn btn--small">{listing.cta.message}</button></p>
+            <p style={{ margin: 0 }}><button type="button" className="btn btn--chip">{listing.cta.message}</button></p>
           </div>
         </GoldenBox>
       </GoldenGrid>
