@@ -1,10 +1,10 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
-import { placeholderImage } from "../lib/placeholder";
+import { assets } from "../assets";
 import { listing, hostBio } from "../content";
 import { Band } from "./Band";
 
-const avatar = placeholderImage("HOST", 400, 400, 20);
+const avatar = assets.hosts;
 
 /**
  * Band 9 — Your host. The reference: an elevated host card (avatar, name,

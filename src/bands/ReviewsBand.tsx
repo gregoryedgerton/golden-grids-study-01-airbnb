@@ -1,11 +1,11 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import type { PlacementValue } from "@gifcommit/golden-grids";
 import { useViewport, pick } from "../lib/viewport";
-import { placeholderImage } from "../lib/placeholder";
+import { assets } from "../assets";
 import { listing, featuredReview, secondReview } from "../content";
 import { Band } from "./Band";
 
-const avatars = [placeholderImage("R1", 200, 200, 300), placeholderImage("R2", 200, 200, 120)];
+const avatars = [assets.priya, assets.tomas];
 
 /**
  * Band 7 — Reviews. The tallest block on the reference page at 1440 and 820:

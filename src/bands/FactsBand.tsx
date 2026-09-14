@@ -1,10 +1,10 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
-import { placeholderImage } from "../lib/placeholder";
+import { assets } from "../assets";
 import { listing } from "../content";
 import { Band } from "./Band";
 
-const avatar = placeholderImage("HOST", 400, 400, 20);
+const avatar = assets.hosts;
 
 /**
  * Band 2 — About this place. The reference's first text block: the summary

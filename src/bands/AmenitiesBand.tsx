@@ -1,10 +1,10 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
-import { placeholderImage } from "../lib/placeholder";
+import { assets } from "../assets";
 import { listing } from "../content";
 import { Band } from "./Band";
 
-const tub = placeholderImage("SALAD BAR", 1000, 1000, 120, { x: 0.5, y: 0.55 });
+const tub = assets.saladBar;
 
 /**
  * Band 5 — Amenities. The reference: ten amenities in two columns at 1440,

@@ -1,17 +1,17 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import type { PlacementValue } from "@gifcommit/golden-grids";
 import { useViewport, pick } from "../lib/viewport";
-import { placeholderImage } from "../lib/placeholder";
+import { assets } from "../assets";
 import { listing } from "../content";
 import { Band } from "./Band";
 
-// ASSET SPEC — see README.md "Images". Sources at or above these sizes.
+// Shots 1–5 of ASSETS.md, in child order: hero, then supports largest to smallest.
 const photos = [
-  { ...placeholderImage("HERO · THE HUT", 1600, 1067, 355, { x: 0.5, y: 0.42 }), alt: listing.photos.hero },
-  { ...placeholderImage("DINING ROOM", 1200, 800, 0), alt: listing.photos.living },
-  { ...placeholderImage("ARCADE", 1000, 1000, 260), alt: listing.photos.sauna },
-  { ...placeholderImage("BEDROOM", 1200, 900, 40), alt: listing.photos.bedroom },
-  { ...placeholderImage("KITCHEN", 1200, 800, 100), alt: listing.photos.kitchen },
+  { ...assets.hero, alt: listing.photos.hero },
+  { ...assets.dining, alt: listing.photos.living },
+  { ...assets.arcade, alt: listing.photos.sauna },
+  { ...assets.bedroom, alt: listing.photos.bedroom },
+  { ...assets.kitchen, alt: listing.photos.kitchen },
 ];
 
 /**

@@ -12,15 +12,14 @@ Built with [Golden Grids](https://github.com/gregoryedgerton/golden-grids)
 [generator](https://gregoryedgerton.github.io/golden-grids/)), from the
 [study template](https://github.com/gregoryedgerton/golden-grids-study-template).
 
-> **Status: pass one and a half.** The structure is built, every slot is
-> inventoried in the asset spec below, the visual register is matched to the
-> reference, and the copy is original — written in `src/content.ts` for a
-> fictional listing: a 1991 Pizza Hut in Catskill, New York, converted into a
-> two-bedroom stay that kept the hut roof, the trapezoid windows, the red
-> lamps, the booths, the salad bar and the red tumblers. Every image slot
-> still holds an obviously placeholder stand-in at the resolution the spec
-> asks for. The shot list for pass two — one prompt per image, dimensions,
-> and the file-naming rubric — is [`ASSETS.md`](ASSETS.md).
+> **Status: pass two complete.** Structure, visual register, original copy
+> and original images. The listing is fictional: a 1991 Pizza Hut in
+> Catskill, New York, converted into a two-bedroom stay that kept the hut
+> roof, the trapezoid windows, the red lamps, the booths, the salad bar and
+> the red tumblers. Copy is `src/content.ts`; the twelve images in
+> `public/assets/` were produced against the shot list in
+> [`ASSETS.md`](ASSETS.md) and are mapped to slots in `src/assets.ts`.
+> Remaining: the written post.
 
 ---
 
@@ -318,10 +317,10 @@ Brand constraints, from the program brief:
 - [x] No photography, wordmark, or marketing copy from the reference site
       appears anywhere in the repo or the deploy. Captures in `captures/` are
       commentary and are not used as assets.
-- [ ] Every image slot holds real content produced against the asset spec.
-      **(pass two — images)** Copy is done: original, fictional listing,
-      no sentence from the reference or its host reproduced; the reference's
-      section headings and UI strings are reworded.
+- [x] Every image and copy slot holds real content produced against the
+      asset spec. Copy: original, fictional listing, no sentence from the
+      reference or its host reproduced; headings and UI strings reworded.
+      Images: twelve, produced against `ASSETS.md`, no brand marks.
 - [x] The asset spec above is complete: every slot listed with resolution,
       subject placement, safe area, and word counts.
 - [x] The band table matches the source.
@@ -335,4 +334,4 @@ Quality floor, inherited from the template:
 - [x] `prefers-reduced-motion`: nothing on this page moves.
 - [x] Text contrast meets WCAG AA against whatever it sits on, including images.
 - [x] Images that carry meaning have alt text; decorative ones have `alt=""`.
-- [ ] No placeholder images remain. **(pass two)** No bracketed copy remains.
+- [x] No placeholder images remain. No bracketed copy remains.

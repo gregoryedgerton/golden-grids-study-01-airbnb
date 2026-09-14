@@ -1,13 +1,10 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
-import { placeholderImage } from "../lib/placeholder";
+import { assets } from "../assets";
 import { listing, description } from "../content";
 import { Band } from "./Band";
 
-const bedroomArt = [
-  placeholderImage("BEDROOM 1", 1000, 1000, 40, { x: 0.5, y: 0.5 }),
-  placeholderImage("BEDROOM 2", 1000, 1000, 60, { x: 0.5, y: 0.5 }),
-];
+const bedroomArt = [assets.bed1, assets.bed2];
 
 /**
  * Band 4 — Sleeping arrangements. In the reference, below the facts: FOUR

@@ -1,10 +1,10 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
-import { placeholderImage } from "../lib/placeholder";
+import { assets } from "../assets";
 import { listing } from "../content";
 import { Band } from "./Band";
 
-const map = placeholderImage("MAP", 1400, 1400, 160, { x: 0.5, y: 0.5 });
+const map = assets.map;
 
 /**
  * Band 8 — Location. The reference: a full-width map (≈16:9 at 1440 and
@@ -28,7 +28,6 @@ export function LocationBand() {
         <GoldenBox>
           <figure className="media">
             <img src={map.src} alt={listing.photos.map} />
-            <figcaption className="media__tag">Drawn map · not a tile service</figcaption>
           </figure>
         </GoldenBox>
         <GoldenBox>
