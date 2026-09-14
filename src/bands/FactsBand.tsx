@@ -1,24 +1,24 @@
 import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
 import { placeholderImage } from "../lib/placeholder";
+import { listing } from "../content";
 import { Band } from "./Band";
 
 const avatar = placeholderImage("HOST", 400, 400, 20);
 
 /**
- * Band 2 — Facts. The reference's first text block: the summary line
- * ("Entire cabin in Saugerties, New York"), the capacity line ("4 guests ·
- * 2 bedrooms · 2 beds · 2 baths"), the Guest favorite badge with its rating
- * and review count, and the host row. Airbnb lays these out as four stacked
- * full-width rows of equal weight.
+ * Band 2 — About this place. The reference's first text block: the summary
+ * line, the capacity line, the top-rated badge with its score and review
+ * count, and the host row. Four stacked full-width rows of equal weight.
  *
- * THE HONEST RISK, named in the brief. Rating, review count and capacity are
- * peers: nothing about 4.99 outranks 159 reviews. Fibonacci insists one box
- * dominates. The choice made here: the booking-deciding facts (what it is,
- * where, how many it sleeps) take the hero; the rating takes the 2-square;
- * review count and host share the 1-squares. Whether that reads as forced is
- * for the writeup to say, not for smaller type to hide. Lines are the
- * reference's own: 1px #dddddd, the border of its Guest-favorite card.
+ * THE HONEST RISK, named in the brief. Score, review count, capacity and
+ * host are peers; the reference draws score and count as typographic equals
+ * inside one bordered card. Fibonacci insists one box dominates. The choice
+ * made here: the booking-deciding facts (what it is, where, how many it
+ * sleeps) take the hero; the score takes the 2-square; review count and
+ * host share the 1-squares. Whether that reads as forced is for the writeup
+ * to say, not for smaller type to hide. Lines are the reference's own: 1px
+ * #dddddd, the border of its rating card.
  *
  * At 390 the host row merges into the hero and the range drops to 1–3 so the
  * band stays landscape (3:2) rather than 3:5 portrait. Width is capped at
@@ -27,10 +27,11 @@ const avatar = placeholderImage("HOST", 400, 400, 20);
  */
 export function FactsBand() {
   const mobile = useViewport() === "mobile";
+  const hostLine = `Hosted by ${listing.host.name} · ${listing.host.tag} · ${listing.host.years} years hosting`;
   return (
     <Band
       id="facts"
-      title="About this place"
+      title={listing.labels.facts}
       hideTitle
       note={mobile ? 'from=1 to=3 · placement="top" · clockwise=true · hero right · host merged into hero' : 'from=1 to=4 · placement="right" · clockwise=false · hero left'}
       cap="48rem"
@@ -38,32 +39,28 @@ export function FactsBand() {
       <GoldenGrid from={1} to={mobile ? 3 : 4} placement={mobile ? "top" : "right"} clockwise={mobile} outline="1px solid var(--line)">
         <GoldenBox>
           <div className="copy copy--center facts">
-            <strong>[Entire cabin in Town, State — 6 words]</strong>
-            <span>[4 guests · 2 bedrooms · 2 beds · 2 baths]</span>
-            {mobile && (
-              <p className="muted" style={{ marginTop: "0.5em" }}>
-                [Hosted by Name · Superhost · 2 years hosting]
-              </p>
-            )}
+            <strong>{listing.summary}</strong>
+            <span>{listing.capacity.join(" · ")}</span>
+            {mobile && <p className="muted">{hostLine}</p>}
           </div>
         </GoldenBox>
         <GoldenBox>
           <div className="copy score">
-            <span className="score__n">4.99</span>
-            <span className="score__label">[Guest favorite]</span>
-            <span className="score__sub">[One of the most loved homes on Airbnb — 10 words]</span>
+            <span className="score__n">{listing.score}</span>
+            <span className="score__label">{listing.badge}</span>
+            <span className="score__sub score__sub--blurb">{listing.badgeBlurb}</span>
           </div>
         </GoldenBox>
         <GoldenBox>
           <div className="copy score">
-            <span className="score__n" style={{ fontSize: "clamp(1.2rem, 22cqw, 4rem)" }}>159</span>
-            <span className="score__sub">[reviews]</span>
+            <span className="score__n">{listing.reviewCount}</span>
+            <span className="score__sub">reviews</span>
           </div>
         </GoldenBox>
         <GoldenBox>
-          <div className="copy card">
+          <div className="copy score">
             <img className="avatar" src={avatar.src} alt="" />
-            <span className="score__sub">[Hosted by Name · Superhost · 2 years]</span>
+            <span className="host-line">Hosted by {listing.host.name}<small>{listing.host.tag} · {listing.host.years} years hosting</small></span>
           </div>
         </GoldenBox>
       </GoldenGrid>

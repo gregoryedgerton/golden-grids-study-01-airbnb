@@ -1,4 +1,5 @@
 import { useViewport } from "./lib/viewport";
+import { listing } from "./content";
 import { GalleryBand } from "./bands/GalleryBand";
 import { FactsBand } from "./bands/FactsBand";
 import { BookBand } from "./bands/BookBand";
@@ -19,8 +20,9 @@ import { ThingsBand } from "./bands/ThingsBand";
  * sticky booking card; here every block is a full-width band and the booking
  * card is a band of its own, in the position the card first appears.
  *
- * PASS ONE. Every image and copy slot holds an obviously-placeholder stand-in
- * at the resolution or word count the asset spec in README.md asks for.
+ * Copy is original (src/content.ts), written for a fictional listing at the
+ * word counts the asset spec asks for. Images are still placeholders at the
+ * resolutions the spec asks for.
  */
 export function App() {
   const viewport = useViewport();
@@ -30,7 +32,7 @@ export function App() {
       <a className="skip" href="#content">Skip to content</a>
       <header className="masthead">
         <p className="masthead__kicker">Layout study 01 · unaffiliated · original assets</p>
-        <h1>[Listing title, 8 words]</h1>
+        <h1>{listing.title}</h1>
         <p className="masthead__claim">
           Listing pages already have a golden hierarchy. The twelve-column grid flattens it below the fold.
         </p>

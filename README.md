@@ -12,10 +12,12 @@ Built with [Golden Grids](https://github.com/gregoryedgerton/golden-grids)
 [generator](https://gregoryedgerton.github.io/golden-grids/)), from the
 [study template](https://github.com/gregoryedgerton/golden-grids-study-template).
 
-> **Status: pass one.** The structure is built and every slot is inventoried
-> in the asset spec below. Every image and copy slot holds an obviously
-> placeholder stand-in at the resolution or word count the spec asks for.
-> Pass two replaces them with original assets produced against the spec.
+> **Status: pass one and a half.** The structure is built, every slot is
+> inventoried in the asset spec below, the visual register is matched to the
+> reference, and the copy is original — written for a fictional listing in
+> `src/content.ts` at the word counts the spec asks for. Every image slot
+> still holds an obviously placeholder stand-in at the resolution the spec
+> asks for. Pass two replaces the images.
 
 ---
 
@@ -30,7 +32,7 @@ full page. The captures are in [`captures/`](captures/) and are the left half
 of every side-by-side. They are commentary on a named page; nothing from them
 is used as an asset.
 
-| Width  | Reference                         | Rebuild (pass one)            |
+| Width  | Reference                         | Rebuild                       |
 | ------ | --------------------------------- | ----------------------------- |
 | 390px  | ![](captures/reference-390.png)   | ![](captures/study-390.png)   |
 | 820px  | ![](captures/reference-820.png)   | ![](captures/study-820.png)   |
@@ -191,7 +193,7 @@ different counts per width, three versions are needed.
 
 | Slot | Band | Role | Words at 390 / 820 / 1440 |
 | --- | --- | --- | --- |
-| Title | masthead | listing title | 8 / 8 / 8 |
+| Title | masthead | listing title | 9 |
 | Summary line | 2 | "Entire cabin in Town, State" | 6 |
 | Capacity line | 2 | guests · bedrooms · beds · baths | 4 items |
 | Score + badge + blurb | 2, 7 | score to two decimals, "Guest favorite", "One of the most loved homes on Airbnb, according to guests" | 1 number + 2 words + 10–12 words |
@@ -298,8 +300,10 @@ Brand constraints, from the program brief:
 - [x] No photography, wordmark, or marketing copy from the reference site
       appears anywhere in the repo or the deploy. Captures in `captures/` are
       commentary and are not used as assets.
-- [ ] Every image and copy slot holds real content produced against the asset
-      spec. No placeholder images, no lorem ipsum. **(pass two)**
+- [ ] Every image slot holds real content produced against the asset spec.
+      **(pass two — images)** Copy is done: original, fictional listing,
+      no sentence from the reference or its host reproduced; the reference's
+      section headings and UI strings are reworded.
 - [x] The asset spec above is complete: every slot listed with resolution,
       subject placement, safe area, and word counts.
 - [x] The band table matches the source.
@@ -313,5 +317,4 @@ Quality floor, inherited from the template:
 - [x] `prefers-reduced-motion`: nothing on this page moves.
 - [x] Text contrast meets WCAG AA against whatever it sits on, including images.
 - [x] Images that carry meaning have alt text; decorative ones have `alt=""`.
-- [ ] No `[BRACKETED]` blanks remain anywhere in the repo. **(pass two — the
-      brackets are the placeholders)**
+- [ ] No placeholder images remain. **(pass two)** No bracketed copy remains.
