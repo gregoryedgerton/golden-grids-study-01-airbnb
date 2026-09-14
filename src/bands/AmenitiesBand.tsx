@@ -40,7 +40,7 @@ export function AmenitiesBand() {
         </GoldenBox>
         <GoldenBox className="placeholder-slot">
           <div className="copy copy--center">
-            <button type="button" className="btn">[Show all 69 amenities]</button>
+            <button type="button" className="btn btn--small">[Show all 69 amenities]</button>
           </div>
         </GoldenBox>
       </GoldenGrid>

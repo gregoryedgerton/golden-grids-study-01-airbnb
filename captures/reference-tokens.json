@@ -1,0 +1,872 @@
+{
+ "390": {
+  "bodyFont": "\"Airbnb Cereal VF\", Circular, -apple-system, \"system-ui\", Roboto, \"Helvetica Neue\", sans-serif",
+  "bodyColor": "rgb(34, 34, 34)",
+  "bodySize": "14px",
+  "bodyLH": "20.02px",
+  "textStyles": [
+   [
+    "14px/18px 400",
+    54
+   ],
+   [
+    "14px/20px 400",
+    36
+   ],
+   [
+    "12px/16px 500",
+    34
+   ],
+   [
+    "12px/16px 400",
+    32
+   ],
+   [
+    "14px/18px 500",
+    25
+   ],
+   [
+    "14px/normal 500",
+    21
+   ],
+   [
+    "16px/20px 400",
+    16
+   ],
+   [
+    "16px/20px 500",
+    12
+   ],
+   [
+    "22px/26px 600",
+    7
+   ],
+   [
+    "18px/24px 500",
+    6
+   ],
+   [
+    "14px/20px 500",
+    5
+   ],
+   [
+    "32px/36px 700",
+    3
+   ]
+  ],
+  "textColors": [
+   [
+    "rgb(34, 34, 34)",
+    187
+   ],
+   [
+    "rgb(108, 108, 108)",
+    48
+   ],
+   [
+    "rgb(209, 209, 209)",
+    18
+   ],
+   [
+    "rgb(140, 140, 140)",
+    10
+   ],
+   [
+    "rgb(255, 255, 255)",
+    2
+   ],
+   [
+    "rgb(0, 0, 0)",
+    1
+   ]
+  ],
+  "families": [
+   [
+    "Airbnb Cereal VF",
+    266
+   ]
+  ],
+  "borders": [
+   [
+    "1px solid rgb(242, 242, 242)",
+    40
+   ],
+   [
+    "1px solid rgb(235, 235, 235)",
+    20
+   ],
+   [
+    "1px solid rgb(221, 221, 221)",
+    17
+   ],
+   [
+    "8px solid rgb(221, 221, 221)",
+    1
+   ]
+  ],
+  "radii": [
+   [
+    "A:4px",
+    28
+   ],
+   [
+    "DIV:50%",
+    25
+   ],
+   [
+    "A:50%",
+    23
+   ],
+   [
+    "BUTTON:4px",
+    19
+   ],
+   [
+    "BUTTON:16px",
+    10
+   ],
+   [
+    "BUTTON:50%",
+    6
+   ],
+   [
+    "BUTTON:12px",
+    5
+   ],
+   [
+    "BUTTON:0px 4px 4px 0px",
+    4
+   ],
+   [
+    "BUTTON:4px 0px 0px 4px",
+    4
+   ],
+   [
+    "BUTTON:8px",
+    3
+   ]
+  ],
+  "backgrounds": [
+   [
+    "rgb(221, 221, 221)",
+    23
+   ],
+   [
+    "rgb(255, 255, 255)",
+    5
+   ],
+   [
+    "rgb(242, 242, 242)",
+    4
+   ],
+   [
+    "rgb(235, 235, 235)",
+    2
+   ],
+   [
+    "rgb(34, 34, 34)",
+    2
+   ],
+   [
+    "rgb(247, 247, 247)",
+    2
+   ]
+  ],
+  "headings": [
+   {
+    "tag": "h1",
+    "text": "Luxury Catskills A-Frame Cabin | Hot Tub",
+    "fontSize": "26px",
+    "lineHeight": "30px",
+    "fontWeight": "500",
+    "color": "rgb(34, 34, 34)",
+    "fontFamily": "\"Airbnb Cereal VF\", Circular, -apple-system, \"system-ui\", Ro",
+    "letterSpacing": "normal",
+    "marginBottom": "0px"
+   },
+   {
+    "tag": "h2",
+    "text": "Entire cabin in Saugerties, New York",
+    "fontSize": "14px",
+    "lineHeight": "18px",
+    "fontWeight": "400",
+    "color": "rgb(108, 108, 108)",
+    "fontFamily": "\"Airbnb Cereal VF\", Circular, -apple-system, \"system-ui\", Ro",
+    "letterSpacing": "normal",
+    "marginBottom": "0px"
+   },
+   {
+    "tag": "h3",
+    "text": "Top 5% of homes",
+    "fontSize": "14px",
+    "lineHeight": "20px",
+    "fontWeight": "500",
+    "color": "rgb(34, 34, 34)",
+    "fontFamily": "\"Airbnb Cereal VF\", Circular, -apple-system, \"system-ui\", Ro",
+    "letterSpacing": "normal",
+    "marginBottom": "0px"
+   }
+  ],
+  "primaryBtn": {
+   "text": "Check availability",
+   "w": 342,
+   "h": 48,
+   "bg": "linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%)",
+   "color": "rgb(255, 255, 255)",
+   "border": "0px solid rgb(255, 255, 255)",
+   "radius": "999px",
+   "padding": "14px 24px",
+   "fontSize": "16px",
+   "fontWeight": "500"
+  },
+  "secondaryBtn": {
+   "text": "Show all",
+   "w": 342,
+   "h": 48,
+   "bg": "rgb(242, 242, 242)",
+   "color": "rgb(34, 34, 34)",
+   "border": "0px solid rgb(34, 34, 34)",
+   "radius": "12px",
+   "padding": "14px 24px",
+   "fontSize": "16px",
+   "fontWeight": "500"
+  },
+  "showMore": {
+   "text": "Show more",
+   "w": 342,
+   "h": 48,
+   "bg": "rgb(242, 242, 242)",
+   "color": "rgb(34, 34, 34)",
+   "border": "0px solid rgb(34, 34, 34)",
+   "radius": "12px",
+   "padding": "14px 24px",
+   "fontSize": "16px",
+   "fontWeight": "500"
+  },
+  "link": {
+   "color": "rgb(34, 34, 34)",
+   "decoration": "none",
+   "weight": "400",
+   "size": "14px"
+  },
+  "h1Box": {
+   "left": 42,
+   "right": 42,
+   "width": 305
+  },
+  "dividers": [
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 342,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 342,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 342,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 342,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 342,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 342,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 342,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 342,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(242, 242, 242)",
+    "w": 174,
+    "pt": "12px",
+    "pb": "12px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 342,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 342,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 390,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   }
+  ],
+  "h2s": [
+   {
+    "text": "Entire cabin in Saugerties, Ne",
+    "y": 512,
+    "fontSize": "14px",
+    "fontWeight": "400",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Listing highlights",
+    "y": 763,
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Where you’ll sleep",
+    "y": 1493,
+    "fontSize": "22px",
+    "fontWeight": "600",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "What this place offers",
+    "y": 1766,
+    "fontSize": "22px",
+    "fontWeight": "600",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Where you’ll be",
+    "y": 2177,
+    "fontSize": "22px",
+    "fontWeight": "600",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Select check-in date",
+    "y": 2796,
+    "fontSize": "22px",
+    "fontWeight": "600",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Rated 4.99 out of 5 from 159 r",
+    "y": 3317,
+    "fontSize": "72px",
+    "fontWeight": "500",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Meet your host",
+    "y": 4044,
+    "fontSize": "22px",
+    "fontWeight": "500",
+    "mb": "0px",
+    "pb": "0px"
+   }
+  ],
+  "image": {
+   "radius": "0px",
+   "parentRadius": "0px",
+   "parentOverflow": "visible"
+  }
+ },
+ "1440": {
+  "bodyFont": "\"Airbnb Cereal VF\", Circular, -apple-system, \"system-ui\", Roboto, \"Helvetica Neue\", sans-serif",
+  "bodyColor": "rgb(34, 34, 34)",
+  "bodySize": "14px",
+  "bodyLH": "20.02px",
+  "textStyles": [
+   [
+    "14px/18px 400",
+    127
+   ],
+   [
+    "14px/18px 500",
+    54
+   ],
+   [
+    "12px/16px 500",
+    21
+   ],
+   [
+    "16px/20px 400",
+    19
+   ],
+   [
+    "16px/20px 500",
+    13
+   ],
+   [
+    "22px/26px 500",
+    11
+   ],
+   [
+    "16px/normal 400",
+    7
+   ],
+   [
+    "16px/24px 400",
+    7
+   ],
+   [
+    "16px/24px 500",
+    6
+   ],
+   [
+    "18px/24px 500",
+    5
+   ],
+   [
+    "10px/12px 400",
+    5
+   ],
+   [
+    "10px/14px 400",
+    5
+   ]
+  ],
+  "textColors": [
+   [
+    "rgb(34, 34, 34)",
+    199
+   ],
+   [
+    "rgb(108, 108, 108)",
+    56
+   ],
+   [
+    "rgb(176, 176, 176)",
+    40
+   ],
+   [
+    "rgb(140, 140, 140)",
+    10
+   ],
+   [
+    "rgb(0, 0, 0)",
+    5
+   ],
+   [
+    "rgb(106, 106, 106)",
+    1
+   ],
+   [
+    "rgb(255, 255, 255)",
+    1
+   ]
+  ],
+  "families": [
+   [
+    "Airbnb Cereal VF",
+    307
+   ],
+   [
+    "Roboto",
+    5
+   ]
+  ],
+  "borders": [
+   [
+    "1px solid rgb(255, 255, 255)",
+    244
+   ],
+   [
+    "1px solid rgb(242, 242, 242)",
+    40
+   ],
+   [
+    "1px solid rgb(221, 221, 221)",
+    32
+   ],
+   [
+    "1px solid rgba(0, 0, 0, 0)",
+    16
+   ],
+   [
+    "1px solid rgb(140, 140, 140)",
+    9
+   ],
+   [
+    "2px solid rgb(26, 115, 232)",
+    4
+   ],
+   [
+    "1px solid rgb(235, 235, 235)",
+    2
+   ]
+  ],
+  "radii": [
+   [
+    "DIV:100%",
+    62
+   ],
+   [
+    "A:4px",
+    28
+   ],
+   [
+    "BUTTON:4px",
+    12
+   ],
+   [
+    "DIV:50%",
+    10
+   ],
+   [
+    "BUTTON:16px",
+    10
+   ],
+   [
+    "BUTTON:50%",
+    9
+   ],
+   [
+    "A:50%",
+    9
+   ],
+   [
+    "BUTTON:8px",
+    6
+   ],
+   [
+    "BUTTON:12px",
+    5
+   ],
+   [
+    "DIV:2px",
+    5
+   ]
+  ],
+  "backgrounds": [
+   [
+    "rgb(255, 255, 255)",
+    68
+   ],
+   [
+    "rgb(221, 221, 221)",
+    15
+   ],
+   [
+    "rgb(242, 242, 242)",
+    8
+   ],
+   [
+    "rgb(34, 34, 34)",
+    6
+   ],
+   [
+    "rgba(34, 34, 34, 0.1)",
+    5
+   ],
+   [
+    "rgb(245, 245, 245)",
+    5
+   ]
+  ],
+  "headings": [
+   {
+    "tag": "h1",
+    "text": "Luxury Catskills A-Frame Cabin | Hot Tub",
+    "fontSize": "26px",
+    "lineHeight": "30px",
+    "fontWeight": "500",
+    "color": "rgb(34, 34, 34)",
+    "fontFamily": "\"Airbnb Cereal VF\", Circular, -apple-system, \"system-ui\", Ro",
+    "letterSpacing": "normal",
+    "marginBottom": "0px"
+   },
+   {
+    "tag": "h2",
+    "text": "Entire cabin in Saugerties, New York",
+    "fontSize": "22px",
+    "lineHeight": "26px",
+    "fontWeight": "500",
+    "color": "rgb(34, 34, 34)",
+    "fontFamily": "\"Airbnb Cereal VF\", Circular, -apple-system, \"system-ui\", Ro",
+    "letterSpacing": "-0.44px",
+    "marginBottom": "0px"
+   },
+   {
+    "tag": "h3",
+    "text": "Top 5% of homes",
+    "fontSize": "14px",
+    "lineHeight": "20px",
+    "fontWeight": "500",
+    "color": "rgb(34, 34, 34)",
+    "fontFamily": "\"Airbnb Cereal VF\", Circular, -apple-system, \"system-ui\", Ro",
+    "letterSpacing": "normal",
+    "marginBottom": "0px"
+   }
+  ],
+  "primaryBtn": {
+   "text": "Check availability",
+   "w": 322,
+   "h": 48,
+   "bg": "linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%)",
+   "color": "rgb(255, 255, 255)",
+   "border": "0px solid rgb(255, 255, 255)",
+   "radius": "999px",
+   "padding": "14px 24px",
+   "fontSize": "16px",
+   "fontWeight": "500"
+  },
+  "secondaryBtn": {
+   "text": "Show all",
+   "w": 140,
+   "h": 32,
+   "bg": "rgb(242, 242, 242)",
+   "color": "rgb(34, 34, 34)",
+   "border": "0px solid rgb(34, 34, 34)",
+   "radius": "8px",
+   "padding": "8px 16px",
+   "fontSize": "12px",
+   "fontWeight": "500"
+  },
+  "showMore": {
+   "text": "Show more",
+   "w": 132,
+   "h": 48,
+   "bg": "rgb(242, 242, 242)",
+   "color": "rgb(34, 34, 34)",
+   "border": "0px solid rgb(34, 34, 34)",
+   "radius": "12px",
+   "padding": "14px 24px",
+   "fontSize": "16px",
+   "fontWeight": "500"
+  },
+  "link": {
+   "color": "rgb(0, 0, 0)",
+   "decoration": "none",
+   "weight": "400",
+   "size": "10px"
+  },
+  "h1Box": {
+   "left": 160,
+   "right": 684,
+   "width": 596
+  },
+  "dividers": [
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 653,
+    "pt": "22px",
+    "pb": "22px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 653,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 653,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 653,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 653,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 653,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 1120,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 1120,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 1120,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 661,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 1120,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   },
+   {
+    "color": "rgb(221, 221, 221)",
+    "w": 1440,
+    "pt": "0px",
+    "pb": "0px",
+    "mt": "0px",
+    "mb": "0px"
+   }
+  ],
+  "h2s": [
+   {
+    "text": "Entire cabin in Saugerties, Ne",
+    "y": 682,
+    "fontSize": "22px",
+    "fontWeight": "500",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Listing highlights",
+    "y": 988,
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Where you’ll sleep",
+    "y": 1690,
+    "fontSize": "22px",
+    "fontWeight": "500",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "What this place offers",
+    "y": 2107,
+    "fontSize": "22px",
+    "fontWeight": "500",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Select check-in date",
+    "y": 2574,
+    "fontSize": "22px",
+    "fontWeight": "500",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Rated 4.99 out of 5 from 159 r",
+    "y": 3099,
+    "fontSize": "100px",
+    "fontWeight": "500",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Where you’ll be",
+    "y": 4505,
+    "fontSize": "22px",
+    "fontWeight": "500",
+    "mb": "0px",
+    "pb": "0px"
+   },
+   {
+    "text": "Meet your host",
+    "y": 5220,
+    "fontSize": "22px",
+    "fontWeight": "500",
+    "mb": "0px",
+    "pb": "0px"
+   }
+  ],
+  "image": {
+   "radius": "0px",
+   "parentRadius": "0px",
+   "parentOverflow": "visible"
+  }
+ }
+}

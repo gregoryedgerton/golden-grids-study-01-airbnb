@@ -12,19 +12,25 @@ import type { ReactNode } from "react";
  * how a study keeps tall bands in check. Never re-range the grid for height.
  */
 export function Band({
-  id, title, lesson, note, cap, children,
+  id, title, lesson, note, cap, hideTitle, flush, rounded, children,
 }: {
   id: string;
   title: string;
   lesson?: string;
   note?: string;
   cap?: string;
+  /** The reference shows no heading for this block; keep it for assistive tech only. */
+  hideTitle?: boolean;
+  /** No divider above (the block sits directly under the one before it in the reference). */
+  flush?: boolean;
+  /** Round the grid's corners, as the reference's photo mosaic does. */
+  rounded?: boolean;
   children: ReactNode;
 }) {
   return (
-    <section className="band" id={id} aria-labelledby={`${id}-title`}>
-      <header className="band__header">
-        <h2 id={`${id}-title`} className="band__title">{title}</h2>
+    <section className={`band${flush ? " band--flush" : ""}${rounded ? " rounded" : ""}`} id={id} aria-labelledby={`${id}-title`}>
+      <header className={hideTitle ? "band__header band__header--hidden" : "band__header"}>
+        <h2 id={`${id}-title`} className={hideTitle ? "visually-hidden" : "band__title"}>{title}</h2>
         {lesson && <p className="band__lesson">{lesson}</p>}
         {note && <p className="band__note">{note}{cap ? ` · width capped at ${cap}` : ""}</p>}
       </header>

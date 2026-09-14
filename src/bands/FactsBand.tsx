@@ -17,7 +17,8 @@ const avatar = placeholderImage("HOST", 400, 400, 20);
  * dominates. The choice made here: the booking-deciding facts (what it is,
  * where, how many it sleeps) take the hero; the rating takes the 2-square;
  * review count and host share the 1-squares. Whether that reads as forced is
- * for the writeup to say, not for smaller type to hide.
+ * for the writeup to say, not for smaller type to hide. Lines are the
+ * reference's own: 1px #dddddd, the border of its Guest-favorite card.
  *
  * At 390 the host row merges into the hero and the range drops to 1–3 so the
  * band stays landscape (3:2) rather than 3:5 portrait. Width is capped at
@@ -29,11 +30,12 @@ export function FactsBand() {
   return (
     <Band
       id="facts"
-      title="Facts"
+      title="About this place"
+      hideTitle
       note={mobile ? 'from=1 to=3 · placement="top" · clockwise=true · hero right · host merged into hero' : 'from=1 to=4 · placement="right" · clockwise=false · hero left'}
       cap="48rem"
     >
-      <GoldenGrid from={1} to={mobile ? 3 : 4} placement={mobile ? "top" : "right"} clockwise={mobile} color="#efe6d6">
+      <GoldenGrid from={1} to={mobile ? 3 : 4} placement={mobile ? "top" : "right"} clockwise={mobile} outline="1px solid var(--line)">
         <GoldenBox>
           <div className="copy copy--center facts">
             <strong>[Entire cabin in Town, State — 6 words]</strong>

@@ -47,6 +47,7 @@ export function ReviewsBand() {
     <Band
       id="reviews"
       title="Reviews"
+      hideTitle
       note={`from=1 to=${to} · placement="${placement}" · clockwise=false · hero ${mobile ? "top (2:3 portrait)" : "left"} · six reviews → ${desktop ? "two" : "one"}, seven categories → one`}
       cap="60rem"
     >
@@ -81,7 +82,7 @@ export function ReviewsBand() {
           </GoldenBox>
         )}
         <GoldenBox>
-          <div className="copy copy--center"><p><button type="button" className="btn">[Show all 159 reviews]</button></p></div>
+          <div className="copy copy--center"><p><button type="button" className="btn btn--small">[Show all 159 reviews]</button></p></div>
         </GoldenBox>
       </GoldenGrid>
     </Band>

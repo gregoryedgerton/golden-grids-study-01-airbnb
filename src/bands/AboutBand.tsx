@@ -31,7 +31,7 @@ export function AboutBand() {
   const viewport = useViewport();
   const mobile = viewport === "mobile";
   return (
-    <Band id="about" title="About" note={`from=1 to=4 · placement="${mobile ? "bottom" : "left"}" · clockwise=true · hero ${mobile ? "top" : "right"} · four highlights, titles only`} cap="60rem">
+    <Band id="about" title="Where you'll sleep" note={`from=1 to=4 · placement="${mobile ? "bottom" : "left"}" · clockwise=true · hero ${mobile ? "top" : "right"} · four highlights, titles only`} cap="60rem">
       <GoldenGrid from={1} to={4} placement={mobile ? "bottom" : "left"}>
         <GoldenBox>
           <div className="copy copy--prose">

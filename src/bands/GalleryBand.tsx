@@ -42,7 +42,7 @@ export function GalleryBand() {
     desktop: [5, "top"],
   });
   return (
-    <Band id="gallery" title="Gallery" note={`from=1 to=${to} · placement="${placement}" · clockwise=true · hero left`} cap="64rem">
+    <Band id="gallery" title="Photos" hideTitle flush rounded note={`from=1 to=${to} · placement="${placement}" · clockwise=true · hero left`} cap="64rem">
       <GoldenGrid from={1} to={to} placement={placement}>
         {photos.map((p, i) => (
           <GoldenBox key={i}>
@@ -52,7 +52,7 @@ export function GalleryBand() {
                 alt={i === 0 ? "[Hero: the cabin exterior — alt text arrives with the asset]" : ""}
                 style={i === 0 ? { objectPosition: p.subject } : undefined}
               />
-              {i === 0 && <button type="button" className="btn btn--corner">[Show all 24 photos]</button>}
+              {i === 0 && <button type="button" className="btn btn--corner">[Show all photos]</button>}
             </figure>
           </GoldenBox>
         ))}

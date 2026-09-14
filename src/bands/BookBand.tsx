@@ -24,7 +24,7 @@ import { Band } from "./Band";
 export function BookBand() {
   const single = useViewport() === "mobile";
   return (
-    <Band id="book" title="Book" note={single ? 'from=1 to=1 · single · CTA merged into the form · a 366px square standing in for a ~110px bar' : 'from=1 to=2 · placement="left" · form left (first child on the placement side), CTA right'} cap="40rem">
+    <Band id="book" title="Book" hideTitle note={single ? 'from=1 to=1 · single · CTA merged into the form · a 366px square standing in for a ~110px bar' : 'from=1 to=2 · placement="left" · form left (first child on the placement side), CTA right'} cap="40rem">
       <GoldenGrid from={1} to={single ? 1 : 2} placement="left" outline="1px solid var(--line)">
         <GoldenBox>
           <form className="copy form" onSubmit={(e) => e.preventDefault()}>

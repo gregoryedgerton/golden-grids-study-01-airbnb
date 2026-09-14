@@ -1,200 +1,183 @@
-/* Study styles. The library injects only positioning; everything visual is
-   the study's own. No framework, no design system — each study has its own
-   identity. What follows is deliberately plain scaffolding. */
+/* Study 01 — visual register matched to the reference, measured from the
+   live page's computed styles on 2026-09-13 (scratch script: tokens.cjs).
+   The reference's face is Airbnb Cereal, which is proprietary; the study
+   uses the fallback stack the reference itself declares. Everything else
+   below is the reference's own value, or the nearest one it uses.
+
+   The library injects only positioning; everything visual is the study's. */
 
 :root {
-  color-scheme: light dark;
-  --bg: #f6f4ee;
-  --fg: #1c1b18;
-  --muted: #6b675c;
-  --line: #1c1b18;
-  --accent: #b8860b;
-  --tag-bg: rgba(28, 27, 24, 0.85);
-  --tag-fg: #f6f4ee;
-  --measure: 62ch;
+  color-scheme: light;                 /* the reference has no dark scheme */
+  --bg: #ffffff;
+  --fg: #222222;                        /* rgb(34,34,34): 199 of 307 text nodes */
+  --muted: #6c6c6c;                     /* secondary text */
+  --faint: #b0b0b0;                     /* tertiary text, field borders */
+  --line: #dddddd;                      /* every section divider: 1px solid */
+  --line-light: #f2f2f2;                /* hairlines inside cards */
+  --surface: #f7f7f7;                   /* footer ground */
+  --btn: #f2f2f2;                       /* secondary button ground */
+  --rausch: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
+  --tag-bg: #222222;
+  --tag-fg: #ffffff;
+  --accent: #222222;
+  --radius: 12px;
+  --font: "Circular", -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
+  --measure: 60ch;
+  --gutter: 24px;                       /* 390: 342px content in 390 */
+  --content: 1120px;                    /* 1440: 1120px content, 160px margins */
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #15140f;
-    --fg: #ece8dc;
-    --muted: #a39d8c;
-    --line: #ece8dc;
-    --tag-bg: rgba(236, 232, 220, 0.85);
-    --tag-fg: #15140f;
-  }
-}
+@media (min-width: 640px)  { :root { --gutter: 40px; } }
+@media (min-width: 1100px) { :root { --gutter: 80px; } }
 
 * { box-sizing: border-box; }
 html { background: var(--bg); color: var(--fg); }
 body {
   margin: 0;
-  font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font: 400 14px/18px var(--font);     /* 14px/18px 400: the most common text style */
+  -webkit-font-smoothing: antialiased;
 }
-a { color: inherit; text-decoration-color: var(--accent); }
+a { color: var(--fg); text-decoration: underline; font-weight: 500; }
+button { font-family: inherit; }
 
-/* Quality floor: visible keyboard focus. */
-:focus-visible { outline: 3px solid var(--fg); outline-offset: 2px; }
+/* Quality floor: visible keyboard focus, 2px on the text colour. */
+:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 
-/* Quality floor: reduced motion. This scaffold animates nothing, but a study
-   that adds motion inherits the rule. A dial study must swap in a static
-   layout here, not a slower dial. */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 
-.skip {
-  position: absolute; left: 0; top: 0; padding: 0.5rem 1rem;
-  background: var(--fg); color: var(--bg);
-  transform: translateY(-120%);
-}
+.skip { position: absolute; left: 0; top: 0; padding: 8px 16px; background: var(--fg); color: var(--bg); transform: translateY(-120%); }
 .skip:focus { transform: none; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
+/* --- Page rhythm: one centred column, sections divided by 1px lines ------ */
 .masthead, .band, .colophon {
-  width: min(100%, 1440px);
+  width: min(100% - 2 * var(--gutter), var(--content));
   margin-inline: auto;
-  padding-inline: clamp(12px, 3vw, 40px);
 }
-.masthead { padding-block: 2rem 1rem; }
-.masthead h1 { font-size: clamp(1.5rem, 3vw, 2.5rem); margin: 0 0 0.25rem; letter-spacing: -0.01em; }
-.masthead__claim { max-width: var(--measure); color: var(--muted); margin: 0; }
-.masthead__viewport { font-size: 0.8rem; color: var(--muted); }
+.masthead { padding-block: 24px 0; }
+.masthead h1 { font: 500 26px/30px var(--font); margin: 0 0 8px; letter-spacing: normal; }
+.masthead__kicker { font: 500 12px/16px var(--font); color: var(--muted); margin: 0 0 8px; }
+.masthead__claim { font: 400 16px/20px var(--font); color: var(--muted); margin: 0 0 8px; max-width: var(--measure); }
+.masthead__viewport { font: 400 12px/16px var(--font); color: var(--faint); margin: 8px 0 0; }
 
-.band { padding-block: 1.5rem; }
-.band__header { margin-bottom: 0.75rem; }
-.band__title { font-size: 1rem; margin: 0 0 0.25rem; }
-.band__lesson { max-width: var(--measure); margin: 0 0 0.25rem; font-size: 0.9rem; }
-.band__note { font-size: 0.8rem; color: var(--muted); margin: 0; font-family: ui-monospace, monospace; }
+.band { padding-block: 48px; border-top: 1px solid var(--line); }
+.band:first-of-type, .band--flush { border-top: 0; }
+.band--flush { padding-top: 24px; }
+.band__header { margin-bottom: 24px; }
+.band__title { font: 500 22px/26px var(--font); letter-spacing: -0.02em; margin: 0 0 4px; }
+@media (max-width: 639px) { .band__title { font-weight: 600; } }
+.band__lesson { max-width: var(--measure); margin: 0 0 4px; font: 400 16px/20px var(--font); }
+.band__note { font: 400 12px/16px var(--font); color: var(--muted); margin: 0; }
 .band__wrap { width: 100%; }
 
-/* --- Consumer-side patterns the catalogue bands use ---------------------- */
-/* Gutters without touching the grid: inset the content inside its slot. */
-.media.media--inset { position: absolute; inset: 4px; width: auto; height: auto; }
-/* Text over an image: an overlay INSIDE the hero box, on a scrim so the type
-   meets AA against whatever the photograph does underneath it. */
-.overlay {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 6%;
-  background: linear-gradient(to bottom, transparent 35%, rgba(0, 0, 0, 0.72));
-  color: #fff;
-}
-.overlay h3 { margin: 0 0 0.25em; font-size: clamp(1.1rem, 9cqw, 3rem); line-height: 1.05; }
-.overlay p { margin: 0; font-size: clamp(0.8rem, 3.2cqw, 1.1rem); max-width: 40ch; }
-/* A flat list in ONE slot: CSS columns, not one box per item. */
-.list { columns: 2; column-gap: 1.5rem; font-size: clamp(0.8rem, 2.4cqw, 1rem); }
-.list ul { margin: 0; padding-left: 1.1em; }
-.list li { break-inside: avoid; }
-/* Stat tiles sized by their container, so a bento needs no breakpoint. */
-.stat { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
-/* On the colour-progression fills the text is explicitly dark: the fills are
-   light in both schemes, so inheriting --fg would fail in dark mode. */
-.stat--on-fill { color: #1c1b18; }
-.stat__n { font-size: clamp(1.2rem, 30cqw, 9rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; }
-.stat__label { font-size: clamp(0.7rem, 4.5cqw, 1rem); opacity: 0.75; }
-/* Small text chips and buttons for scaffolding. */
-.chip { display: inline-block; font: clamp(9px, 5cqw, 12px)/1.3 ui-monospace, monospace; padding: 2px 6px; background: var(--tag-bg); color: var(--tag-fg); }
-.btn { font: inherit; padding: 0.5em 1em; border: 2px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
-/* What a dropped band leaves behind: heading, note, and a visible stub. */
-.stub { border: 1px dashed var(--muted); padding: 1rem; color: var(--muted); font-size: 0.9rem; }
-/* Video fills a slot like an image; reduced motion shows the poster instead. */
-.media video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.media .media__poster { display: none; }
-@media (prefers-reduced-motion: reduce) {
-  .media video { display: none; }
-  .media .media__poster { display: block; }
-}
-.copy h3 { margin: 0 0 0.25em; font-size: clamp(1rem, 8cqw, 2.5rem); line-height: 1.05; }
-.copy--center { display: flex; flex-direction: column; justify-content: center; }
-.copy--quote p { font-size: clamp(1rem, 4.2cqw, 2rem); line-height: 1.25; font-style: italic; max-width: 30ch; }
-
 /* --- How media fills a slot -------------------------------------------- */
-/* GoldenBox is 100% × 100% of its positioned parent and applies nothing else.
-   The fill is entirely the consumer's: the image covers the box and the box
-   owns the crop. Nothing is exported at a box's aspect ratio. Per-image
-   `object-position` (set inline from the asset spec's subject placement) is
-   the escape hatch for a subject that a centred crop would lose. */
-.media { margin: 0; width: 100%; height: 100%; position: relative; overflow: hidden; }
-.media img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* object-position defaults to 50% 50%; the hero overrides it inline. */
-}
+.media { margin: 0; width: 100%; height: 100%; position: relative; overflow: hidden; background: var(--line-light); }
+.media img, .media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.media.media--inset { position: absolute; inset: 4px; width: auto; height: auto; border-radius: 0; }
+/* The mosaic: 8px gutters from 4px insets, outer edges flush (the grid grows
+   4px past its wrap on every side and the wrap clips), 12px corners on the
+   whole mosaic rather than on each photograph — as the reference draws it. */
+.rounded .band__wrap { border-radius: var(--radius); overflow: hidden; }
+.rounded .golden-grid { width: calc(100% + 8px); margin: -4px; }
 
 .media__tag {
-  position: absolute; left: 0; bottom: 0;
-  font: 11px/1.3 ui-monospace, monospace;
-  padding: 2px 6px;
-  background: var(--tag-bg); color: var(--tag-fg);
-  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  position: absolute; left: 8px; bottom: 8px;
+  font: 500 12px/16px var(--font);
+  padding: 4px 8px; border-radius: 4px;
+  background: rgba(34, 34, 34, 0.85); color: var(--tag-fg);
+  max-width: calc(100% - 16px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
+.media .media__poster { display: none; }
+@media (prefers-reduced-motion: reduce) { .media video { display: none; } .media .media__poster { display: block; } }
 
-/* Copy slots. Content must not grow the box — the grid sets the size. */
-.copy {
-  width: 100%; height: 100%; position: relative;
-  padding: clamp(6px, 1.5vw, 20px);
-  overflow: hidden;
-  container-type: size;
-}
+/* --- Copy slots ---------------------------------------------------------- */
+.copy { width: 100%; height: 100%; position: relative; padding: clamp(12px, 3cqw, 32px); overflow: hidden; container-type: size; }
 .copy p { margin: 0; }
-.copy--big, .copy__big { font-size: clamp(1.25rem, 3.5cqw, 3rem); font-weight: 600; line-height: 1.1; }
-.copy__big small { font-size: 0.5em; font-weight: 400; color: var(--muted); }
-.copy--prose p { max-width: var(--measure); font-size: clamp(0.85rem, 1.6cqw, 1.1rem); }
-.copy--tiny { padding: 2px; }
+.copy--center { display: flex; flex-direction: column; justify-content: center; }
+.copy--prose p { max-width: var(--measure); font: 400 16px/24px var(--font); margin-bottom: 16px; }
+.copy--prose p:last-child { margin-bottom: 0; }
+.copy h3 { margin: 0 0 8px; font: 500 22px/26px var(--font); letter-spacing: -0.02em; }
+.copy--quote p { font: 400 16px/24px var(--font); max-width: 44ch; }
+.copy--tiny { padding: 4px; }
 
-.placeholder-slot { outline: 3px dashed var(--accent); outline-offset: -3px; }
+.placeholder-slot { outline: 1px dashed var(--faint); outline-offset: -1px; }
 
-.colophon { padding-block: 2rem 3rem; color: var(--muted); font-size: 0.85rem; }
-.colophon p { max-width: var(--measure); }
-
-/* --- Study 01 -------------------------------------------------------------- */
-.masthead__kicker { font: 12px/1.4 ui-monospace, monospace; color: var(--muted); margin: 0 0 0.5rem; }
-/* Booking form: labelled fields that do nothing yet — the structure is the deliverable. */
-.form { display: grid; gap: 0.5rem; align-content: center; height: 100%; }
-.field { display: grid; gap: 2px; border: 1px solid var(--line); padding: 0.4rem 0.6rem; }
-.field span { font: 10px/1.2 ui-monospace, monospace; text-transform: uppercase; color: var(--muted); }
-.field input { font: inherit; border: 0; background: transparent; color: inherit; width: 100%; }
-.form .btn--primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-/* Review cards and the host card. */
-.review { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
-.review p { font-size: clamp(0.9rem, 3.2cqw, 1.6rem); line-height: 1.35; margin: 0; max-width: 44ch; }
-.review__who { display: flex; align-items: center; gap: 0.5rem; font-size: clamp(0.7rem, 2.2cqw, 0.9rem); color: var(--muted); }
-.avatar { width: clamp(28px, 12cqw, 64px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; flex: none; }
-.card { display: grid; gap: 0.5rem; justify-items: center; align-content: center; text-align: center; height: 100%; }
-.card .avatar { width: clamp(48px, 30cqw, 128px); }
-.card__name { font-weight: 700; font-size: clamp(1rem, 7cqw, 1.6rem); }
-.card__stats { display: flex; gap: 1rem; font-size: clamp(0.7rem, 3cqw, 0.9rem); color: var(--muted); }
-/* Category ratings and the big score. */
-.score { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; gap: 0.25rem; }
-.score__n { font-size: clamp(2rem, 30cqw, 8rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; }
-.score__label { font-size: clamp(0.8rem, 4cqw, 1.2rem); font-weight: 600; }
-.score__sub { font-size: clamp(0.65rem, 2.6cqw, 0.9rem); color: var(--muted); max-width: 28ch; }
-/* A one-month calendar that becomes a button when its box is too small. */
-.calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font: clamp(8px, 3cqw, 13px)/1.6 ui-monospace, monospace; text-align: center; margin-top: 0.5rem; }
-.calendar b { grid-column: 1 / -1; text-align: left; font-family: inherit; }
-.calendar__cta { display: none; }
-@container (max-width: 200px) {
-  .calendar { display: none; }
-  .calendar__cta { display: block; }
+/* --- Buttons: the reference's two ----------------------------------------- */
+.btn {
+  font: 500 16px/20px var(--font);
+  padding: 14px 24px;
+  border: 0; border-radius: 12px;
+  background: var(--btn); color: var(--fg);
+  cursor: pointer;
 }
-/* Facts and things-to-know lists. */
-.facts { font-size: clamp(0.85rem, 3.4cqw, 1.5rem); line-height: 1.4; }
-.facts strong { display: block; font-size: clamp(1rem, 5.2cqw, 2.6rem); line-height: 1.1; margin-bottom: 0.3em; max-width: 16ch; }
-.facts .muted { color: var(--muted); }
-.rules { font-size: clamp(0.75rem, 2.4cqw, 1rem); }
-.rules ul { margin: 0.25em 0 0; padding-left: 1.1em; }
-.rules h4 { margin: 0; font-size: clamp(0.85rem, 3cqw, 1.1rem); }
-.highlights { margin: 0; padding: 0; list-style: none; font-size: clamp(0.7rem, 2.6cqw, 0.95rem); display: grid; gap: 0.35em; }
-.highlights li::before { content: "◆ "; color: var(--accent); }
-.media .btn--corner { position: absolute; right: 8px; bottom: 8px; background: var(--bg); color: var(--fg); border-color: var(--fg); font-size: clamp(9px, 2.6cqw, 13px); }
+.btn--primary { background: var(--rausch); color: #fff; border-radius: 999px; }
+.btn--small { font: 500 12px/16px var(--font); padding: 8px 16px; border-radius: 8px; }
+.media .btn--corner {
+  position: absolute; right: 24px; bottom: 24px;
+  font: 500 14px/18px var(--font); padding: 7px 15px;
+  background: #fff; color: var(--fg); border: 1px solid var(--fg); border-radius: 8px;
+}
 
-.rules--rows { display: grid; gap: 0; }
-.rules__row { padding: 0.75rem 0; border-top: 1px solid var(--line); }
+/* --- Text chips, lists, stats --------------------------------------------- */
+.chip { display: inline-block; font: 500 12px/16px var(--font); padding: 4px 8px; border-radius: 4px; background: var(--tag-bg); color: var(--tag-fg); }
+.list { font: 400 16px/20px var(--font); }
+.list ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 16px; }
+@container (min-width: 480px) { .list ul { grid-template-columns: 1fr 1fr; } }
+.list li { break-inside: avoid; }
+.highlights { margin: 0; padding: 0; list-style: none; display: grid; gap: 16px; }
+.highlights li { font: 500 14px/20px var(--font); }
+.facts { display: grid; gap: 8px; align-content: center; }
+.facts strong { font: 500 22px/26px var(--font); letter-spacing: -0.02em; max-width: 18ch; }
+.facts span, .facts p { font: 400 16px/20px var(--font); }
+.facts .muted { color: var(--muted); }
+.rules { font: 400 14px/20px var(--font); }
+.rules h4 { margin: 0 0 8px; font: 500 16px/20px var(--font); }
+.rules ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.rules p { margin-top: 12px; }
+.rules--rows { display: grid; }
+.rules__row { padding: 24px 0; border-top: 1px solid var(--line); }
 .rules__row:last-child { border-bottom: 1px solid var(--line); }
-.rules__row p { margin: 0.25em 0 0; }
+.stat { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+.stat--on-fill { color: var(--fg); }
+.stat__n { font: 500 clamp(24px, 30cqw, 100px)/1 var(--font); letter-spacing: -0.02em; }
+.stat__label { font: 400 14px/18px var(--font); color: var(--muted); }
+
+/* Score block and category ratings. The reference's laurelled score is a
+   100px/500 numeral, centred; category scores are 16px/500 over 12px labels. */
+.score { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; gap: 6px; }
+.score__n { font: 500 clamp(32px, 26cqw, 100px)/1 var(--font); letter-spacing: -0.02em; }
+.score__label { font: 500 18px/24px var(--font); }
+.score__sub { font: 400 14px/18px var(--font); color: var(--muted); max-width: 28ch; }
+.score .btn { margin-top: 12px; }
+
+/* Booking form: grouped fields with 1px #b0b0b0 borders and 8px corners. */
+.form { display: grid; gap: 12px; align-content: center; height: 100%; }
+.field { display: grid; gap: 2px; border: 1px solid var(--faint); border-radius: 8px; padding: 10px 12px; }
+.field span { font: 800 10px/12px var(--font); text-transform: uppercase; letter-spacing: 0.04em; }
+.field input { font: 400 14px/18px var(--font); border: 0; background: transparent; color: var(--fg); width: 100%; padding: 0; }
+.field input::placeholder { color: var(--muted); }
+
+/* Review cards, avatars, the host card (white, 24px corners, soft shadow). */
+.review { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+.review p { font: 400 16px/24px var(--font); max-width: 44ch; }
+.review__who { display: flex; align-items: center; gap: 12px; font: 400 14px/18px var(--font); color: var(--muted); }
+.avatar { width: 48px; aspect-ratio: 1; border-radius: 50%; object-fit: cover; flex: none; }
+.card { position: absolute; inset: 8px; display: grid; gap: 8px; justify-items: center; align-content: center; text-align: center; padding: 16px; background: #fff; border-radius: 24px; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); }
+.card .avatar { width: clamp(64px, 30cqw, 104px); }
+.card__name { font: 500 clamp(18px, 8cqw, 32px)/1.1 var(--font); letter-spacing: -0.02em; }
+.card__stats { display: flex; gap: 16px; font: 500 14px/18px var(--font); }
+.card .score__sub { font-size: 12px; line-height: 16px; }
+
+/* A one-month calendar that becomes a button when its box is too small. */
+.calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font: 400 clamp(9px, 3.2cqw, 14px)/2 var(--font); text-align: center; margin-top: 8px; }
+.calendar b { grid-column: 1 / -1; text-align: left; font-weight: 500; font-size: 16px; margin-bottom: 8px; }
+.calendar__cta { display: none; }
+@container (max-width: 200px) { .calendar { display: none; } .calendar__cta { display: block; } }
+
+/* What a dropped band leaves behind. */
+.stub { border: 1px dashed var(--faint); border-radius: var(--radius); padding: 16px; color: var(--muted); font: 400 14px/20px var(--font); }
+
+.colophon { padding-block: 48px; border-top: 1px solid var(--line); color: var(--muted); font: 400 14px/18px var(--font); }
+.colophon p { max-width: var(--measure); margin: 0; }
+.band__header--hidden { margin-bottom: 16px; }

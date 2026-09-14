@@ -103,6 +103,37 @@ the gallery.
   1-squares). The host card, the reference's visual lead in its section, is
   demoted to a 1-square beside the bio hero.
 
+## Visual register
+
+The structure is the argument, so everything that is not structure is held
+constant: the rebuild uses the reference's own palette, type sizes, spacing
+and line weights, measured from the live page's computed styles on
+2026-09-13 (`captures/tokens.cjs` → `captures/reference-tokens.json`). A
+side-by-side then differs only in the grid.
+
+| Token | Reference (measured) | Rebuild |
+| --- | --- | --- |
+| Face | Airbnb Cereal VF, falling back to Circular, -apple-system, system-ui, Roboto, Helvetica Neue | the same fallback stack; Cereal is proprietary and is not shipped |
+| Body text | 14px/18px 400, `#222222` (199 of 307 text nodes) | same |
+| Secondary text | `#6c6c6c`; tertiary `#b0b0b0` | same |
+| Prose | 16px/24px 400 | same |
+| Section heading | 22px/26px 500, −0.02em (600 at 390) | same |
+| Page title | 26px/30px 500 | same |
+| Score numeral | 100px/500 at 1440, 32px/700 at 390 | 500, 32–100px by container |
+| Dividers | 1px solid `#dddddd`, sections 48px apart | same, one per band |
+| Grid lines | — | the same 1px `#dddddd`, as `outline` |
+| Primary button | rausch gradient `#e61e4d → #d70466`, white, 999px pill, 14px 24px, 16px/500 | same |
+| Secondary button | `#f2f2f2`, `#222222`, 12px corners (8px small), 14px 24px, 16px/500 | same |
+| Photo mosaic | 8px gutters, 12px corners on the whole mosaic | same: 4px insets, flush outer edges, 12px on the wrap |
+| Content column | 1120px at 1440 (160px margins); 342px at 390 (24px) | `min(100% − 2·gutter, 1120px)` with gutter 24 / 40 / 80 |
+| Form fields | 1px `#b0b0b0`, 8px corners, 10px/800 uppercase labels | same |
+| Host card | white, 24px corners, `0 6px 16px rgba(0,0,0,.12)` | same |
+| Colour scheme | light only | light only; the template's dark scheme is dropped |
+
+Things the reference has that the rebuild deliberately does not: the site
+header, the rausch wordmark, icons in the amenity and highlight lists (the
+icon set is Airbnb's), and the laurels around the score.
+
 ## Bands
 
 A study is a short vertical stack of bands. Each band is one small-range
@@ -246,9 +277,11 @@ the npm registry at its published version, never linked from a local checkout,
 so the study exercises what the public installs. A bug found this way belongs
 in an [issue](https://github.com/gregoryedgerton/golden-grids/issues).
 
-Captures are taken with Playwright (`captures/` holds both sets); the script
-scrolls the page to trigger lazy images, then takes a full-page screenshot at
-390, 820, and 1440.
+Captures are taken with Playwright: `captures/capture.cjs <url> captures
+[prefix]` scrolls the page to trigger lazy images, then takes a full-page
+screenshot at 390, 820, and 1440. `captures/tokens.cjs <url>` dumps the
+reference's computed styles to stdout (`reference-tokens.json` is the run
+this study was matched against). Both need `playwright` and Chrome.
 
 ## Deploying
 

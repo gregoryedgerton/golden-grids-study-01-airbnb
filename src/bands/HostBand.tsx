@@ -62,7 +62,7 @@ export function HostBand() {
           <div className="copy copy--center rules">
             <h4>[Host details]</h4>
             <p style={{ margin: "0.25em 0 0.75em" }}>[Response rate 100%]<br />[Responds within an hour]</p>
-            <p style={{ margin: 0 }}><button type="button" className="btn">[Message host]</button></p>
+            <p style={{ margin: 0 }}><button type="button" className="btn btn--small">[Message host]</button></p>
           </div>
         </GoldenBox>
       </GoldenGrid>
