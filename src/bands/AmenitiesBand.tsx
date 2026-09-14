@@ -2,53 +2,45 @@ import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
 import { Band } from "./Band";
 
-const items = ["Wifi", "Kitchen", "Washer", "Dryer", "Air conditioning", "Heating", "Workspace", "TV", "Parking", "Crib", "Gym", "Pool"];
+const items = ["[Kitchen]", "[Wifi]", "[Free parking]", "[Hot tub]", "[Sauna]", "[Pets allowed]", "[TV]", "[Washer]", "[Dryer]", "[Workspace]"];
+const days = Array.from({ length: 30 }, (_, i) => i + 1);
 
 /**
- * Band 6 — the skipped range. READ THIS ONE.
+ * Band 5 — Amenities and dates. In the reference: "What this place offers",
+ * ten of 69 amenities in two columns with "Show all 69 amenities", then the
+ * two-month date picker. Two more stacked rows.
  *
- * A flat list gets ONE slot, not one box per item: CSS columns inside the
- * largest square. `from={3}` skips positions 1–2 and collapses them into a
- * single PLACEHOLDER — a 2×1 strip here. Its size is always F(from) × F(from−1)
- * units, smaller than the smallest visible box, so it never dominates; it is a
- * real slot with a real job (the call to action). Two things are easy to get
- * wrong: it is rendered FIRST in the DOM but filled by the LAST GoldenBox
- * child, and `from={2}` is not a shortcut for `from={1}` — it skips position
- * 1 alone and makes a 1×1 placeholder with the same rectangles, so the child
- * mapping and colours differ. Only `from={1}` has no placeholder.
- *
- * Lever: open the range. At 390 `from` drops to 1, the placeholder vanishes,
- * and the same three children fall into three visible slots — no reorder.
+ * The list gets ONE slot. `from={3}` collapses positions 1–2 into a 2×1
+ * placeholder strip that holds the "Show all" call to action — it is the LAST
+ * child. The 2-square holds one month of the picker; when its box is too
+ * small for a grid of days (390) a container query swaps in a button. At 390
+ * the range opens to 1–3 and the same three children fall into place.
  */
 export function AmenitiesBand() {
   const from = useViewport() === "mobile" ? 1 : 3;
   const to = from === 1 ? 3 : 4;
   return (
-    <Band
-      id="amenities"
-      title="Band 6 — Amenities (skipped range)"
-      lesson="A flat list gets one slot. from=3 collapses positions 1–2 into a 2×1 placeholder strip, rendered first in the DOM but filled by the LAST child. Open the range at 390 and the same children fall into place."
-      note={`from=${from} to=${to} · placement="top" · clockwise=true · ${from > 1 ? "placeholder = F(3)×F(2) = 2×1 strip, last child" : "no placeholder: last child is the smallest slot"} · lever: open from`}
-      cap="60rem"
-    >
+    <Band id="amenities" title="What this place offers" note={`from=${from} to=${to} · placement="top" · clockwise=true · ${from > 1 ? "placeholder strip = last child" : "no placeholder"}`} cap="60rem">
       <GoldenGrid from={from} to={to} placement="top" outline="1px solid var(--line)">
         <GoldenBox>
           <div className="copy list">
-            <span className="media__tag">child 1 · list in one slot</span>
-            <ul>{items.map((it) => <li key={it}>[{it}]</li>)}</ul>
+            <ul>{items.map((it) => <li key={it}>{it}</li>)}</ul>
           </div>
         </GoldenBox>
         <GoldenBox>
-          <div className="copy copy--center">
-            <span className="media__tag">child 2</span>
-            <p>[0 of 12 shown]</p>
+          <div className="copy">
+            <span className="score__label">[Select check-in date]</span>
+            <div className="calendar" aria-hidden="true">
+              <b>[September 2026]</b>
+              {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => <span key={i}>{d}</span>)}
+              {days.map((d) => <span key={d}>{d}</span>)}
+            </div>
+            <p className="calendar__cta"><button type="button" className="btn">[Add dates]</button></p>
           </div>
         </GoldenBox>
-        {/* LAST child → the placeholder strip when from > 1. */}
         <GoldenBox className="placeholder-slot">
           <div className="copy copy--center">
-            <span className="media__tag">{from > 1 ? "child 3 · PLACEHOLDER" : "child 3 · smallest slot"}</span>
-            <p><button type="button" className="btn">[Show all 12]</button></p>
+            <button type="button" className="btn">[Show all 69 amenities]</button>
           </div>
         </GoldenBox>
       </GoldenGrid>

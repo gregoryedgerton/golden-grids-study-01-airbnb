@@ -152,3 +152,44 @@ a { color: inherit; text-decoration-color: var(--accent); }
 
 .colophon { padding-block: 2rem 3rem; color: var(--muted); font-size: 0.85rem; }
 .colophon p { max-width: var(--measure); }
+
+/* --- Study 01 -------------------------------------------------------------- */
+.masthead__kicker { font: 12px/1.4 ui-monospace, monospace; color: var(--muted); margin: 0 0 0.5rem; }
+/* Booking form: labelled fields that do nothing yet — the structure is the deliverable. */
+.form { display: grid; gap: 0.5rem; align-content: center; height: 100%; }
+.field { display: grid; gap: 2px; border: 1px solid var(--line); padding: 0.4rem 0.6rem; }
+.field span { font: 10px/1.2 ui-monospace, monospace; text-transform: uppercase; color: var(--muted); }
+.field input { font: inherit; border: 0; background: transparent; color: inherit; width: 100%; }
+.form .btn--primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+/* Review cards and the host card. */
+.review { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+.review p { font-size: clamp(0.9rem, 3.2cqw, 1.6rem); line-height: 1.35; margin: 0; max-width: 44ch; }
+.review__who { display: flex; align-items: center; gap: 0.5rem; font-size: clamp(0.7rem, 2.2cqw, 0.9rem); color: var(--muted); }
+.avatar { width: clamp(28px, 12cqw, 64px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; flex: none; }
+.card { display: grid; gap: 0.5rem; justify-items: center; align-content: center; text-align: center; height: 100%; }
+.card .avatar { width: clamp(48px, 30cqw, 128px); }
+.card__name { font-weight: 700; font-size: clamp(1rem, 7cqw, 1.6rem); }
+.card__stats { display: flex; gap: 1rem; font-size: clamp(0.7rem, 3cqw, 0.9rem); color: var(--muted); }
+/* Category ratings and the big score. */
+.score { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%; gap: 0.25rem; }
+.score__n { font-size: clamp(2rem, 30cqw, 8rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; }
+.score__label { font-size: clamp(0.8rem, 4cqw, 1.2rem); font-weight: 600; }
+.score__sub { font-size: clamp(0.65rem, 2.6cqw, 0.9rem); color: var(--muted); max-width: 28ch; }
+/* A one-month calendar that becomes a button when its box is too small. */
+.calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font: clamp(8px, 3cqw, 13px)/1.6 ui-monospace, monospace; text-align: center; margin-top: 0.5rem; }
+.calendar b { grid-column: 1 / -1; text-align: left; font-family: inherit; }
+.calendar__cta { display: none; }
+@container (max-width: 200px) {
+  .calendar { display: none; }
+  .calendar__cta { display: block; }
+}
+/* Facts and things-to-know lists. */
+.facts { font-size: clamp(0.85rem, 3.4cqw, 1.5rem); line-height: 1.4; }
+.facts strong { display: block; font-size: clamp(1rem, 5.2cqw, 2.6rem); line-height: 1.1; margin-bottom: 0.3em; max-width: 16ch; }
+.facts .muted { color: var(--muted); }
+.rules { font-size: clamp(0.75rem, 2.4cqw, 1rem); }
+.rules ul { margin: 0.25em 0 0; padding-left: 1.1em; }
+.rules h4 { margin: 0; font-size: clamp(0.85rem, 3cqw, 1.1rem); }
+.highlights { margin: 0; padding: 0; list-style: none; font-size: clamp(0.7rem, 2.6cqw, 0.95rem); display: grid; gap: 0.35em; }
+.highlights li::before { content: "◆ "; color: var(--accent); }
+.media .btn--corner { position: absolute; right: 8px; bottom: 8px; background: var(--bg); color: var(--fg); border-color: var(--fg); font-size: clamp(9px, 2.6cqw, 13px); }
