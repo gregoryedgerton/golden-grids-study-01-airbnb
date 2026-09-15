@@ -109,7 +109,11 @@ button { font-family: inherit; }
    4px past its wrap on every side and the wrap clips), 12px corners on the
    whole mosaic rather than on each photograph — as the reference draws it.
    At 390 the reference's photo bleeds edge to edge with square corners. */
-.rounded .band__wrap { border-radius: var(--radius); overflow: hidden; }
+/* clip, NOT hidden. Both clip to the radius, but `hidden` makes a scroll
+   container, and a scroll container is the ancestor a `position: sticky`
+   descendant resolves against — which silently killed the sticky header on
+   an expanded cell in this band, scrolling its only way out off screen. */
+.rounded .band__wrap { border-radius: var(--radius); overflow: clip; }
 .rounded .golden-grid { width: calc(100% + 8px); margin: -4px; }
 @media (max-width: 639px) {
   .rounded { width: 100%; }

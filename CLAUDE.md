@@ -22,7 +22,15 @@ true of.
 - Breakpoints live only in `src/lib/viewport.ts`. Three states, never two.
 - Study tools (`src/lib/tools.tsx`) are the only floating UI. Controls go
   there, on their own stacking layer; the study's stylesheet never styles them.
-  Grid outlines and band notes are off by default.
+  Grid outlines and band notes are off by default. The panel owns the
+  viewport's top-right corner: it is fixed at
+  `top: 12px; right: 12px` with `z-index: 2147483000` (`src/lib/tools.css`) —
+  a collapsed tab, and a 260px-wide panel when open — and nothing the study
+  draws may stack above it. A control the study puts in that corner is
+  covered and cannot be clicked, however it is positioned. Put dialog and
+  panel controls anywhere else; Study 02's album dialog uses a sticky bar at
+  the top left, and an expanded cell's dismiss control sits at its head's
+  left edge for the same reason.
 - Media fills a slot with `object-fit: cover`; per-image `object-position` is
   the escape hatch. Never reshape a band to suit an image.
 - Pass one ends with the asset spec in `README.md` filled in. Do not invent
