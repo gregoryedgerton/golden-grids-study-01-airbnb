@@ -2,7 +2,7 @@ import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
 import { assets } from "../assets";
 import { listing, amenityGroups } from "../content";
-import { useExpand, ExpandedCell } from "../lib/expand";
+import { useExpand, useExpandGroup, ExpandedCell, ExpandableMedia, PhotoView } from "../lib/expand";
 import { Band } from "./Band";
 
 const tub = assets.saladBar;
@@ -16,7 +16,8 @@ const tub = assets.saladBar;
  * and 1440 `from={3}` collapses positions 1–2 into a 2×1 placeholder strip
  * that holds the call to action — it is the LAST child. The 2-square holds
  * the one amenity the listing itself singles out in its highlights (the
- * salad bar) as an image tile. At 390 the range opens to 1–3 and the same
+ * farm-to-table salad bar) as an image tile, which expands like every other
+ * photograph on the page. At 390 the range opens to 1–3 and the same
  * three children fall into place: list in the 244px hero, tile and CTA in
  * the 122px squares.
  */
@@ -26,6 +27,7 @@ export function AmenitiesBand() {
   const to = from === 1 ? 3 : 4;
   const items = viewport === "desktop" ? listing.amenities : listing.amenities.slice(0, 5);
   const x = useExpand();
+  const pic = useExpandGroup();
   return (
     <Band id="amenities" title={listing.labels.amenities} note={`from=${from} to=${to} · placement="top" · clockwise=true · ${from > 1 ? "placeholder strip = last child (CTA)" : "no placeholder"} · ${items.length} of ${listing.amenityTotal} listed`} cap="60rem" cards>
       <GoldenGrid from={from} to={to} placement="top">
@@ -44,11 +46,13 @@ export function AmenitiesBand() {
             </ExpandedCell>
           )}
         </GoldenBox>
-        <GoldenBox>
-          <figure className="media media--inset">
-            <img src={tub.src} alt={listing.photos.tub} style={{ objectPosition: tub.subject }} />
-            <figcaption className="media__tag">Salad bar · stocked for breakfast</figcaption>
-          </figure>
+        <GoldenBox {...pic.boxProps("tile")}>
+          <ExpandableMedia group={pic} slotKey="tile" src={tub.src} alt={listing.photos.tub} objectPosition={tub.subject} caption="The salad bar, farm to table" />
+          {pic.isOpen("tile") && (
+            <ExpandedCell id={pic.panelId("tile")} title="The salad bar, farm to table" onClose={pic.close} closeRef={pic.closeRef}>
+              <PhotoView src={tub.src} alt={listing.photos.tub} caption="Cut from the raised beds out back that morning." />
+            </ExpandedCell>
+          )}
         </GoldenBox>
         <GoldenBox className="placeholder-slot">
           <div className="copy copy--center">

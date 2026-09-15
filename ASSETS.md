@@ -21,7 +21,8 @@ the lot is yours. The joke is the building; the comfort is the point.
 gable; the trapezoid windows in a row along both long walls; the red
 Tiffany-style pendant lamps over the booths, all on dimmers; red vinyl
 booths with wood-look tables; red-and-white checkered tablecloths; the salad
-bar with its sneeze guard and cold well, now stocked for breakfast; the
+bar with its sneeze guard and cold well, now run farm to table from raised
+beds out back; the
 translucent red plastic tumblers, a full set; the brick-and-stucco exterior;
 the low dropped ceiling with warm downlights; terrazzo and carpet underfoot;
 a jukebox; an upright arcade cabinet and a cocktail-table game; the old sign
@@ -175,18 +176,31 @@ it is disposable.
   a red tumbler holding wildflowers. Square composition. No people.
   Editorial, 35mm, warm and cosy.
 
-### 8 · Amenities tile — the salad bar at breakfast
+### 8 · Amenities tile — the salad bar, farm to table
 
-- **File:** `s01-amenities-tile-salad-bar-1000x1000-v1.jpg` (1000×1000)
+- **File:** `s01-amenities-tile-salad-bar-1000x1000-v2.jpg` (1000×1000) — **delivered**
 - **Used:** band 5, 2-square. Renders 384 / 308 / 122 px square.
-- **Subject placement:** 50% 55% — the cold well just below centre.
+- **Subject placement:** 50% 60% — the cold well just below centre.
 - **Safe area:** the sneeze guard and the cold well with its bowls.
-- **Prompt:** A restored 1990s restaurant salad bar used as a breakfast bar:
-  curved sneeze guard, stainless cold well with white bowls of fruit,
-  yoghurt, granola and cut melon, a stack of white plates, red plastic
-  tumblers, a coffee carafe at the end, red pendant lamp above, morning
-  light from a trapezoid window. Clean and inviting. No people, no signage.
-  Editorial food photograph, 50mm, warm.
+- **Prompt:** A restored 1990s restaurant salad bar run farm to table:
+  curved sneeze guard, stainless cold well with white bowls of leaves,
+  herbs, tomatoes, berries and shaved vegetables cut that morning, a jar of
+  dressing, a stack of white plates, red plastic tumblers, cut flowers in a
+  glass at the end, red pendant lamps above, dusk in the trapezoid windows
+  behind. Clean and inviting. No people, no signage. Editorial food
+  photograph, 50mm, warm.
+
+### 8b · Gallery supporting — the kitchen garden
+
+- **File:** `s01-gallery-s5-garden-1200x800-v1.jpg` (1200×800, 3:2) — **delivered**
+- **Used:** band 1, 4th slot. Renders 170 / 96 px square.
+- **Subject placement:** centre. **Safe area:** the raised beds and the fire pit.
+- **Prompt:** The kitchen garden behind a converted 1990s pizza restaurant at
+  dusk: cedar raised beds of lettuce, herbs and flowers, a gravel yard, a
+  fire pit with a low flame and two wooden chairs, a picket fence, string
+  lights overhead, the red mansard roof and glowing trapezoid windows at the
+  left, and a lit sign pole carrying the house number. No people, no
+  signage or logos. Editorial photograph, 28mm, warm, blue hour.
 
 ### 9 · Host avatar — Dee & Marcus
 
@@ -243,3 +257,4 @@ it is disposable.
 | 10 | | | |
 | 11 | | | |
 | 12 | | | |
+| 8b | `s01-gallery-s5-garden-1200x800-v1.jpg` | 1200×800 | delivered |

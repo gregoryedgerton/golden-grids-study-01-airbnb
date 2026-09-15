@@ -198,7 +198,8 @@ is listed so sources are never upscaled.
 | Supporting 2 | 1 | the arcade corner | 256×256 (1440), 193×193 (820), 122×122 (390) | 1000×1000 | centre | centre 60% |
 | Supporting 3 | 1 | the main bedroom | 170×170 (1440), 96×96 (820) | 1200×900 | centre | centre 50% |
 | Supporting 4 | 1 | the kitchen on the old line, wood oven | 170×170 (1440), 96×96 (820) | 1200×800 | centre | centre 50% |
-| Salad bar tile | 5 | the amenity the listing singles out | 384×384 (1440), 308×308 (820), 122×122 (390) | 1000×1000 | tub centred-low; `object-position: 50% 55%` | the tub |
+| Salad bar tile | 5 | the amenity the listing singles out | 384×384 (1440), 308×308 (820), 122×122 (390) | 1000×1000 | the cold well just below centre; `object-position: 50% 60%` | the sneeze guard, the bowls and the red tumblers |
+| Garden | 1 | the raised beds the salad bar runs on | 170×170 (1440), 96×96 (820) | 1200×800 | centre | the beds, the fire pit and the sign pole |
 | Host avatar | 2, 9 | the host, square crop | 128×128 | 400×400 | face centred | face |
 | Bedroom 1, Bedroom 2 | 4 | the two bedrooms, equal | 192×192 (1440), 154×154 (820), 122×122 (390) | 1000×1000 each | bed centred | the bed |
 | Reviewer avatars ×2 | 7 | reviewers | 64×64 | 200×200 | face centred | face |
@@ -222,7 +223,7 @@ different counts per width, three versions are needed.
 | Description | 4 | prose, with Show more | 40 / 60 / 90 |
 | Bedroom captions | 4 | "Bedroom 1 · 1 queen bed" | 2 × 5 |
 | Amenities | 5 | the reference's own counts, plus the total | 5 / 5 / 10 items + "Show all 69" |
-| Salad bar caption | 5 | "Salad bar · stocked for breakfast" | 5 |
+| Salad bar caption | 5 | "Salad bar · stocked for the garden" | 5 |
 | Month names | 6 | two months at 820/1440, one at 390 | 2 |
 | Featured review | 7 | the review that decides a booking | 20 / 40 / 50 |
 | Second review | 7 | a different guest, a different reason | – / – / 25 |
@@ -291,16 +292,23 @@ Pass-one observations; revised after real assets land.
 
 ## Interactions: expand a cell
 
-Four calls to action work, and all four do the same thing: the slot that
-showed the summary becomes the whole band and shows the rest. The band grows
-to fit it and everything below moves down — nothing scrolls inside a box.
-The reference reaches for a modal; here the spiral's slot becomes the page.
+Every photograph on the page and four calls to action all do the same thing:
+the slot that showed the summary becomes the whole band and shows the rest.
+The band grows to fit it and everything below moves down — nothing scrolls
+inside a box. The reference reaches for a modal; here the spiral's slot
+becomes the page.
+
+**The picture is the affordance.** Clicking any photograph expands its own
+slot, so a reader who wants a closer look never has to find a control. Nine
+images do this: the five in the mosaic, both bedrooms, the salad bar tile
+and the map.
 
 | Trigger | Cell that expands | Shows |
 | --- | --- | --- |
-| Photos · "Show all photos" | the hero photograph | all eight photographs with captions |
+| Any photograph | that photograph's own slot | the picture at size, with its caption |
+| Photos · "Show all photos" | the hero photograph | all nine photographs with captions |
 | Sleeping arrangements · "Show more" | the description | the full description and the four highlights |
-| Amenities · "Show all 47 amenities" (in the placeholder strip) | the list | all 47, in five groups |
+| Amenities · "Show all 47 amenities" (in the placeholder strip) | the list | all 47, in five groups — a trigger and the cell it opens need not be the same box |
 | Reviews · "Show all 188 reviews" (in a 1-square) | the score | six reviews, and says it is six of 188 |
 
 Mechanics, in [`src/lib/expand.tsx`](src/lib/expand.tsx) and `expand.css`:

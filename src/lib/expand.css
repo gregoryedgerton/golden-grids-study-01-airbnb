@@ -62,3 +62,27 @@
 .cell__prose ul { margin: 0 0 16px; padding-left: 1.2em; }
 .cell__prose > :last-child { margin-bottom: 0; }
 .cell__count { color: var(--muted, #6c6c6c); font: 400 14px/18px var(--font, inherit); margin: 0 0 16px; }
+
+/* --- An image is its own control ---------------------------------------- */
+/* The button covers the figure so the whole picture is the hit area; the alt
+   text stays on the image and the button carries its own label. */
+.media__open {
+  position: absolute; inset: 0;
+  border: 0; background: transparent; padding: 0;
+  cursor: zoom-in;
+}
+.media__open:focus-visible { outline: 3px solid var(--fg, #222); outline-offset: -3px; }
+.media__open::after {
+  content: ""; position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0); transition: background 0.15s ease;
+}
+.media__open:hover::after { background: rgba(0, 0, 0, 0.12); }
+@media (prefers-reduced-motion: reduce) { .media__open::after { transition: none; } }
+/* A caption sits above the hit area so it stays legible. */
+.media__caption { z-index: 1; }
+
+/* A photograph shown at its own size inside an expanded cell. */
+.cell__photo { margin: 0; }
+.cell__photo img { display: block; width: 100%; max-height: 70svh; object-fit: contain; border-radius: var(--radius-sm, 8px); background: var(--line-light, #f2f2f2); }
+.cell__photo figcaption { margin-top: 12px; font: 500 16px/20px var(--font, inherit); }
+.cell__nav { display: flex; gap: 8px; margin-top: 16px; }

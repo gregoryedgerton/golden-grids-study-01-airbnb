@@ -2,6 +2,7 @@ import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
 import { assets } from "../assets";
 import { listing } from "../content";
+import { useExpandGroup, ExpandedCell, ExpandableMedia, PhotoView } from "../lib/expand";
 import { Band } from "./Band";
 
 const map = assets.map;
@@ -22,13 +23,17 @@ const map = assets.map;
  */
 export function LocationBand() {
   const mobile = useViewport() === "mobile";
+  const pic = useExpandGroup();
   return (
     <Band id="location" title={listing.labels.location} note={mobile ? 'from=1 to=3 · placement="right" · clockwise=false · hero top (2:3 portrait)' : 'from=1 to=3 · placement="top" · clockwise=false · hero left'} cap="56rem" cards>
       <GoldenGrid from={1} to={3} placement={mobile ? "right" : "top"} clockwise={false}>
-        <GoldenBox>
-          <figure className="media">
-            <img src={map.src} alt={listing.photos.map} />
-          </figure>
+        <GoldenBox {...pic.boxProps("map")}>
+          <ExpandableMedia group={pic} slotKey="map" className="media" src={map.src} alt={listing.photos.map} />
+          {pic.isOpen("map") && (
+            <ExpandedCell id={pic.panelId("map")} title={listing.labels.location} onClose={pic.close} closeRef={pic.closeRef}>
+              <PhotoView src={map.src} alt={listing.photos.map} caption={listing.town.line} />
+            </ExpandedCell>
+          )}
         </GoldenBox>
         <GoldenBox>
           <div className="copy copy--center facts">

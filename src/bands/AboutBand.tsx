@@ -2,7 +2,7 @@ import { GoldenGrid, GoldenBox } from "@gifcommit/golden-grids";
 import { useViewport } from "../lib/viewport";
 import { assets } from "../assets";
 import { listing, description, descriptionFull } from "../content";
-import { useExpand, ExpandedCell } from "../lib/expand";
+import { useExpand, useExpandGroup, ExpandedCell, ExpandableMedia, PhotoView } from "../lib/expand";
 import { Band } from "./Band";
 
 const bedroomArt = [assets.bed1, assets.bed2];
@@ -24,6 +24,7 @@ export function AboutBand() {
   const viewport = useViewport();
   const mobile = viewport === "mobile";
   const x = useExpand();
+  const pics = useExpandGroup();
   return (
     <Band id="about" title={listing.labels.sleep} note={`from=1 to=4 · placement="${mobile ? "bottom" : "left"}" · clockwise=true · hero ${mobile ? "top" : "right"} · four highlights, titles only`} cap="60rem">
       <GoldenGrid from={1} to={4} placement={mobile ? "bottom" : "left"}>
@@ -49,11 +50,13 @@ export function AboutBand() {
           </div>
         </GoldenBox>
         {listing.bedrooms.map((b, i) => (
-          <GoldenBox key={b.name}>
-            <figure className="media media--inset">
-              <img src={bedroomArt[i].src} alt={b.alt} />
-              <figcaption className="media__caption">{b.name}<small>{b.bed}</small></figcaption>
-            </figure>
+          <GoldenBox key={b.name} {...pics.boxProps(b.name)}>
+            <ExpandableMedia group={pics} slotKey={b.name} src={bedroomArt[i].src} alt={b.alt} caption={b.name} />
+            {pics.isOpen(b.name) && (
+              <ExpandedCell id={pics.panelId(b.name)} title={`${b.name} · ${b.bed}`} onClose={pics.close} closeRef={pics.closeRef}>
+                <PhotoView src={bedroomArt[i].src} alt={b.alt} caption={`${b.name} · ${b.bed}`} />
+              </ExpandedCell>
+            )}
           </GoldenBox>
         ))}
       </GoldenGrid>

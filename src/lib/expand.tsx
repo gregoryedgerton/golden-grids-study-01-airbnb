@@ -14,13 +14,15 @@ import "./expand.css";
  * below it moves down — nothing scrolls inside a box. The library is not
  * touched; its inline geometry is overridden only for the duration.
  *
+ * A band may have several expandable slots (every photograph is one), so the
+ * primitive is a GROUP keyed by slot: at most one is open, and the keys are
+ * the band's own. `useExpand()` is the single-slot case.
+ *
  * What the overlay implies, and therefore does:
- *   - Everything the panel covers goes `inert` while it is open, so nothing
- *     underneath can be tabbed to or read. That includes the trigger, which
- *     the panel sits directly on top of.
- *   - Escape closes only the panel that contains focus, and focus returns to
- *     that panel's trigger. A field elsewhere on the page keeps its Escape.
- *   - One cell at a time: opening one closes any other.
+ *   - Everything the panel covers is `inert` while it is open, so nothing
+ *     underneath can be tabbed to or read.
+ *   - Escape closes only the panel that contains focus.
+ *   - One cell at a time, across the whole page.
  *   - The band grows to fit the panel and everything below moves down; the
  *     panel has no scroll container of its own.
  */
@@ -28,30 +30,51 @@ import "./expand.css";
 /** Every open cell's close function, so opening one can close the others. */
 const openCells = new Set<() => void>();
 
-export function useExpand() {
-  const [expanded, setExpanded] = useState(false);
-  const triggerRef = useRef<HTMLButtonElement>(null);
+export interface ExpandGroup {
+  openKey: string | null;
+  isOpen: (key: string) => boolean;
+  close: () => void;
+  panelId: (key: string) => string;
+  /** Spread on the GoldenBox that owns the slot. */
+  boxProps: (key: string) => { className?: string };
+  /** Spread on whatever opens it: a button, or an image's hit area. */
+  triggerProps: (key: string) => {
+    ref: (el: HTMLButtonElement | null) => void;
+    type: "button";
+    "aria-expanded": boolean;
+    "aria-controls": string | undefined;
+    onClick: () => void;
+  };
+  closeRef: React.RefObject<HTMLButtonElement | null>;
+}
+
+export function useExpandGroup(): ExpandGroup {
+  const [openKey, setOpenKey] = useState<string | null>(null);
+  const triggers = useRef(new Map<string, HTMLButtonElement | null>());
   const closeRef = useRef<HTMLButtonElement>(null);
-  const id = useId();
+  const base = useId();
+  const panelId = useCallback((key: string) => `${base}${key}`, [base]);
 
   const close = useCallback(() => {
-    setExpanded(false);
-    requestAnimationFrame(() => triggerRef.current?.focus());
+    setOpenKey((k) => {
+      if (k) requestAnimationFrame(() => triggers.current.get(k)?.focus());
+      return null;
+    });
   }, []);
 
-  const open = useCallback(() => {
+  const open = useCallback((key: string) => {
     for (const other of openCells) other();
-    setExpanded(true);
+    setOpenKey(key);
   }, []);
 
   // Escape, scoped to the panel that has focus. Capture phase so this runs
   // before the tools panel's own window listener and can stop it.
   useEffect(() => {
-    if (!expanded) return;
+    if (!openKey) return;
     openCells.add(close);
     const onKey = (e: KeyboardEvent) => {
       if (e.key !== "Escape" || e.defaultPrevented) return;
-      const panel = document.getElementById(id);
+      const panel = document.getElementById(panelId(openKey));
       if (!panel || !panel.contains(document.activeElement)) return;
       e.preventDefault();
       e.stopImmediatePropagation();
@@ -62,33 +85,46 @@ export function useExpand() {
       openCells.delete(close);
       window.removeEventListener("keydown", onKey, true);
     };
-  }, [expanded, close, id]);
+  }, [openKey, close, panelId]);
 
   return {
-    expanded,
-    open,
+    openKey,
+    isOpen: (key) => openKey === key,
     close,
-    panelId: id,
-    /** Spread on the GoldenBox that owns the summary. */
-    boxProps: { className: expanded ? "cell--expanded" : undefined },
-    /** Spread on the call-to-action button. */
-    triggerProps: {
-      ref: triggerRef,
+    panelId,
+    boxProps: (key) => ({ className: openKey === key ? "cell--expanded" : undefined }),
+    triggerProps: (key) => ({
+      ref: (el: HTMLButtonElement | null) => { triggers.current.set(key, el); },
       type: "button" as const,
-      "aria-expanded": expanded,
-      "aria-controls": expanded ? id : undefined,
-      onClick: () => (expanded ? close() : open()),
-    },
+      "aria-expanded": openKey === key,
+      "aria-controls": openKey === key ? panelId(key) : undefined,
+      onClick: () => (openKey === key ? close() : open(key)),
+    }),
     closeRef,
   };
 }
 
+/** The single-slot case: one summary, one panel. */
+export function useExpand() {
+  const group = useExpandGroup();
+  const KEY = "main";
+  return {
+    expanded: group.isOpen(KEY),
+    open: () => group.triggerProps(KEY).onClick(),
+    close: group.close,
+    panelId: group.panelId(KEY),
+    boxProps: group.boxProps(KEY),
+    triggerProps: group.triggerProps(KEY),
+    closeRef: group.closeRef,
+  };
+}
+
 /**
- * The expanded view: a header with a close control and a scrolling body.
+ * The expanded view: a header with a close control and a body.
  * Focus lands on Close on every mount, so a breakpoint change that remounts
- * the panel in a different slot does not drop focus to the body. Everything
- * the panel covers — its own summary, the trigger, the sibling slots — is
- * made inert for as long as it is open.
+ * the panel in a different slot does not drop focus. Everything the panel
+ * covers — its own summary, the trigger, the sibling slots — is made inert
+ * for as long as it is open.
  */
 export function ExpandedCell({
   id, title, onClose, closeRef, children,
@@ -105,8 +141,6 @@ export function ExpandedCell({
     closeRef.current?.focus({ preventScroll: true });
   }, [closeRef]);
 
-  // Inert everything this panel covers: the summary beside it in the same
-  // slot, and every sibling slot in the same grid.
   useEffect(() => {
     const panel = ref.current;
     if (!panel) return;
@@ -138,5 +172,45 @@ export function ExpandedCell({
       </header>
       <div className="cell__body">{children}</div>
     </section>
+  );
+}
+
+/**
+ * An image that opens its own slot. Every photograph on the page is one, so
+ * a reader who wants a closer look does not have to find a call to action —
+ * the picture is the control. The button covers the figure rather than
+ * wrapping the image, so the alt text stays on the image where it belongs.
+ */
+export function ExpandableMedia({
+  group, slotKey, src, alt, objectPosition, caption, className, children,
+}: {
+  group: ExpandGroup;
+  slotKey: string;
+  src: string;
+  alt: string;
+  objectPosition?: string;
+  caption?: string;
+  className?: string;
+  children?: ReactNode;
+}) {
+  return (
+    <figure className={className ?? "media media--inset"}>
+      <img src={src} alt={alt} style={objectPosition ? { objectPosition } : undefined} />
+      <button className="media__open" {...group.triggerProps(slotKey)}>
+        <span className="visually-hidden">Open {caption ?? alt}</span>
+      </button>
+      {caption && <figcaption className="media__caption">{caption}</figcaption>}
+      {children}
+    </figure>
+  );
+}
+
+/** What an expanded photograph shows: the picture, big, and its caption. */
+export function PhotoView({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+  return (
+    <figure className="cell__photo">
+      <img src={src} alt={alt} />
+      {caption && <figcaption>{caption}</figcaption>}
+    </figure>
   );
 }
